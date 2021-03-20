@@ -6,8 +6,8 @@ import { Games } from './pages/Games';
 import { Stat } from './pages/Stat';
 import { Dictionary } from './pages/Dictioanry';
 import { settings } from './pages/Settings';
-import { Header } from './components/Header';
-import { Footer } from './components/Footer';
+import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
 
 import './app.scss';
 

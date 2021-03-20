@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { WordCard } from '../components/WordCard';
-import { SectionsButtons } from '../components/SectionsButtons';
+import { WordCard } from '../components/WordCard/WordCard';
+import { SectionsButtons } from '../components/SectionsButtons/SectionsButtons';
 
 export const SchoolbookPage: React.FC = () => {
     const { id } = useParams<Record<string, string | undefined>>();

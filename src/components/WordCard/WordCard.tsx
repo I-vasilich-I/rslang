@@ -1,8 +1,8 @@
 import React from 'react';
-import { WordButtons } from './WordButtons';
+import { WordButtons } from './WordButtons/WordButtons';
 
 import './WordCard.scss';
-import { WordGames } from './WordGames';
+import { WordGames } from './WordGames/WordGames';
 
 interface Props {
     name: string;

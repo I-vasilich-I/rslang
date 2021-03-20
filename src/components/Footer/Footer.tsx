@@ -1,7 +1,7 @@
 import React from 'react';
 
-import logo from '../assets/img/rs_school_js.svg';
-import gitLogo from '../assets/img/github.svg';
+import logo from '../../assets/img/rs_school_js.svg';
+import gitLogo from '../../assets/img/github.svg';
 import './Footer.scss';
 
 export const Footer: React.FC = () => {

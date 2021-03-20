@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './WordButtons.scss';
+import './WordGames.scss';
 
 export const WordGames: React.FC = () => {
     return (

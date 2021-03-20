@@ -1,5 +1,5 @@
 import React from 'react';
-import { GamesNavbar } from '../components/GamesNavbar';
+import { GamesNavbar } from '../components/GamesNavbar/GamesNavbar';
 import { SavanaGame } from './SavanaGame';
 import { MyOwnGame } from './MyOwnGame';
 import { SprintGame } from './SprintGame';
