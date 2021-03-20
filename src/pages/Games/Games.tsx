@@ -1,9 +1,9 @@
 import React from 'react';
-import { GamesNavbar } from '../components/GamesNavbar';
-import { SavanaGame } from './SavanaGame';
-import { MyOwnGame } from './MyOwnGame';
-import { SprintGame } from './SprintGame';
-import { AudioChallengeGame } from './AudioChallengeGame';
+import { GamesNavbar } from '../../components/GamesNavbar/GamesNavbar';
+import { SavanaGame } from './SavanaGame/SavanaGame';
+import { MyOwnGame } from './MyOwnGame/MyOwnGame';
+import { SprintGame } from './SprintGame/SprintGame';
+import { AudioChallengeGame } from './AudioChallengeGame/AudioChallengeGame';
 import { Switch, Route } from 'react-router-dom';
 
 export const Games: React.FC = () => {

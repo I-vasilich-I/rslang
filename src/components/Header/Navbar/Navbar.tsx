@@ -1,13 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Navbar.scss';
 
 export const Navbar: React.FC = () => {
     return (
         <nav>
             <div className='nav-wrapper'>
-                <NavLink to='/' className='nav-logo'>
-                    RSLang
-                </NavLink>
                 <ul className='nav-ul '>
                     <li className='nav-li'>
                         <NavLink to='/'>Home</NavLink>
