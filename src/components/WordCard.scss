@@ -1,0 +1,20 @@
+.word-card-wrapper {
+    border: 1px solid blue;
+    min-height: 40px;
+    margin: 5px auto;
+    display: flex;
+    flex-direction: column;
+    .wodr-wrapper {
+        display: flex;
+        .word-image-wrapper {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .word-discription {
+            border: 1px solid red;
+        }
+    }
+    
+    
+}

@@ -1,0 +1,13 @@
+.nav-wrapper {
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    .nav-ul {
+        display: flex;
+        justify-content: flex-start;
+        .nav-li {
+            display: block;
+            margin-right: 10px;
+        }
+    }
+}

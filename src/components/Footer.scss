@@ -1,0 +1,48 @@
+.footer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    min-height: 50px;
+
+    margin: 0 auto;
+    background-color: grey;
+
+    color: white;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 10px;
+
+    .footer-rs-logo {
+        height: 30px;
+        &:hover {
+            transform: scale(1.1);
+            transition: all 0.3s;
+        }
+    }
+    .footer-git-logo {
+        width: 15px;
+        height: 15px;
+        max-height: 30px;
+        margin-right: 5px;
+        background-color: black;
+        border-radius: 50%;
+    }
+    .footer-autor-name {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        text-decoration: none;
+        color: black;
+        &:hover {
+            transform: scale(1.1);
+            transition: all 0.3s;
+            color: red;
+        }
+    }
+    .footer-year {
+        cursor: default;
+        color: black;
+        font-weight: 600;
+    }
+}
