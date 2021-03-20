@@ -1,0 +1,9 @@
+{
+    "extends": ["stylelint-config-recommended", "stylelint-config-prettier"],
+    "plugins": ["stylelint-scss", "stylelint-order"],
+    "ignoreFiles": ["node_modules", "**/*.js"],
+    "rules": {
+        "order/order": ["custom-properties", "declarations"],
+        "order/properties-order": ["width", "height"]
+    }
+}
