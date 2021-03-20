@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { DictionaryPage } from './DictionaryPage';
-import { SideLinks } from '../components/SideLinks/SideLinks';
+import { DictionaryPage } from './DictionaryPage/DictionaryPage';
+import { SideLinks } from '../../components/SideLinks/SideLinks';
 
 import './Dictionary.scss';
 

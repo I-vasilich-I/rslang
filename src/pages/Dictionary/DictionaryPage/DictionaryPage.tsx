@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { SectionsButtons } from '../components/SectionsButtons/SectionsButtons';
-import { WordCard } from '../components/WordCard/WordCard';
+import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
+import { WordCard } from '../../../components/WordCard/WordCard';
 
 export const DictionaryPage: React.FC = () => {
     const history = useHistory();
