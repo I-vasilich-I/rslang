@@ -2,6 +2,8 @@ interface User {
     name?: string;
     email: string;
     password: string;
+    registered: boolean;
+    loggedIn: boolean;
 }
 
 interface UserWord {
@@ -21,4 +23,18 @@ interface UserWordToken {
   word?: string;
 }
 
-export type { User, UserWord, UserWordToken };
+interface CreateUser {
+  email: string;
+  id: string;
+  name: string;
+}
+
+interface LoginUser {
+  message: string;
+  name: string;
+  userId: string;
+  token: string;
+  refreshToken: string;
+}
+
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser };

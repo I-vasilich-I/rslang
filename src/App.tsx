@@ -8,7 +8,6 @@ import { Dictionary } from './pages/Dictionary/Dictioanry';
 import { settings } from './pages/Settings/Settings';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { SignIn } from './components/SignIn/Singin';
 
 import './app.scss';
 
@@ -17,7 +16,6 @@ const App: React.FC = () => {
         <div className='app-container'>
             <BrowserRouter>
                 <Header />
-                <SignIn />
                 <Switch>
                     <Route component={HomePage} path='/' exact />
                     <Route component={Schoolbook} path='/sb' />

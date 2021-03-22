@@ -1,8 +1,7 @@
-import { User, UserWord, UserWordToken } from './interfaces';
+import { User, UserWord, UserWordToken, CreateUser, LoginUser } from './interfaces';
 import { USERS_API_URL, SIGNIN_API_URL } from './constants';
-import { Header } from '../components/Header/Header';
 
-const createUser = async (user: User) => {
+const createUser = async (user: User): Promise<CreateUser> => {
     const rawResponse = await fetch(USERS_API_URL, {
         method: 'POST',
         headers: {
@@ -16,7 +15,7 @@ const createUser = async (user: User) => {
     return content;
 };
 
-const loginUser = async (user: User) => {
+const loginUser = async (user: User): Promise<LoginUser> => {
     const rawResponse = await fetch(SIGNIN_API_URL, {
         method: 'POST',
         headers: {
