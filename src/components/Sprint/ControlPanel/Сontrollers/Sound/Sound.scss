@@ -1,0 +1,17 @@
+.sound-control {
+  grid-area: 1/3/2/4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .MuiSvgIcon-root {
+    font-size: 3.8rem;
+    color: #2C786C;
+  }
+
+  &__wrapper {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
