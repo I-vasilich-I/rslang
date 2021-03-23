@@ -1,6 +1,7 @@
 .sprint-game {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 2fr;
   background-color: #FBFBFB;
-  padding: 25px 25px 0 25px;
+  padding: 0 25px;
+  gap: 35px 0;
 }

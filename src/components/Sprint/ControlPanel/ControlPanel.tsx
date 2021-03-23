@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './ConstrolPanel.scss';
+import './ControlPanel.scss';
 import { Timer } from './Сontrollers/Timer/Timer';
 import { Score } from './Сontrollers/Score/Score';
 import { Sound } from './Сontrollers/Sound/Sound';
