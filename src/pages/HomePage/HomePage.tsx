@@ -1,5 +1,6 @@
 import React from 'react';
 import './Homepage.scss';
+import { SignIn } from '../../components/SignIn/SingIn';
 
 export const HomePage: React.FC = () => {
     return (
@@ -50,7 +51,9 @@ export const HomePage: React.FC = () => {
                 </div>
             </div>
 
-            <div className='registration'>
+            <SignIn />
+
+            {/* <div className='registration'>
                 <form action='#' className='form-body'>
                     <h3>Регистрация</h3>
                     <input type='text' placeholder='Enter your name' />
@@ -61,7 +64,7 @@ export const HomePage: React.FC = () => {
                         <input className='button' type='button' value='NO' />
                     </div>
                 </form>
-            </div>
+            </div> */}
 
             {/* <div className='home-video'>
                 <iframe

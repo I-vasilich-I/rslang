@@ -16,7 +16,6 @@ const App: React.FC = () => {
         <div className='app-container'>
             <BrowserRouter>
                 <Header />
-
                 <Switch>
                     <Route component={HomePage} path='/' exact />
                     <Route component={Schoolbook} path='/sb' />
