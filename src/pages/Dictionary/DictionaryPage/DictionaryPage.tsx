@@ -25,10 +25,10 @@ export const DictionaryPage: React.FC = () => {
             <button className='dictionary-page-btn' onClick={() => history.push('/dict/deleted/1')}>
                 deleted
             </button>
-            <SectionsButtons page={`dict/${id}`} />
-            {cards.map((el, idx) => (
+            <SectionsButtons group={`dict/${id}`} />
+            {/* {cards.map((el, idx) => (
                 <WordCard key={idx} name={((pages - 1) * 20 + idx + 1).toString()} />
-            ))}
+            ))} */}
             <div className='schoolbook-pages-wrapper'>
                 <button className='schoolbook-pages-left'> l </button>
                 <span className='schoolbook-pages-current'>current</span>
