@@ -25,7 +25,7 @@ export const WordAudio: React.FC<iProps> = ({ audio, audioMeaning, audioExample,
         soundExample.play();
     });
     soundExample.on('end', () => {
-        console.log('sound end');
+        soundExample.stop();
     });
 
     const playHandler = () => {

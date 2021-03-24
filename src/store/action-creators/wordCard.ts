@@ -1,12 +1,13 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { WordAction, WordCardActionTypes } from '../../types/wordCard';
+import { WORDS_API_URL } from '../../helpers/constants';
 
 export const fetchWords = (page = 0, group = 0) => {
     return async (dispatch: Dispatch<WordAction>): Promise<void> => {
         try {
             dispatch({ type: WordCardActionTypes.FETCH_WORDS });
-            const response = await axios.get(`https://react-learnwords-example.herokuapp.com/words`, {
+            const response = await axios.get(`${WORDS_API_URL}`, {
                 params: { group: group, page: page },
             });
             dispatch({ type: WordCardActionTypes.FETCH_WORDS_SUCCESS, payload: response.data });
