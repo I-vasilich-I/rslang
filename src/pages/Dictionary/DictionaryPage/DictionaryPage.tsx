@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { WordCard } from '../../../components/WordCard/WordCard';
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
 
 export const DictionaryPage: React.FC = () => {
+    const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
+    const { fetchWords } = useActions();
     const history = useHistory();
     const { id } = useParams<Record<string, string | undefined>>();
 
-    const cards: number[] = new Array(20).fill(null); //del
-    const pages: number = parseInt(id ? id : '0'); //del
+    useEffect(() => {
+        fetchWords(page, group);
+        return () => {
+            console.log('clean');
+        };
+    }, [page, group]);
+
+    if (loading) {
+        return <h1>Loading</h1>;
+    }
+    if (error) {
+        return <h1>{error}</h1>;
+    }
 
     return (
         <div className='dictionary-page-wrapper'>
@@ -26,14 +42,10 @@ export const DictionaryPage: React.FC = () => {
                 deleted
             </button>
             <SectionsButtons group={`dict/${id}`} />
-            {/* {cards.map((el, idx) => (
-                <WordCard key={idx} name={((pages - 1) * 20 + idx + 1).toString()} />
-            ))} */}
-            <div className='schoolbook-pages-wrapper'>
-                <button className='schoolbook-pages-left'> l </button>
-                <span className='schoolbook-pages-current'>current</span>
-                <button className='schoolbook-pages-left'> r </button>
-            </div>
+            <PagesButtons page={page} />
+            {words.map((word) => (
+                <WordCard key={word.id} word={word} />
+            ))}
         </div>
     );
 };

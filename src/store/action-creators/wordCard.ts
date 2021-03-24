@@ -1,7 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { WordAction, WordCardActionTypes } from '../../types/wordCard';
-// import { ConsoleWriter } from 'istanbul-lib-report';
 
 export const fetchWords = (page = 0, group = 0) => {
     return async (dispatch: Dispatch<WordAction>): Promise<void> => {
@@ -10,10 +9,7 @@ export const fetchWords = (page = 0, group = 0) => {
             const response = await axios.get(`https://react-learnwords-example.herokuapp.com/words`, {
                 params: { group: group, page: page },
             });
-            //console.log(response);
-            setTimeout(() => {
-                dispatch({ type: WordCardActionTypes.FETCH_WORDS_SUCCESS, payload: response.data });
-            }, 500);
+            dispatch({ type: WordCardActionTypes.FETCH_WORDS_SUCCESS, payload: response.data });
         } catch (e) {
             dispatch({
                 type: WordCardActionTypes.FETCH_WORDS_ERROR,

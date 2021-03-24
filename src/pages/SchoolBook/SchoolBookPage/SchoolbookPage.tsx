@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { useActions } from '../../../hooks/useActions';
@@ -8,7 +7,6 @@ import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
-    //const dispatch = useDispatch();
     const { fetchWords } = useActions();
 
     useEffect(() => {

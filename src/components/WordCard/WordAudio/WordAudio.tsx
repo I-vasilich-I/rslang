@@ -1,5 +1,5 @@
 import React from 'react';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 interface iProps {
     audio: string;
@@ -40,9 +40,6 @@ export const WordAudio: React.FC<iProps> = ({ audio, audioMeaning, audioExample,
 
     return (
         <div className='word-audio-wrapper'>
-            {/* <audio src={`${BASE_URL}${audio}`} />
-            <audio src={`${BASE_URL}${audioMeaning}`} />
-            <audio src={`${BASE_URL}${audioExample}`} /> */}
             <button className='word-audio-toggle' onClick={() => playHandler()}>
                 sound
             </button>
