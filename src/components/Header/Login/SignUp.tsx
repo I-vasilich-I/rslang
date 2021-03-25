@@ -74,7 +74,7 @@ const SignUp = (): JSX.Element => {
                     <Link to='/sign-in'>Войти</Link>
                 </div>
                 <div className='form_button'>
-                    <input className='button' type='button' value='Sign up' onClick={handleBtnClick} />
+                    <input className='button' type='button' value='Регистрация' onClick={handleBtnClick} />
                 </div>
             </form>
         </div>
