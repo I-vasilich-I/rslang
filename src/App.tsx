@@ -8,8 +8,8 @@ import { Dictionary } from './pages/Dictionary/Dictionary';
 import { settings } from './pages/Settings/Settings';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { SignUp } from './components/Login/SignUp';
-import { SignIn } from './components/Login/SignIn';
+import { SignUp } from './components/Header/Login/SignUp';
+import { SignIn } from './components/Header/Login/SignIn';
 import './app.scss';
 
 const App: React.FC = () => {

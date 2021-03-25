@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { User } from '../../types/interfaces';
-import { createUser, loginUser } from '../../helpers/helpers';
+import { User } from '../../../types/interfaces';
+import { createUser, loginUser } from '../../../helpers/helpers';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import './Login.scss';
 
 const SignUp = (): JSX.Element => {
     const [values, setValues] = useState<User>({
@@ -10,6 +13,7 @@ const SignUp = (): JSX.Element => {
         passwordAgain: '',
     });
 
+    const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -28,8 +32,11 @@ const SignUp = (): JSX.Element => {
                     localStorage.setItem('user', JSON.stringify(userInfo));
                     console.log('user created');
                     const loginInfo = await loginUser(values);
-                    localStorage.setItem('login', JSON.stringify(loginInfo));
-                    console.log('user logged in');
+                    if (loginInfo.message === 'Authenticated') {
+                        localStorage.setItem('login', JSON.stringify(loginInfo));
+                        console.log('user logged in');
+                        history.push('/');
+                    } else history.push('/sign-in');
                 } else console.log(`hasn't been validated`);
             } catch (error) {
                 console.log(error);
@@ -62,6 +69,10 @@ const SignUp = (): JSX.Element => {
                     required
                 />
                 {passwordValidation}
+                <div className='sign-up__link'>
+                    <p>Уже есть аккаунт?</p>
+                    <Link to='/sign-in'>Войти</Link>
+                </div>
                 <div className='form_button'>
                     <input className='button' type='button' value='Sign up' onClick={handleBtnClick} />
                 </div>

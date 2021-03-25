@@ -1,0 +1,116 @@
+@import '../../../constants/constants.scss';
+
+.registration {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 575px;
+  background: url(../../../assets/img/registration__bg.jpg) left/75% no-repeat;
+  background-color: rgb(33, 199, 191);
+  margin: 50px 0;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 420px;
+  width: 500px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgb(77, 77, 77);
+  margin: 0 50px;
+  background: url(../../../assets/img/rs_school_js.svg) 90%/40% no-repeat;
+  background-color: #fff;
+  h3 {
+      text-transform: capitalize;
+      letter-spacing: 2px;
+      font-weight: 300;
+      font-size: 2.75rem;
+      line-height: 1.1;
+      margin: 20px 0;
+      margin-bottom: auto;
+  }
+  input {
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 18px;
+      padding: 5px;
+      margin: 0 10px;
+      text-align: start;
+
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #000;
+      &:invalid:required {
+          border-bottom: 1px solid rgb(255, 2, 2);
+      }
+  }
+
+  label {
+      font-size: 16px;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 18px;
+      padding: 5px;
+      margin: 0 5px;
+      text-align: start;
+  }
+}
+
+.form_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-top: auto;
+  width: 35%;
+  input {
+      border: none;
+      margin: 0 3px;
+  }
+}
+
+.password__validation {
+  height: 14px;
+  margin: 0;
+  padding-left: 10px;
+  font-size: 10px;
+  color: rgb(255, 29, 29);
+}
+
+
+.sign-up__link {
+  font-size: 14px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+  p {
+    margin: 0;
+  }
+  a {
+    margin: 0 5px;
+  }
+}
+
+.login {
+  height: 50px;
+  width: 50px;
+  margin: 0 20px;
+  border: 2px solid $color-secondary;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $color-light;
+  background-color: $color-secondary;
+
+  &:hover {
+    cursor: pointer;
+    color: $color-secondary;
+    background-color: unset;
+    transition: all .3s ease-in-out;
+  }
+}

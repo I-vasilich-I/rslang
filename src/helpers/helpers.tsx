@@ -1,5 +1,5 @@
 import { User, UserWord, UserWordToken, CreateUser, LoginUser } from '../types/interfaces';
-import { USERS_API_URL, SIGNIN_API_URL } from './constants';
+import { USERS_API_URL, SIGNIN_API_URL } from '../constants/constants';
 
 const createUser = async (user: User): Promise<CreateUser> => {
     const rawResponse = await fetch(USERS_API_URL, {

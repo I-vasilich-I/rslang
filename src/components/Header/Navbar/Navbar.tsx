@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Login } from '../Login/Login';
 import './Navbar.scss';
 
 export const Navbar: React.FC = () => {
@@ -23,6 +24,7 @@ export const Navbar: React.FC = () => {
                         <NavLink to='/settings'>Settings</NavLink>
                     </li>
                 </ul>
+                <Login />
             </div>
         </nav>
     );

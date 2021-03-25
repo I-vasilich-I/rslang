@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { User } from '../../types/interfaces';
-import { loginUser } from '../../helpers/helpers';
-import { Redirect } from 'react-router';
+import { User } from '../../../types/interfaces';
+import { loginUser } from '../../../helpers/helpers';
+import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
+import './Login.scss';
 
 const SignIn = (): JSX.Element => {
     const [values, setValues] = useState<User>({
         email: '',
         password: '',
     });
-
+    const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -19,7 +21,7 @@ const SignIn = (): JSX.Element => {
                 const loginInfo = await loginUser(values);
                 if (loginInfo.message === 'Authenticated') {
                     localStorage.setItem('login', JSON.stringify(loginInfo));
-                    <Redirect to='/' />;
+                    history.push('/');
                 }
             } catch (error) {
                 console.log(error);
@@ -41,6 +43,10 @@ const SignIn = (): JSX.Element => {
                     onChange={handleChange('password')}
                     required
                 />
+                <div className='sign-up__link'>
+                    <p>Нет аккаунта?</p>
+                    <Link to='/sign-up'>Регистрация</Link>
+                </div>
                 <div className='form_button'>
                     <input className='button' type='button' value='Войти' onClick={handleBtnClick} />
                 </div>
