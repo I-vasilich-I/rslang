@@ -1,25 +1,36 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
+import { useActions } from '../../../hooks/useActions';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 
 export const SchoolbookPage: React.FC = () => {
-    const { id } = useParams<Record<string, string | undefined>>();
-    const cards: number[] = new Array(20).fill(null); //del
-    const pages: number = parseInt(id ? id : '0'); //del
+    const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
+    const { fetchWords } = useActions();
+
+    useEffect(() => {
+        fetchWords(page, group);
+        return () => {
+            console.log('clean');
+        };
+    }, [page, group]);
+
+    if (loading) {
+        return <h1>Loading</h1>;
+    }
+    if (error) {
+        return <h1>{error}</h1>;
+    }
+
     return (
         <div className='schoolbook-page-wrapper'>
-            <h1>schoolbook page {id}</h1>
-            <SectionsButtons page={'sb'} />
-            {cards.map((el, idx) => (
-                <WordCard key={idx} name={((pages - 1) * 20 + idx + 1).toString()} />
+            <h1>schoolbook group {group + 1}</h1>
+            <SectionsButtons group={'sb'} />
+            <PagesButtons page={page} />
+            {words.map((word) => (
+                <WordCard key={word.id} word={word} />
             ))}
-
-            <div className='schoolbook-pages-wrapper'>
-                <button className='schoolbook-pages-left'> l </button>
-                <span className='schoolbook-pages-current'>current</span>
-                <button className='schoolbook-pages-left'> r </button>
-            </div>
         </div>
     );
 };
