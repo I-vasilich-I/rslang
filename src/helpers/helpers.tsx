@@ -1,4 +1,4 @@
-import { User, UserWord, UserWordToken, CreateUser, LoginUser } from './interfaces';
+import { User, UserWord, UserWordToken, CreateUser, LoginUser } from '../types/interfaces';
 import { USERS_API_URL, SIGNIN_API_URL } from './constants';
 
 const createUser = async (user: User): Promise<CreateUser> => {

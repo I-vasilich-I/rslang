@@ -2,8 +2,7 @@ interface User {
     name?: string;
     email: string;
     password: string;
-    registered: boolean;
-    loggedIn: boolean;
+    passwordAgain?: string;
 }
 
 interface UserWord {
@@ -27,6 +26,7 @@ interface CreateUser {
   email: string;
   id: string;
   name: string;
+  error?: any;
 }
 
 interface LoginUser {

@@ -4,11 +4,12 @@ import { Schoolbook } from './pages/SchoolBook/Schoolbook';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Games } from './pages/Games/Games';
 import { Stat } from './pages/Stat/Stat';
-import { Dictionary } from './pages/Dictionary/Dictioanry';
+import { Dictionary } from './pages/Dictionary/Dictionary';
 import { settings } from './pages/Settings/Settings';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-
+import { SignUp } from './components/Login/SignUp';
+import { SignIn } from './components/Login/SignIn';
 import './app.scss';
 
 const App: React.FC = () => {
@@ -23,6 +24,8 @@ const App: React.FC = () => {
                     <Route component={Games} path='/games' />
                     <Route component={Stat} path='/stat' />
                     <Route component={settings} path='/settings' />
+                    <Route component={SignUp} path='/sign-up' />
+                    <Route component={SignIn} path='/sign-in' />
                 </Switch>
                 <Footer />
             </BrowserRouter>
