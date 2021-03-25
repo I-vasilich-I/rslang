@@ -6,10 +6,11 @@ import { SprintGame } from './SprintGame/SprintGame';
 import { AudioChallengeGame } from './AudioChallengeGame/AudioChallengeGame';
 import { Switch, Route } from 'react-router-dom';
 
+import './Games.scss';
+
 export const Games: React.FC = () => {
     return (
         <div className='games-wrapper'>
-            <h1>Games</h1>
             <GamesNavbar />
             <Switch>
                 <Route component={SavanaGame} path='/games/savana' />
