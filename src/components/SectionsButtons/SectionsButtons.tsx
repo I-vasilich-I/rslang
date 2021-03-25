@@ -1,32 +1,31 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useActions } from '../../hooks/useActions';
+//import { Button } from '../common/Button';
 
 interface Props {
-    page: string;
+    group: string;
 }
 
-export const SectionsButtons: React.FC<Props> = ({ page }: Props) => {
+export const SectionsButtons: React.FC<Props> = ({ group }: Props) => {
+    const { setWordsGroup, setWordsPage } = useActions();
     const history = useHistory();
+    const buttonsArray = new Array(6).fill('');
+
+    const clickHandler = (idx: number) => {
+        setWordsGroup(idx);
+        setWordsPage(0);
+        history.push(`/${group}/${idx + 1}`);
+    };
+
     return (
         <div className='sections-btn-wrapper'>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/1`)}>
-                1
-            </button>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/2`)}>
-                2
-            </button>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/3`)}>
-                3
-            </button>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/4`)}>
-                4
-            </button>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/5`)}>
-                5
-            </button>
-            <button className='sections-btn-wrapper-btn' onClick={() => history.push(`/${page}/6`)}>
-                6
-            </button>
+            {buttonsArray.map((_, idx: number) => (
+                <button className='sections-btn-wrapper-btn' key={idx} onClick={() => clickHandler(idx)}>
+                    {idx + 1}
+                </button>
+                //<Button key={idx} text={(idx + 1).toString()} clickHandler={clickHandler} />
+            ))}
         </div>
     );
 };
