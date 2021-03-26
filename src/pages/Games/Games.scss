@@ -1,0 +1,20 @@
+.games-wrapper {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    flex-direction: column;
+    .games-el-wrapper {
+        display: flex;
+        justify-content: space-around;
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        .games-el {
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+            margin: 20px;
+        }
+    }
+}
