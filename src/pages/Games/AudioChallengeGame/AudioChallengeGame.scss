@@ -1,0 +1,50 @@
+.game-audio-wrapper {
+    border: 1px solid black;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    .game-audio-button-play {
+        width: 100px;
+        height: 100px;
+    }
+    .game-audio-word-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 10px;
+    }
+    .game-audio-var-wrapper {
+        display: flex;
+        margin: 20px 0;
+        .game-audio-el {
+            margin: 0 20px;
+            transition: all 0.5s;
+            cursor: pointer;
+            .game-audio-number {
+                color: grey;
+                font-size: 0.7rem;
+                margin-right: 3px;
+            }
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+        .clicked {
+            text-shadow: 3px 3px 10px red, -3px -3px 10px rgb(255, 94, 0);
+        }
+        .rigth {
+            text-shadow: 3px 3px 10px green, -3px -3px 10px rgb(208, 255, 0);
+        }
+    }
+    .game-audio-picture {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        border: 1px solid black;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}

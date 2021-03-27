@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { Howl } from 'howler';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 import './MyOwnGame.scss';
 import { MyOwnGameEl } from './MyOwnGameEl/MyOwnGameEl';
@@ -15,6 +16,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     const [word, setWord] = useState<string[]>([]);
     const [randomWord, setRandomWord] = useState<string[]>([]);
     const [help, setHelp] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<number[]>([]);
     const BASE_URL = 'https://react-learnwords-example.herokuapp.com/';
 
     useEffect(() => {
@@ -23,13 +25,46 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
             const j = Math.floor(Math.random() * (i + 1));
             [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
         }
-        console.log(arrayCopy);
         setRandomWord(arrayCopy);
         setWord(new Array(words[index].word.length).fill(''));
     }, [index]);
 
-    const clickHandler = (e: string) => {
+    useHotkeys(
+        'space',
+        () => {
+            if (wordIndex === words[index].word.length) {
+                nextHandler();
+            } else {
+                showHandler();
+            }
+        },
+        { filterPreventDefault: true },
+        [wordIndex],
+    );
+
+    const noSelectedItems = randomWord.filter((el, idx) => {
+        // console.log(clicked);
+        //console.log(idx);
+
+        return !clicked.includes(idx);
+        // console.log(!clicked.includes(idx));
+    });
+
+    console.log(noSelectedItems);
+    // for (let i = 1; i <= 5; i++) {
+    //     useHotkeys(
+    //         i.toString(),
+    //         () => {
+    //             clickHandler(randomSet[i - 1]);
+    //         },
+    //         { enabled: !guessed },
+    //         [randomSet],
+    //     );
+    // }
+
+    const clickHandler = (e: string, id: number) => {
         if (words[index].word.split('')[wordIndex] === e) {
+            setClicked([...clicked, id]);
             setWordIndex((prev) => prev + 1);
             setWord(
                 word.map((el, idx) => {
@@ -60,11 +95,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         }
         setWordIndex(0);
         setHelp(false);
+        setClicked([]);
     };
     if (wordIndex < words[index].word.length) {
         return (
             <div className='game-my-wrapper'>
-                <h1>My game</h1>
+                <h1>Конструктор слов</h1>
                 <p className='game-my-word-translate par'>{`${words[index].wordTranslate}`}</p>
                 <div className='game-my-word-wrapper'>
                     {word.map((el, idx) => (
@@ -74,7 +110,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
 
                 <div className='game-my-word-variant-wrapper'>
                     {randomWord.map((el, idx) => (
-                        <MyOwnGameElSelect letter={el} key={idx} click={clickHandler} />
+                        <MyOwnGameElSelect letter={el} key={idx} id={idx} clicked={clicked} click={clickHandler} />
                     ))}
                 </div>
 
@@ -92,7 +128,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                 )}
                 <div className='game-my-buttons-wrapper'>
                     <button className='game-my-button' onClick={() => showHandler()}>
-                        show
+                        показать
                     </button>
                 </div>
             </div>
@@ -100,12 +136,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     }
     return (
         <div className='game-my-wrapper'>
-            <h1>My game</h1>
+            <h1>Конструктор слов</h1>
 
             <p className='game-my-word-translate par'>{`${words[index].wordTranslate}`}</p>
             <div className='game-my-answer'>
                 <button className='game-my-audio-button' onClick={() => playHandler()}>
-                    sound
+                    звук
                 </button>
                 <p className='game-my-word par'>{`${words[index].word}`}</p>
                 <p className='game-my-transcr par'>{`${words[index].transcription}`}</p>
@@ -122,7 +158,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
             <div className='game-my-sentence'>{ReactHtmlParser(words[index].textMeaning)}</div>
             <div className='game-my-buttons-wrapper'>
                 <button className='game-my-button' onClick={() => nextHandler()}>
-                    next
+                    Следующий
                 </button>
             </div>
         </div>
