@@ -41,8 +41,11 @@ const Login = (): JSX.Element => {
                 <MenuItem button={false} className='login__name'>
                     {name || 'Guest'}
                 </MenuItem>
-                <MenuItem onClick={handleLogin}>Log in</MenuItem>
-                <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                {message === 'Authenticated' ? (
+                    <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                ) : (
+                    <MenuItem onClick={handleLogin}>Log in</MenuItem>
+                )}
             </Menu>
         </div>
     );

@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux';
 import { LoginUser } from '../../types/interfaces';
 import { UserAction, UserActionTypes } from '../../types/user';
 

@@ -19,10 +19,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-// interface Props {
-//     setAvatar: React.Dispatch<React.SetStateAction<string>>;
-// }
-
 export default function UploadButton() {
     const { setAvatar } = useActions();
     const classes = useStyles();
