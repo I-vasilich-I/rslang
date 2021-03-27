@@ -3,6 +3,7 @@ import { User } from '../../../types/interfaces';
 import { loginUser } from '../../../helpers/helpers';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
 const SignIn = (): JSX.Element => {
@@ -10,6 +11,7 @@ const SignIn = (): JSX.Element => {
         email: '',
         password: '',
     });
+    const { setUser } = useActions();
     const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -21,6 +23,7 @@ const SignIn = (): JSX.Element => {
                 const loginInfo = await loginUser(values);
                 if (loginInfo.message === 'Authenticated') {
                     localStorage.setItem('login', JSON.stringify(loginInfo));
+                    setUser(loginInfo);
                     history.push('/');
                 }
             } catch (error) {

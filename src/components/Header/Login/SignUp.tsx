@@ -9,7 +9,7 @@ import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
 const SignUp = (): JSX.Element => {
-    const { user, avatar } = useTypedSelector((state) => state.user);
+    const { avatar } = useTypedSelector((state) => state.user);
     const { setUser } = useActions();
     const [values, setValues] = useState<User>({
         name: '',
@@ -17,7 +17,6 @@ const SignUp = (): JSX.Element => {
         password: '',
         passwordAgain: '',
     });
-    // const [avatar, setAvatar] = useState('');
 
     const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,12 +32,12 @@ const SignUp = (): JSX.Element => {
     const handleBtnClick = async () => {
         if (values.password === values.passwordAgain && values.name !== '' && values.email.match(/^\S+@\S+\.\S+$/))
             try {
-                const userInfo = await createUser(values);
+                const userInfo = await createUser({ ...values, avatar });
                 if (!userInfo.error) {
                     const loginInfo = await loginUser(values);
                     if (loginInfo.message === 'Authenticated') {
                         localStorage.setItem('login', JSON.stringify(loginInfo));
-                        setUser(loginInfo);
+                        setUser({ ...loginInfo, avatar });
                         console.log('user logged in');
                         history.push('/');
                     } else history.push('/sign-in');

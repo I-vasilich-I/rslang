@@ -37,7 +37,7 @@ interface LoginUser {
     userId: string;
     token: string;
     refreshToken: string;
-    avatar: '';
+    avatar?: string;
 }
 
 export type { User, UserWord, UserWordToken, CreateUser, LoginUser };

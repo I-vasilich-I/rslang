@@ -7,13 +7,17 @@ export enum UserActionTypes {
 }
 
 export interface UserState {
-    user: LoginUser | null;
+    message: string;
+    name: string;
+    userId: string;
+    token: string;
+    refreshToken: string;
     avatar: string;
 }
 
 interface SetUser {
     type: UserActionTypes.SET_USER;
-    payload: LoginUser | null;
+    payload: LoginUser;
 }
 
 interface SetAvatar {

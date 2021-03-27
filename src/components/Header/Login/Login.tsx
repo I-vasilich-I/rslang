@@ -8,7 +8,7 @@ import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
 const Login = (): JSX.Element => {
-    const { avatar, user } = useTypedSelector((state) => state.user);
+    const { avatar, message, name } = useTypedSelector((state) => state.user);
     const { setUser } = useActions();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const history = useHistory();
@@ -25,20 +25,22 @@ const Login = (): JSX.Element => {
     };
     const handleLogout = () => {
         setAnchorEl(null);
-        localStorage.removeItem('user');
-        localStorage.removeItem('login');
+        setUser({ message: 'log out', name: '', userId: '', token: '', refreshToken: '', avatar: '' });
     };
 
     return (
         <div className='login'>
             <div onClick={handleClick} aria-controls='avatar' aria-haspopup='true'>
-                {avatar && user && user.message === 'Authenticated' ? (
+                {avatar && message === 'Authenticated' ? (
                     <img src={avatar} alt='avatar' className='login' />
                 ) : (
                     <PersonIcon fontSize='large' />
                 )}
             </div>
             <Menu id='avatar' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+                <MenuItem button={false} className='login__name'>
+                    {name || 'Guest'}
+                </MenuItem>
                 <MenuItem onClick={handleLogin}>Log in</MenuItem>
                 <MenuItem onClick={handleLogout}>Log out</MenuItem>
             </Menu>
