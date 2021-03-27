@@ -25,7 +25,9 @@ export const SchoolbookPage: React.FC = () => {
 
     return (
         <div className='schoolbook-page-wrapper'>
-            <h1>schoolbook group {group + 1}</h1>
+            <h1>
+                Учебник группа {group + 1} страница{page + 1}
+            </h1>
             <SectionsButtons group={'sb'} />
             <PagesButtons page={page} />
             {words.map((word) => (
