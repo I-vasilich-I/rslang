@@ -5,11 +5,17 @@ import { Timer } from './Сontrollers/Timer/Timer';
 import { Score } from './Сontrollers/Score/Score';
 import { Sound } from './Сontrollers/Sound/Sound';
 
-export const ControlPanel: React.FC = () => {
+interface ControlPanelProps {
+    score: number;
+}
+
+export const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => {
+    const { score } = props;
+
     return (
         <div className='control-wrapper'>
             <Timer />
-            <Score />
+            <Score value={score} />
             <Sound mute={false} />
         </div>
     );

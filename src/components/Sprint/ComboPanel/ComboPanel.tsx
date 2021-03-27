@@ -10,8 +10,30 @@ interface ComboPanelProps {
     gainPoint?: number;
 }
 
+interface ComboType {
+    img: string;
+    point: number;
+}
+
 export const ComboPanel: React.FC<ComboPanelProps> = (props: ComboPanelProps) => {
-    const comboArray = [combo_10, combo_20, combo_40, combo_80];
+    const comboArray: Array<ComboType> = [
+        {
+            img: combo_10,
+            point: 10,
+        },
+        {
+            img: combo_20,
+            point: 20,
+        },
+        {
+            img: combo_40,
+            point: 40,
+        },
+        {
+            img: combo_80,
+            point: 80,
+        },
+    ];
     const { gainPoint } = props;
 
     const [gain, setGain] = useState(0);
@@ -25,8 +47,8 @@ export const ComboPanel: React.FC<ComboPanelProps> = (props: ComboPanelProps) =>
     return (
         <div className='combo-panel'>
             <div className='combo-panel__wrapper'>
-                <span className='combo-panel__value'>+10</span>
-                <img className='combo-panel__image' src={comboArray[gain]} alt='combo-icon' />
+                <span className='combo-panel__value'>+{comboArray[gain].point}</span>
+                <img className='combo-panel__image' src={comboArray[gain].img} alt='combo-icon' />
             </div>
         </div>
     );
