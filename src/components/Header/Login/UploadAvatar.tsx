@@ -3,6 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { AVATAR_UPLOAD_URL } from '../../../constants/constants';
+import { useActions } from '../../../hooks/useActions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -10,6 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
             '& > *': {
                 margin: theme.spacing(1),
             },
+            outlineColor: 'black',
         },
         input: {
             display: 'none',
@@ -17,31 +19,29 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-interface Props {
-    setAvatar: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface Props {
+//     setAvatar: React.Dispatch<React.SetStateAction<string>>;
+// }
 
-export default function UploadButton(props: Props) {
+export default function UploadButton() {
+    const { setAvatar } = useActions();
     const classes = useStyles();
     const [image, setImage] = useState<File | null>(null);
-    const { setAvatar } = props;
 
     const uploadHandler = () => {
         try {
             if (image) {
                 const formData = new FormData();
                 formData.append('file', image);
-                formData.append('upload_preset', 'avatarPreset');
+                formData.append('upload_preset', 'avatar');
                 const options = {
                     method: 'POST',
                     body: formData,
                 };
-                console.log(options);
                 fetch(AVATAR_UPLOAD_URL, options)
                     .then((res) => res.json())
                     .then((data) => {
                         setAvatar(data.secure_url);
-                        console.log(data.secure_url);
                     })
                     .catch((e) => console.log(e));
             }
@@ -58,7 +58,6 @@ export default function UploadButton(props: Props) {
 
     useEffect(() => {
         if (image) {
-            console.log('useeffect', image);
             uploadHandler();
         }
     }, [image]);
@@ -74,7 +73,7 @@ export default function UploadButton(props: Props) {
             />
             <label htmlFor='icon-button-file'>
                 <IconButton color='primary' aria-label='upload picture' component='span'>
-                    <PhotoCamera />
+                    <PhotoCamera style={{ color: 'black' }} />
                 </IconButton>
             </label>
         </div>

@@ -12,6 +12,7 @@
 }
 
 .form-body {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,7 +67,7 @@
   align-items: center;
   margin: 10px;
   margin-top: auto;
-  width: 35%;
+  width: 50%;
   input {
       border: none;
       margin: 0 3px;
@@ -113,4 +114,11 @@
     background-color: unset;
     transition: all .3s ease-in-out;
   }
+}
+
+.registration__avatar {
+    position: absolute;
+    right: 5%;
+    top: 33%;
+    width: 35%;
 }

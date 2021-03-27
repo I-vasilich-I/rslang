@@ -3,9 +3,13 @@ import PersonIcon from '@material-ui/icons/Person';
 import { useHistory } from 'react-router';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
 const Login = (): JSX.Element => {
+    const { avatar, user } = useTypedSelector((state) => state.user);
+    const { setUser } = useActions();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const history = useHistory();
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -28,7 +32,11 @@ const Login = (): JSX.Element => {
     return (
         <div className='login'>
             <div onClick={handleClick} aria-controls='avatar' aria-haspopup='true'>
-                <PersonIcon fontSize='large' />
+                {avatar && user && user.message === 'Authenticated' ? (
+                    <img src={avatar} alt='avatar' className='login' />
+                ) : (
+                    <PersonIcon fontSize='large' />
+                )}
             </div>
             <Menu id='avatar' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleLogin}>Log in</MenuItem>

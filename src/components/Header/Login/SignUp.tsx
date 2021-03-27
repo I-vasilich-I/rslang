@@ -4,16 +4,20 @@ import { createUser, loginUser } from '../../../helpers/helpers';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import UploadAvatar from './UploadAvatar';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
 const SignUp = (): JSX.Element => {
+    const { user, avatar } = useTypedSelector((state) => state.user);
+    const { setUser } = useActions();
     const [values, setValues] = useState<User>({
         name: '',
         email: '',
         password: '',
         passwordAgain: '',
     });
-    const [avatar, setAvatar] = useState('');
+    // const [avatar, setAvatar] = useState('');
 
     const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,11 +35,10 @@ const SignUp = (): JSX.Element => {
             try {
                 const userInfo = await createUser(values);
                 if (!userInfo.error) {
-                    localStorage.setItem('user', JSON.stringify(userInfo));
-                    console.log('user created');
                     const loginInfo = await loginUser(values);
                     if (loginInfo.message === 'Authenticated') {
                         localStorage.setItem('login', JSON.stringify(loginInfo));
+                        setUser(loginInfo);
                         console.log('user logged in');
                         history.push('/');
                     } else history.push('/sign-in');
@@ -71,16 +74,20 @@ const SignUp = (): JSX.Element => {
                     required
                 />
                 {passwordValidation}
-                <UploadAvatar setAvatar={setAvatar} />
                 <div className='sign-up__link'>
                     <p>Уже есть аккаунт?</p>
                     <Link to='/sign-in'>Войти</Link>
                 </div>
                 <div className='form_button'>
                     <input className='button' type='button' value='Регистрация' onClick={handleBtnClick} />
+                    <UploadAvatar />
                 </div>
+                {avatar ? (
+                    <img src={avatar} alt='avatar' className='registration__avatar' />
+                ) : (
+                    <img src='avatar.svg' alt='avatar' className='registration__avatar' />
+                )}
             </form>
-            {avatar ? <img src={avatar} alt='avatar' className='registration__avatar' /> : <></>}
         </div>
     );
 };

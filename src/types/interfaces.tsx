@@ -3,6 +3,8 @@ interface User {
     email: string;
     password: string;
     passwordAgain?: string;
+    avatar?: string;
+    id?: string;
 }
 
 interface UserWord {
@@ -35,6 +37,7 @@ interface LoginUser {
     userId: string;
     token: string;
     refreshToken: string;
+    avatar: '';
 }
 
 export type { User, UserWord, UserWordToken, CreateUser, LoginUser };
