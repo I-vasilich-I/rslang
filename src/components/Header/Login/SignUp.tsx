@@ -3,6 +3,7 @@ import { User } from '../../../types/interfaces';
 import { createUser, loginUser } from '../../../helpers/helpers';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import UploadAvatar from './UploadAvatar';
 import './Login.scss';
 
 const SignUp = (): JSX.Element => {
@@ -12,6 +13,7 @@ const SignUp = (): JSX.Element => {
         password: '',
         passwordAgain: '',
     });
+    const [avatar, setAvatar] = useState('');
 
     const history = useHistory();
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -69,6 +71,7 @@ const SignUp = (): JSX.Element => {
                     required
                 />
                 {passwordValidation}
+                <UploadAvatar setAvatar={setAvatar} />
                 <div className='sign-up__link'>
                     <p>Уже есть аккаунт?</p>
                     <Link to='/sign-in'>Войти</Link>
@@ -77,6 +80,7 @@ const SignUp = (): JSX.Element => {
                     <input className='button' type='button' value='Регистрация' onClick={handleBtnClick} />
                 </div>
             </form>
+            {avatar ? <img src={avatar} alt='avatar' className='registration__avatar' /> : <></>}
         </div>
     );
 };
