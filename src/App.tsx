@@ -11,6 +11,10 @@ import { Footer } from './components/Footer/Footer';
 import { SignUp } from './components/Header/Login/SignUp';
 import { SignIn } from './components/Header/Login/SignIn';
 import './app.scss';
+import { SavanaGame } from './pages/Games/SavanaGame/SavanaGame';
+import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChallengeGame';
+import { SprintGame } from './pages/Games/SprintGame/SprintGame';
+import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
 
 const App: React.FC = () => {
     return (
@@ -26,6 +30,10 @@ const App: React.FC = () => {
                     <Route component={settings} path='/settings' />
                     <Route component={SignUp} path='/sign-up' />
                     <Route component={SignIn} path='/sign-in' />
+                    <Route component={SavanaGame} path='/savana' />
+                    <Route component={AudioChallengeGame} path='/audio-challenge' />
+                    <Route component={SprintGame} path='/sprint' />
+                    <Route component={MyOwnGame} path='/my-own' />
                 </Switch>
                 <Footer />
             </BrowserRouter>

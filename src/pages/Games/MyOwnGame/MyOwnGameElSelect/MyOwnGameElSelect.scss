@@ -1,0 +1,18 @@
+.game-my-word-el-select {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    cursor: pointer;
+}
+.word-el-selected {
+    background-color: rgb(214, 57, 57);
+}
+.word-el-guessed {
+    background-color: rgb(57, 67, 214);
+}
