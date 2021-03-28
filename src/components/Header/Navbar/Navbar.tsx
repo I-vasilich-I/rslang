@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Login } from '../Login/Login';
 import './Navbar.scss';
 
 export const Navbar: React.FC = () => {
@@ -7,22 +8,23 @@ export const Navbar: React.FC = () => {
         <nav>
             <div className='nav-wrapper'>
                 <ul className='nav-ul '>
-                    <li className='nav-li button'>
-                        <NavLink to='/'>Home</NavLink>
-                    </li>
-                    <li className='nav-li button'>
-                        <NavLink to='/sb/1'>Schoolbook</NavLink>
-                    </li>
-                    <li className='nav-li button'>
-                        <NavLink to='/games'>Games</NavLink>
-                    </li>
-                    <li className='nav-li button'>
-                        <NavLink to='/stat'>Stat</NavLink>
-                    </li>
-                    <li className='nav-li button'>
-                        <NavLink to='/settings'>Settings</NavLink>
-                    </li>
+                    <NavLink to='/'>
+                        <li className='nav-li button'>Home</li>
+                    </NavLink>
+                    <NavLink to='/sb/1'>
+                        <li className='nav-li button'>Schoolbook</li>
+                    </NavLink>
+                    <NavLink to='/games'>
+                        <li className='nav-li button'>Games</li>
+                    </NavLink>
+                    <NavLink to='/stat'>
+                        <li className='nav-li button'>Stat</li>
+                    </NavLink>
+                    <NavLink to='/settings'>
+                        <li className='nav-li button'>Settings</li>
+                    </NavLink>
                 </ul>
+                <Login />
             </div>
         </nav>
     );
