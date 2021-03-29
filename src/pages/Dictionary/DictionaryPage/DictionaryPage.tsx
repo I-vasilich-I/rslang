@@ -14,9 +14,6 @@ export const DictionaryPage: React.FC = () => {
 
     useEffect(() => {
         fetchWords(page, group);
-        return () => {
-            console.log('clean');
-        };
     }, [page, group]);
 
     if (loading) {

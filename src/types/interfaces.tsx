@@ -40,4 +40,10 @@ interface LoginUser {
     avatar?: string;
 }
 
-export type { User, UserWord, UserWordToken, CreateUser, LoginUser };
+interface Audio {
+    audio: string;
+    audioMeaning: string;
+    audioExample: string;
+}
+
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser, Audio };

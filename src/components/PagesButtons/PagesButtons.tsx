@@ -1,7 +1,10 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';
-//import { Button } from '../common/Button';
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
+import IconButton from '@material-ui/core/IconButton';
+import { useTheme } from '@material-ui/core/styles';
+import './PageButtons.scss';
 
 interface Props {
     page: number;
@@ -9,7 +12,7 @@ interface Props {
 
 export const PagesButtons: React.FC<Props> = ({ page }: Props) => {
     const { incWordsPage, decWordsPage } = useActions();
-    //const history = useHistory();
+    const theme = useTheme();
 
     const decreaseHandler = () => {
         decWordsPage(page);
@@ -20,14 +23,16 @@ export const PagesButtons: React.FC<Props> = ({ page }: Props) => {
     };
 
     return (
-        <div className='pages-btn-wrapper'>
-            <button className='pages-btn-left' onClick={() => decreaseHandler()}>
-                l
-            </button>
-            <span className='pages-btn-current'>{page + 1}</span>
-            <button className='pages-btn-left' onClick={() => increaseHandler()}>
-                r
-            </button>
-        </div>
+        <>
+            <div className='pages-btn-wrapper'>
+                <IconButton aria-label='previous' onClick={decreaseHandler}>
+                    {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon />}
+                </IconButton>
+                <span className='pages-btn-current'>Страница {page + 1}</span>
+                <IconButton aria-label='next' onClick={increaseHandler}>
+                    {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon />}
+                </IconButton>
+            </div>
+        </>
     );
 };
