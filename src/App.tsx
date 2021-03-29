@@ -4,11 +4,12 @@ import { Schoolbook } from './pages/SchoolBook/Schoolbook';
 import { HomePage } from './pages/HomePage/HomePage';
 import { Games } from './pages/Games/Games';
 import { Stat } from './pages/Stat/Stat';
-import { Dictionary } from './pages/Dictionary/Dictioanry';
+import { Dictionary } from './pages/Dictionary/Dictionary';
 import { settings } from './pages/Settings/Settings';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-
+import { SignUp } from './components/Header/Login/SignUp';
+import { SignIn } from './components/Header/Login/SignIn';
 import './app.scss';
 import { SavanaGame } from './pages/Games/SavanaGame/SavanaGame';
 import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChallengeGame';
@@ -27,6 +28,8 @@ const App: React.FC = () => {
                     <Route component={Games} path='/games' />
                     <Route component={Stat} path='/stat' />
                     <Route component={settings} path='/settings' />
+                    <Route component={SignUp} path='/sign-up' />
+                    <Route component={SignIn} path='/sign-in' />
                     <Route component={SavanaGame} path='/savana' />
                     <Route component={AudioChallengeGame} path='/audio-challenge' />
                     <Route component={SprintGame} path='/sprint' />
