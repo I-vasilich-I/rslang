@@ -16,7 +16,7 @@ interface Props {
 export const WordCard: React.FC<Props> = ({ word }: Props) => {
     return (
         <div className='word-card-wrapper'>
-            <h1>WordCard {word.word}</h1>
+            <h4>WordCard</h4>
             <WordAudio
                 audio={word.audio}
                 audioMeaning={word.audioMeaning}
@@ -35,8 +35,10 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
                     <div className='word-sentence-translation'> {word.textExampleTranslate}</div>
                 </div>
             </div>
-            <WordButtons />
-            <WordGames />
+            <div className='registration-wrapper '>
+                <WordButtons />
+                <WordGames />
+            </div>
         </div>
     );
 };
