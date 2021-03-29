@@ -1,21 +1,23 @@
+.header {
+    background-color: rgb(35, 208, 199);
+}
+
 .header-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     max-width: 1200px;
     min-height: 50px;
-
     margin: 0 auto;
-    background-color: rgb(35, 208, 199);
-
     color: white;
     font-size: 16px;
     line-height: 19px;
     padding: 0 10px;
+
     a {
         text-decoration: none;
     }
+
     h2 {
         text-transform: capitalize;
         letter-spacing: 2px;
@@ -25,6 +27,7 @@
         line-height: 1.1;
         margin: 20px 0;
         color: #292e33;
+        
         span {
             text-transform: capitalize;
             letter-spacing: 2px;

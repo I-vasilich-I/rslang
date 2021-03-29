@@ -4,6 +4,7 @@ import { SectionsButtons } from '../../../components/SectionsButtons/SectionsBut
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
+import { Settings } from '../../../components/Settings/Settings';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
@@ -25,10 +26,9 @@ export const SchoolbookPage: React.FC = () => {
 
     return (
         <div className='schoolbook-page-wrapper'>
-            <h1>
-                Учебник группа {group + 1} страница{page + 1}
-            </h1>
-            <SectionsButtons group={'sb'} />
+            <h1>Электронный учебник</h1>
+            <Settings />
+            <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />
             {words.map((word) => (
                 <WordCard key={word.id} word={word} />

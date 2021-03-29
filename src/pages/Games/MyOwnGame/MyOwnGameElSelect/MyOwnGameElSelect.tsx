@@ -15,7 +15,7 @@ export const MyOwnGameElSelect: React.FC<iProps> = ({ letter, click }: iProps) =
     };
 
     return (
-        <div className={`game-my-word-el-select ${color}`} onClick={() => clickHndler()}>
+        <div className={`game-my-word-el-select ${color}`} onClick={clickHndler}>
             {letter}
         </div>
     );

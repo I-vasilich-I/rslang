@@ -14,9 +14,6 @@ export const DictionaryPage: React.FC = () => {
 
     useEffect(() => {
         fetchWords(page, group);
-        return () => {
-            console.log('clean');
-        };
     }, [page, group]);
 
     if (loading) {
@@ -41,7 +38,7 @@ export const DictionaryPage: React.FC = () => {
             <button className='dictionary-page-btn' onClick={() => history.push('/dict/deleted/1')}>
                 deleted
             </button>
-            <SectionsButtons group={`dict/${id}`} />
+            <SectionsButtons groupPath={`dict/${id}`} />
             <PagesButtons page={page} />
             {words.map((word) => (
                 <WordCard key={word.id} word={word} />

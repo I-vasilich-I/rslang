@@ -21,11 +21,11 @@ export const PagesButtons: React.FC<Props> = ({ page }: Props) => {
 
     return (
         <div className='pages-btn-wrapper'>
-            <button className='pages-btn-left' onClick={() => decreaseHandler()}>
+            <button className='pages-btn-left' onClick={decreaseHandler}>
                 l
             </button>
             <span className='pages-btn-current'>{page + 1}</span>
-            <button className='pages-btn-left' onClick={() => increaseHandler()}>
+            <button className='pages-btn-left' onClick={increaseHandler}>
                 r
             </button>
         </div>
