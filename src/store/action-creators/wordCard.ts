@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { WordAction, WordCardActionTypes } from '../../types/wordCard';
-import { WORDS_API_URL } from '../../helpers/constants';
+import { WORDS_API_URL } from '../../constants/constants';
 
 export const fetchWords = (page = 0, group = 0) => {
     return async (dispatch: Dispatch<WordAction>): Promise<void> => {
