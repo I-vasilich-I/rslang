@@ -8,6 +8,13 @@ import { QuestionPanel } from './QuestionPanel/QuestionPanel';
 import { ButtonsPanel } from './ButtonsPanel/ButtonsPanel';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { Word } from '../../types/wordCard';
+import useSound from 'use-sound';
+import { useTimer } from '../../hooks/useTimer';
+
+const soundCorrect = require('./sounds/correct.mp3').default;
+const soundIncorrect = require('./sounds/incorrect.mp3').default;
+const soundComboUp = require('./sounds/combo.mp3').default;
+const soundWin = require('./sounds/win.mp3').default;
 
 const initialStateAnswer = {
     audio: '',
@@ -27,19 +34,28 @@ const initialStateAnswer = {
 };
 
 export const Sprint: React.FC = () => {
+    const { words } = useTypedSelector((state) => state.wordCard);
+    const [correctSound] = useSound(soundCorrect);
+    const [incorrectSound] = useSound(soundIncorrect);
+    const [comboSound] = useSound(soundComboUp);
+    const [winSound] = useSound(soundWin);
+
     const [score, setScore] = useState(0);
     const [point, setPoint] = useState(10);
     const [speedCombo, setSpeedCombo] = useState(1);
     const [answers, setAnswers] = useState<Array<boolean>>([]);
 
-    const { words } = useTypedSelector((state) => state.wordCard);
-
     const [selectWord, setSelectWord] = useState<Word>(initialStateAnswer);
     const [selectIndex, setSelectIndex] = useState(0);
     const [randomWord, setRandomWord] = useState<Word>(initialStateAnswer);
+    const [selectRandomIndex, setSelectRandomIndex] = useState(0);
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
+    const [gameDone, setGameDone] = useState(false);
 
-    console.log(words, wordsArray);
+    const timer = useTimer(60, () => {
+        setGameDone((gameDone) => !gameDone);
+        winSound();
+    });
 
     useEffect(() => {
         shuffleWords();
@@ -51,7 +67,7 @@ export const Sprint: React.FC = () => {
             setSelectIndex(0);
         } else {
             setSelectWord(wordsArray[selectIndex]);
-            setRandomWord(wordsArray[selectIndex]);
+            setRandomWord(wordsArray[selectRandomIndex]);
         }
     }, [selectIndex]);
 
@@ -65,15 +81,35 @@ export const Sprint: React.FC = () => {
     }, [answers]);
 
     const correctClick = () => {
+        if (selectWord.id === randomWord.id) {
+            correctAnswer();
+        } else {
+            incorrectAnswer();
+        }
         setSelectIndex((selectIndex) => selectIndex + 1);
-        setScore((score) => score + point);
-        setAnswer(true);
+        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const incorrectClick = () => {
+        if (selectWord.id !== randomWord.id) {
+            correctAnswer();
+        } else {
+            incorrectAnswer();
+        }
         setSelectIndex((selectIndex) => selectIndex + 1);
+        setSelectRandomIndex(getRandomIndexWord());
+    };
+
+    const correctAnswer = () => {
+        setScore((score) => score + point);
+        setAnswer(true);
+        correctSound();
+    };
+
+    const incorrectAnswer = () => {
         setAnswer(false);
         resetCombo();
+        incorrectSound();
     };
 
     const setAnswer = (state: boolean) => {
@@ -88,6 +124,7 @@ export const Sprint: React.FC = () => {
         if (answers.length === 3 && !answers.includes(false) && speedCombo < 4) {
             setSpeedCombo((speedCombo) => speedCombo + 1);
             setPoint((point) => point * 2);
+            comboSound();
         }
     };
 
@@ -105,13 +142,33 @@ export const Sprint: React.FC = () => {
         setWordsArray(array);
     };
 
+    const getRandomIndexWord = (): number => {
+        const probability = Math.random();
+        if (probability <= 0.6) {
+            return selectIndex === wordsArray.length - 1 ? 0 : selectIndex + 1;
+        } else {
+            return getRandomNumber(1, wordsArray.length - 1);
+        }
+    };
+
+    const getRandomNumber = (min: number, max: number): number => {
+        const randNumber: number = min + Math.random() * (max + 1 - min);
+        return Math.floor(randNumber);
+    };
+
     return (
         <div className='sprint-game'>
-            <ControlPanel score={score} />
-            <AnswerPanel answers={answers} />
-            <ComboPanel gainPoint={speedCombo - 1} />
-            <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
-            <ButtonsPanel correctClickHandler={correctClick} incorrectClickHandler={incorrectClick} />
+            {gameDone ? (
+                <h1>Done</h1>
+            ) : (
+                <>
+                    <ControlPanel score={score} time={timer.time} />
+                    <AnswerPanel answers={answers} />
+                    <ComboPanel gainPoint={speedCombo - 1} />
+                    <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
+                    <ButtonsPanel correctClickHandler={correctClick} incorrectClickHandler={incorrectClick} />
+                </>
+            )}
         </div>
     );
 };

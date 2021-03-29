@@ -7,14 +7,15 @@ import { Sound } from './Сontrollers/Sound/Sound';
 
 interface ControlPanelProps {
     score: number;
+    time: number;
 }
 
 export const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => {
-    const { score } = props;
+    const { score, time } = props;
 
     return (
         <div className='control-wrapper'>
-            <Timer />
+            <Timer value={time} />
             <Score value={score} />
             <Sound mute={false} />
         </div>
