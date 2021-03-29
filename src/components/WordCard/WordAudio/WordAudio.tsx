@@ -40,9 +40,7 @@ export const WordAudio: React.FC<iProps> = ({ audio, audioMeaning, audioExample,
 
     return (
         <div className='word-audio-wrapper'>
-            <button className='word-audio-toggle' onClick={() => playHandler()}>
-                sound
-            </button>
+            <div className='word-audio-toggle' onClick={() => playHandler()}></div>
         </div>
     );
 };

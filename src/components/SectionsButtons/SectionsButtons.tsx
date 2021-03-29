@@ -21,9 +21,9 @@ export const SectionsButtons: React.FC<Props> = ({ group }: Props) => {
     return (
         <div className='sections-btn-wrapper'>
             {buttonsArray.map((_, idx: number) => (
-                <button className='sections-btn-wrapper-btn' key={idx} onClick={() => clickHandler(idx)}>
+                <div className='sections-btn-wrapper-btn' key={idx} onClick={() => clickHandler(idx)}>
                     {idx + 1}
-                </button>
+                </div>
                 //<Button key={idx} text={(idx + 1).toString()} clickHandler={clickHandler} />
             ))}
         </div>
