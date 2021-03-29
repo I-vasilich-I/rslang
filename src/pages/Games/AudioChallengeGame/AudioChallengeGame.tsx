@@ -4,6 +4,7 @@ import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 import './AudioChallengeGame.scss';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
 export const AudioChallengeGame: React.FC = () => {
     const { words } = useTypedSelector((state) => state.wordCard);
@@ -11,6 +12,7 @@ export const AudioChallengeGame: React.FC = () => {
     const [guessed, setGuessed] = useState(false);
     const [clicked, setClicked] = useState<string | number>('');
     const [randomSet, setRandomSet] = useState<(string | number)[]>([]);
+    const fullscreenHandle = useFullScreenHandle();
 
     const onlyValue: string[] = words.map((el) => el.wordTranslate);
     const BASE_URL = 'https://react-learnwords-example.herokuapp.com/';
@@ -110,60 +112,72 @@ export const AudioChallengeGame: React.FC = () => {
         setGuessed(true);
     };
 
+    const fullscreanHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);
+
     if (!guessed) {
         return (
-            <div className='game-audio-wrapper'>
-                <h1>Аудиовызов </h1>
-                <button className='game-audio-button-play' onClick={() => playHandler()}>
-                    Звук
-                </button>
-                <div className='game-audio-word-wrapper'>
-                    <button className='game-audio-button-play-liitle' onClick={() => playHelpHandler()}>
-                        помощь
+            <FullScreen handle={fullscreenHandle}>
+                <div className='game-audio-wrapper'>
+                    <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
+                        fs
                     </button>
+                    <h1>Аудиовызов </h1>
+                    <button className='game-audio-button-play' onClick={() => playHandler()}>
+                        Звук
+                    </button>
+                    <div className='game-audio-word-wrapper'>
+                        <button className='game-audio-button-play-liitle' onClick={() => playHelpHandler()}>
+                            помощь
+                        </button>
+                    </div>
+                    <div className='game-audio-var-wrapper'>
+                        {randomSet.map((el, idx) => (
+                            <div
+                                className={clicked === el ? 'game-audio-el clicked' : 'game-audio-el'}
+                                key={idx}
+                                onClick={() => clickHandler(el)}
+                            >
+                                <span className='game-audio-number'>{idx + 1}</span>{' '}
+                                <span className='game-audio-word'> {el}</span>
+                            </div>
+                        ))}
+                    </div>
+                    <button className='game-audio-button' onClick={() => showHandler()}>
+                        Показать
+                    </button>
+                </div>
+            </FullScreen>
+        );
+    }
+    return (
+        <FullScreen handle={fullscreenHandle}>
+            <div className='game-audio-wrapper'>
+                <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
+                    fs
+                </button>
+                <h1>Аудиовызов </h1>
+                <div
+                    className='game-audio-picture'
+                    style={{ backgroundImage: `url("${BASE_URL}${words[index].image}")` }}
+                ></div>
+                <div className='game-audio-word-wrapper'>
+                    <button className='game-audio-button-play-liitle' onClick={() => playHandler()}>
+                        Звук
+                    </button>
+                    <div className='game-audio-word'>{words[index].word}</div>
                 </div>
                 <div className='game-audio-var-wrapper'>
                     {randomSet.map((el, idx) => (
-                        <div
-                            className={clicked === el ? 'game-audio-el clicked' : 'game-audio-el'}
-                            key={idx}
-                            onClick={() => clickHandler(el)}
-                        >
+                        <div className={clicked === el ? 'game-audio-el rigth' : 'game-audio-el'} key={idx}>
                             <span className='game-audio-number'>{idx + 1}</span>{' '}
                             <span className='game-audio-word'> {el}</span>
                         </div>
                     ))}
                 </div>
-                <button className='game-audio-button' onClick={() => showHandler()}>
-                    Показать
+                <button className='game-audio-button' onClick={() => nextHandler()}>
+                    Следующий
                 </button>
             </div>
-        );
-    }
-    return (
-        <div className='game-audio-wrapper'>
-            <h1>Аудиовызов </h1>
-            <div
-                className='game-audio-picture'
-                style={{ backgroundImage: `url("${BASE_URL}${words[index].image}")` }}
-            ></div>
-            <div className='game-audio-word-wrapper'>
-                <button className='game-audio-button-play-liitle' onClick={() => playHandler()}>
-                    Звук
-                </button>
-                <div className='game-audio-word'>{words[index].word}</div>
-            </div>
-            <div className='game-audio-var-wrapper'>
-                {randomSet.map((el, idx) => (
-                    <div className={clicked === el ? 'game-audio-el rigth' : 'game-audio-el'} key={idx}>
-                        <span className='game-audio-number'>{idx + 1}</span>{' '}
-                        <span className='game-audio-word'> {el}</span>
-                    </div>
-                ))}
-            </div>
-            <button className='game-audio-button' onClick={() => nextHandler()}>
-                Следующий
-            </button>
-        </div>
+        </FullScreen>
     );
 };

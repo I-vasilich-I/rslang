@@ -20,9 +20,9 @@ export const MyOwnGameElSelect: React.FC<iProps> = ({ letter, id, clicked, click
     useEffect(() => {
         if (clicked.includes(id)) {
             setElClass('word-ell-disabled');
-        }
+        } else setElClass('');
         return clearTimeout(timerId);
-    }, [clicked]);
+    }, [clicked, id]);
     // if (clicked.includes(id)) {
     //     setElClass('word-ell-disabled');
     // }

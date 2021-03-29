@@ -7,6 +7,12 @@
     flex-direction: column;
     text-align: center;
     align-items: center;
+    position: relative;
+    .game-my-fullscrean {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
     .game-audio-button-play {
         width: 100px;
         height: 100px;
@@ -47,4 +53,13 @@
         background-size: cover;
         background-repeat: no-repeat;
     }
+}
+.fullscreen-enabled {
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fullscreen-enabled .game-my-wrapper {
+    background-color: gray;
 }
