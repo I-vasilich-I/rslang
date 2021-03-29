@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { LoginUser } from './interfaces';
 
 export enum UserActionTypes {

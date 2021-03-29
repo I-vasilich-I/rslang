@@ -5,6 +5,7 @@ import { WordGamesStats } from './WordGamesStats/WordGamesStats';
 import { Word } from '../../types/wordCard';
 import { WordAudio } from './WordAudio/WordAudio';
 import { BACKEND_API_URL } from '../../constants/constants';
+import { useTypedSelector } from '../../hooks/useTypeSelector';
 import './WordCard.scss';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const WordCard: React.FC<Props> = ({ word }: Props) => {
+    const { buttons, display } = useTypedSelector((state) => state.settings);
     return (
         <div className='word-card-wrapper'>
             <div className='wodr-wrapper'>
@@ -23,16 +25,15 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
                 </div>
                 <div className='word-discription'>
                     <div className='word'>
-                        {word.word}
-                        {` | ${word.transcription}`}
-                        {` | ${word.wordTranslate}`}
+                        {word.word} | {word.transcription}
+                        {display ? ` | ${word.wordTranslate}` : ''}
                     </div>
                     <div className='word-sentence'>{ReactHtmlParser(word.textMeaning)} </div>
-                    <div className='word-sentence-translation'> {word.textMeaningTranslate}</div>
+                    {display ? <div className='word-sentence-translation'> {word.textMeaningTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textExample)} </div>
-                    <div className='word-sentence-translation'> {word.textExampleTranslate}</div>
+                    {display ? <div className='word-sentence-translation'> {word.textExampleTranslate}</div> : null}
                     <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
-                    <WordButtons />
+                    {buttons ? <WordButtons /> : null}
                 </div>
             </div>
             <WordGamesStats />
