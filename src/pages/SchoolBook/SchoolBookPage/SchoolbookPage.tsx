@@ -5,11 +5,12 @@ import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
+import './SchoolbookPage.scss';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
     const { fetchWords } = useActions();
-
+    const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
     useEffect(() => {
         fetchWords(page, group);
         return () => {
@@ -27,6 +28,7 @@ export const SchoolbookPage: React.FC = () => {
     return (
         <div className='schoolbook-page-wrapper'>
             <h1>Электронный учебник</h1>
+            <div className={indicator}>Группа {group + 1}</div>
             <Settings />
             <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />
