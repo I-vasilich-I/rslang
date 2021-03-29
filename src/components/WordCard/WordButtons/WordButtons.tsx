@@ -8,11 +8,11 @@ export const WordButtons: React.FC = () => {
     return (
         <div className='word-btn-wrapper'>
             {isDisabled() ? <div className='word-btn-title'>Авторизуйтесь</div> : null}
-            <button className='word-btn-complicated' disabled={isDisabled()}>
-                в сложные слова
+            <button className='word-btn-complicated button' disabled={isDisabled()}>
+                в сложные
             </button>
-            <button className='word-btn-deleted' disabled={isDisabled()}>
-                в удаленные слова
+            <button className='word-btn-deleted button' disabled={isDisabled()}>
+                в удаленные
             </button>
         </div>
     );

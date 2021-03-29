@@ -16,27 +16,28 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
     const { buttons, display } = useTypedSelector((state) => state.settings);
     return (
         <div className='word-card-wrapper'>
+            <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
             <div className='wodr-wrapper'>
                 <div
                     className='word-image-wrapper'
                     style={{ backgroundImage: `url("${BACKEND_API_URL}${word.image}")` }}
-                >
-                    {/* <img src={`${BASE_URL}${word.image}`} alt={`${word.word}`} /> */}
-                </div>
+                ></div>
                 <div className='word-discription'>
-                    <div className='word'>
-                        {word.word} | {word.transcription}
-                        {display ? ` | ${word.wordTranslate}` : ''}
-                    </div>
+                    <div className='word'> {word.word}</div>
+                    <div className='transcription'> {word.transcription}</div>
+                    {display ? <div className='translation'> {word.wordTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textMeaning)} </div>
                     {display ? <div className='word-sentence-translation'> {word.textMeaningTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textExample)} </div>
                     {display ? <div className='word-sentence-translation'> {word.textExampleTranslate}</div> : null}
-                    <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
-                    {buttons ? <WordButtons /> : null}
+                    {/* <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} /> */}
+                    {/* {buttons ? <WordButtons /> : null} */}
                 </div>
             </div>
-            <WordGamesStats />
+            <div className='registration-wrapper '>
+                {buttons ? <WordButtons /> : null}
+                <WordGamesStats />
+            </div>
         </div>
     );
 };

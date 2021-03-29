@@ -1,20 +1,117 @@
 .word-card-wrapper {
-    border: 1px solid blue;
-    min-height: 40px;
-    margin: 5px auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 20px auto;
+
+    background: url(../../assets/img/join-to__bg.jpg) top right/ 40% no-repeat;
+
+    transform: perspective(500px) rotateX(2deg);
+    background-color: rgb(35, 202, 208);
+    box-shadow: 0 0 5px rgb(191, 191, 191);
+    border-radius: 2px;
+    padding: 30px 0;
+    h4 {
+        font-style: italic;
+        font-weight: 400;
+        margin: 10px 0;
+        width: 80%;
+    }
+    .word-audio-wrapper {
+        display: flex;
+        width: 80%;
+        justify-content: flex-start;
+        margin: 10px 0;
+        .word-audio-toggle {
+            display: flex;
+            background: url(../../assets/img/volume.png) center/70% no-repeat;
+            transition: 0.2s;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .word-audio-toggle:hover {
+            background-color: rgba(94, 94, 94, 0.652);
+        }
+    }
     .wodr-wrapper {
         display: flex;
+        justify-content: flex-start;
+        width: 80%;
         .word-image-wrapper {
-            width: 100px;
-            height: 100px;
-            border: 1px solid black;
+            width: 250px;
+            height: 200px;
+
+            border-radius: 3%;
             background-size: cover;
+            background-position: 40% 10%;
             background-repeat: no-repeat;
         }
         .word-discription {
-            border: 1px solid red;
+            display: flex;
+            flex-direction: column;
+            height: 220px;
+            overflow: hidden;
+            overflow-y: auto;
+            width: 60%;
+            margin: 0 0 0 20px;
+            .word {
+                text-transform: uppercase;
+                font-weight: 600;
+                letter-spacing: 1px;
+            }
+            .transcription {
+                font-style: italic;
+            }
+            .translation {
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+            .word-sentence {
+                font-style: italic;
+                b {
+                    font-style: normal;
+                }
+            }
+            .word-sentence-translation {
+                font-style: italic;
+            }
+        }
+    }
+    .registration-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        .word-btn-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            .button {
+                padding: 3px 10px;
+                margin: 10px 5px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                &:disabled {
+                    cursor: unset;
+                }
+            }
+        }
+        .word-games-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: default;
+            width: 100%;
+            .word-game {
+                font-style: italic;
+                margin: 0 10px;
+            }
         }
     }
 }
