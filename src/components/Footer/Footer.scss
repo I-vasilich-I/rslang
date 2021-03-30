@@ -1,12 +1,16 @@
+.footer {
+    background-color: rgb(35, 208, 199);
+}
 .footer-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-around;
 
     min-height: 50px;
-
+    max-width: 1200px;
+    margin: 0 auto;
     margin-top: auto !important;
-    background-color: rgb(35, 208, 199);
+    
 
     color: white;
     font-size: 16px;

@@ -20,9 +20,6 @@ export const Navbar: React.FC = () => {
                     <NavLink to='/stat'>
                         <li className='nav-li button'>Stat</li>
                     </NavLink>
-                    <NavLink to='/settings'>
-                        <li className='nav-li button'>Settings</li>
-                    </NavLink>
                 </ul>
                 <Login />
             </div>

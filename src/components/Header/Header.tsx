@@ -5,13 +5,15 @@ import './Header.scss';
 
 export const Header: React.FC = () => {
     return (
-        <div className='header-wrapper'>
-            <NavLink to='/' className='nav-logo'>
-                <h2>
-                    <span>RS</span>Lang
-                </h2>
-            </NavLink>
-            <Navbar />
-        </div>
+        <header className='header'>
+            <div className='header-wrapper'>
+                <NavLink to='/' className='nav-logo'>
+                    <h2>
+                        <span>RS</span>Lang
+                    </h2>
+                </NavLink>
+                <Navbar />
+            </div>
+        </header>
     );
 };

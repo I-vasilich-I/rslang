@@ -95,6 +95,10 @@
                 border: none;
                 outline: none;
                 cursor: pointer;
+
+                &:disabled {
+                    cursor: unset;
+                }
             }
         }
         .word-games-wrapper {
