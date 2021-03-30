@@ -4,6 +4,7 @@
   background-color: #FBFBFB;
   padding: 0 25px;
   grid-gap: 10px 0;
+  grid-template-rows: 100px 100px 255px auto;
 
   &__fullscreen {
     width: 100vw;

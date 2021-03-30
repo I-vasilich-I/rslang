@@ -11,6 +11,7 @@ import { Word } from '../../types/wordCard';
 import useSound from 'use-sound';
 import { useTimer } from '../../hooks/useTimer';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { Startbox } from './Startbox/Startbox';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -61,9 +62,10 @@ export const Sprint: React.FC = () => {
     const [randomWord, setRandomWord] = useState<Word>(initialStateAnswer);
     const [selectRandomIndex, setSelectRandomIndex] = useState(0);
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
+    const [gameStart, setGameStart] = useState(false);
     const [gameDone, setGameDone] = useState(false);
 
-    const timer = useTimer(60, () => {
+    const timer = useTimer(60, gameStart, () => {
         setGameDone((gameDone) => !gameDone);
         winSound();
     });
@@ -188,8 +190,21 @@ export const Sprint: React.FC = () => {
                     <>
                         <AnswerPanel answers={answers} />
                         <ComboPanel gainPoint={speedCombo - 1} />
-                        <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
-                        <ButtonsPanel correctClickHandler={correctClick} incorrectClickHandler={incorrectClick} />
+                        {gameStart ? (
+                            <>
+                                <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
+                                <ButtonsPanel
+                                    correctClickHandler={correctClick}
+                                    incorrectClickHandler={incorrectClick}
+                                />
+                            </>
+                        ) : (
+                            <Startbox
+                                onStart={() => {
+                                    setGameStart(true);
+                                }}
+                            />
+                        )}
                     </>
                 )}
             </div>
