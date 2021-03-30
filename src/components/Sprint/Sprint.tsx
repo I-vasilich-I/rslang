@@ -10,6 +10,7 @@ import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { Word } from '../../types/wordCard';
 import useSound from 'use-sound';
 import { useTimer } from '../../hooks/useTimer';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -35,10 +36,20 @@ const initialStateAnswer = {
 
 export const Sprint: React.FC = () => {
     const { words } = useTypedSelector((state) => state.wordCard);
-    const [correctSound] = useSound(soundCorrect);
-    const [incorrectSound] = useSound(soundIncorrect);
-    const [comboSound] = useSound(soundComboUp);
-    const [winSound] = useSound(soundWin);
+    const fullscreenHandle = useFullScreenHandle();
+    const [soundEnabled, setSoundEnabled] = React.useState(true);
+    const [correctSound] = useSound(soundCorrect, {
+        soundEnabled: soundEnabled,
+    });
+    const [incorrectSound] = useSound(soundIncorrect, {
+        soundEnabled: soundEnabled,
+    });
+    const [comboSound] = useSound(soundComboUp, {
+        soundEnabled: soundEnabled,
+    });
+    const [winSound] = useSound(soundWin, {
+        soundEnabled: soundEnabled,
+    });
 
     const [score, setScore] = useState(0);
     const [point, setPoint] = useState(10);
@@ -52,7 +63,7 @@ export const Sprint: React.FC = () => {
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
     const [gameDone, setGameDone] = useState(false);
 
-    const timer = useTimer(60, () => {
+    const timer = useTimer(10, () => {
         setGameDone((gameDone) => !gameDone);
         winSound();
     });
@@ -86,8 +97,6 @@ export const Sprint: React.FC = () => {
         } else {
             incorrectAnswer();
         }
-        setSelectIndex((selectIndex) => selectIndex + 1);
-        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const incorrectClick = () => {
@@ -96,20 +105,22 @@ export const Sprint: React.FC = () => {
         } else {
             incorrectAnswer();
         }
-        setSelectIndex((selectIndex) => selectIndex + 1);
-        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const correctAnswer = () => {
         setScore((score) => score + point);
         setAnswer(true);
         correctSound();
+        setSelectIndex((selectIndex) => selectIndex + 1);
+        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const incorrectAnswer = () => {
         setAnswer(false);
         resetCombo();
         incorrectSound();
+        setSelectIndex((selectIndex) => selectIndex + 1);
+        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const setAnswer = (state: boolean) => {
@@ -156,19 +167,32 @@ export const Sprint: React.FC = () => {
         return Math.floor(randNumber);
     };
 
+    const fullscreenHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);
+
+    const onChangeVolume = () => {
+        setSoundEnabled((soundEnabled) => !soundEnabled);
+    };
+
     return (
-        <div className='sprint-game'>
-            {gameDone ? (
-                <h1>Done</h1>
-            ) : (
-                <>
-                    <ControlPanel score={score} time={timer.time} />
-                    <AnswerPanel answers={answers} />
-                    <ComboPanel gainPoint={speedCombo - 1} />
-                    <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
-                    <ButtonsPanel correctClickHandler={correctClick} incorrectClickHandler={incorrectClick} />
-                </>
-            )}
-        </div>
+        <FullScreen handle={fullscreenHandle}>
+            <div className={`sprint-game ${fullscreenHandle.active ? 'sprint-game__fullscreen' : ''}`}>
+                <ControlPanel
+                    score={score}
+                    time={timer.time}
+                    onFullscreen={fullscreenHandler()}
+                    onChangeVolume={onChangeVolume}
+                />
+                {gameDone ? (
+                    <h1>Done</h1>
+                ) : (
+                    <>
+                        <AnswerPanel answers={answers} />
+                        <ComboPanel gainPoint={speedCombo - 1} />
+                        <QuestionPanel word={selectWord.word} translate={randomWord.wordTranslate} />
+                        <ButtonsPanel correctClickHandler={correctClick} incorrectClickHandler={incorrectClick} />
+                    </>
+                )}
+            </div>
+        </FullScreen>
     );
 };

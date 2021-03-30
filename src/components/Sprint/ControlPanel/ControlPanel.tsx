@@ -4,20 +4,24 @@ import './ControlPanel.scss';
 import { Timer } from './Сontrollers/Timer/Timer';
 import { Score } from './Сontrollers/Score/Score';
 import { Sound } from './Сontrollers/Sound/Sound';
+import { Fullscreen } from './Сontrollers/Fullscreen/Fullscreen';
 
 interface ControlPanelProps {
     score: number;
     time: number;
+    onFullscreen: () => void;
+    onChangeVolume: () => void;
 }
 
 export const ControlPanel: React.FC<ControlPanelProps> = (props: ControlPanelProps) => {
-    const { score, time } = props;
+    const { score, time, onFullscreen, onChangeVolume } = props;
 
     return (
         <div className='control-wrapper'>
             <Timer value={time} />
             <Score value={score} />
-            <Sound mute={false} />
+            <Sound changeVolume={onChangeVolume} />
+            <Fullscreen clickHandler={onFullscreen} />
         </div>
     );
 };

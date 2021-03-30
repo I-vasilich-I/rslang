@@ -4,4 +4,9 @@
   background-color: #FBFBFB;
   padding: 0 25px;
   grid-gap: 10px 0;
+
+  &__fullscreen {
+    width: 100vw;
+    height: 100vh;
+  }
 }
