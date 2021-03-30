@@ -35,7 +35,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
                 </div>
             </div>
             <div className='registration-wrapper '>
-                {buttons ? <WordButtons /> : null}
+                {buttons ? <WordButtons wordId={word.id} /> : null}
                 <WordGamesStats />
             </div>
         </div>

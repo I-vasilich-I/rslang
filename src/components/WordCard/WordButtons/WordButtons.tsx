@@ -4,7 +4,11 @@ import { createUserWord, getUserWord, updateUserWord } from '../../../helpers/he
 import { WordToSend } from '../../../types/interfaces';
 import './WordButtons.scss';
 
-export const WordButtons: React.FC = () => {
+interface Props {
+    wordId: string;
+}
+
+export const WordButtons = ({ wordId }: Props): JSX.Element => {
     const { message, userId, token } = useTypedSelector((state) => state.user);
     const isDisabled = () => (message === 'Authenticated' ? false : true);
 
@@ -33,7 +37,6 @@ export const WordButtons: React.FC = () => {
     };
 
     const handleClick = async (e: React.BaseSyntheticEvent) => {
-        const wordId = e.target.offsetParent.children[1].children[1].children[0].id;
         if (!wordId) return;
         try {
             const userWord = await getUserWord({ userId, wordId, token });
