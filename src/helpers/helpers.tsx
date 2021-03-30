@@ -1,4 +1,4 @@
-import { User, UserWord, UserWordToken, CreateUser, LoginUser } from '../types/interfaces';
+import { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend } from '../types/interfaces';
 import { USERS_API_URL, SIGNIN_API_URL } from '../constants/constants';
 
 const createUser = async (user: User): Promise<CreateUser> => {
@@ -29,9 +29,26 @@ const loginUser = async (user: User): Promise<LoginUser> => {
     return content;
 };
 
-const createUserWord = async ({ userId, wordId, word, token }: UserWordToken): Promise<UserWord> => {
+const createUserWord = async ({ userId, wordId, word, token }: UserWordToken): Promise<WordToSend> => {
     const params = {
         method: 'POST',
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(word),
+    };
+    const rawResponse = await fetch(`${USERS_API_URL}/${userId}/words/${wordId}`, params);
+    const content = await rawResponse.json();
+
+    return content;
+};
+
+const updateUserWord = async ({ userId, wordId, word, token }: UserWordToken): Promise<WordToSend> => {
+    const params = {
+        method: 'PUT',
         withCredentials: true,
         headers: {
             Authorization: `Bearer ${token}`,
@@ -61,4 +78,4 @@ const getUserWord = async ({ userId, wordId, token }: UserWordToken): Promise<Us
     return content;
 };
 
-export { createUser, loginUser, getUserWord, createUserWord };
+export { createUser, loginUser, getUserWord, createUserWord, updateUserWord };

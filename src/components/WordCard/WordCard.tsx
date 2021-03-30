@@ -23,15 +23,15 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
                     style={{ backgroundImage: `url("${BACKEND_API_URL}${word.image}")` }}
                 ></div>
                 <div className='word-discription'>
-                    <div className='word'> {word.word}</div>
-                    <div className='transcription'> {word.transcription}</div>
-                    {display ? <div className='translation'> {word.wordTranslate}</div> : null}
+                    <div className='word' id={word.id}>
+                        {word.word}
+                    </div>
+                    <div className='transcription'>{word.transcription}</div>
+                    {display ? <div className='translation'>{word.wordTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textMeaning)} </div>
-                    {display ? <div className='word-sentence-translation'> {word.textMeaningTranslate}</div> : null}
+                    {display ? <div className='word-sentence-translation'>{word.textMeaningTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textExample)} </div>
-                    {display ? <div className='word-sentence-translation'> {word.textExampleTranslate}</div> : null}
-                    {/* <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} /> */}
-                    {/* {buttons ? <WordButtons /> : null} */}
+                    {display ? <div className='word-sentence-translation'>{word.textExampleTranslate}</div> : null}
                 </div>
             </div>
             <div className='registration-wrapper '>
