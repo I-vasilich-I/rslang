@@ -63,7 +63,7 @@ export const Sprint: React.FC = () => {
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
     const [gameDone, setGameDone] = useState(false);
 
-    const timer = useTimer(10, () => {
+    const timer = useTimer(60, () => {
         setGameDone((gameDone) => !gameDone);
         winSound();
     });
