@@ -1,12 +1,11 @@
 .app-container {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     padding: 0;
-
     min-height: 100vh;
     max-width: 1200px;
-
     background-color: transparent;
-
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -26,4 +25,11 @@
 .button:hover {
     background-color: #454d55;
     transform: all 0.2s;
+}
+
+.button:disabled {
+    background-color: #454d55;
+    &:hover {
+        cursor:auto;
+    }
 }
