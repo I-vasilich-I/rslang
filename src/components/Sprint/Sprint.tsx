@@ -56,7 +56,6 @@ export const Sprint: React.FC = () => {
     const [point, setPoint] = useState(10);
     const [speedCombo, setSpeedCombo] = useState(1);
     const [answers, setAnswers] = useState<Array<boolean>>([]);
-
     const [selectWord, setSelectWord] = useState<Word>(initialStateAnswer);
     const [selectIndex, setSelectIndex] = useState(0);
     const [randomWord, setRandomWord] = useState<Word>(initialStateAnswer);
@@ -113,16 +112,12 @@ export const Sprint: React.FC = () => {
         setScore((score) => score + point);
         setAnswer(true);
         correctSound();
-        setSelectIndex((selectIndex) => selectIndex + 1);
-        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const incorrectAnswer = () => {
         setAnswer(false);
         resetCombo();
         incorrectSound();
-        setSelectIndex((selectIndex) => selectIndex + 1);
-        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const setAnswer = (state: boolean) => {
@@ -131,6 +126,8 @@ export const Sprint: React.FC = () => {
             answersCopy.push(state);
             return answersCopy;
         });
+        setSelectIndex((selectIndex) => selectIndex + 1);
+        setSelectRandomIndex(getRandomIndexWord());
     };
 
     const updateCombo = () => {
