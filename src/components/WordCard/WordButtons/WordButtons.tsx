@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
-import { createUserWord, getUserWord, updateUserWord } from '../../../helpers/helpers';
+import { useActions } from '../../../hooks/useActions';
+import { createUserWord, updateUserWord } from '../../../helpers/helpers';
 import { WordToSend } from '../../../types/interfaces';
+import { ALERTS } from '../../../constants/constants';
+import { AlertType } from '../../../types/interfaces';
 import './WordButtons.scss';
 
 interface Props {
@@ -10,56 +13,54 @@ interface Props {
 
 export const WordButtons = ({ wordId }: Props): JSX.Element => {
     const { message, userId, token } = useTypedSelector((state) => state.user);
+    const { words: userWords, loading: userWordsLoading, error: userWordsError } = useTypedSelector(
+        (state) => state.userWords,
+    );
+    const { SetAlert, SetAlertShown, fetchUserWords } = useActions();
     const isDisabled = () => (message === 'Authenticated' ? false : true);
+    const [difficulty, setDifficulty] = useState();
 
     const prepareWord = (e: React.BaseSyntheticEvent, oldWord?: WordToSend): WordToSend => {
         const difficulty = e.target.id || '';
-        const optional = {
-            game1: {
-                right: 0,
-                wrong: 0,
-            },
-            game2: {
-                right: 0,
-                wrong: 0,
-            },
-            game3: {
-                right: 0,
-                wrong: 0,
-            },
-            game4: {
-                right: 0,
-                wrong: 0,
-            },
-        };
-
-        return { difficulty, optional: oldWord ? oldWord.optional : optional };
+        setDifficulty(e.target.id || '');
+        if (oldWord) return { difficulty, optional: oldWord.optional };
+        return { difficulty };
     };
 
+    const showAlert = (alertType: AlertType['name'], timeOut = true): void => {
+        SetAlert(alertType);
+        SetAlertShown(true);
+        if (timeOut) {
+            setTimeout(() => {
+                SetAlertShown(false);
+            }, 1500);
+        }
+    };
+
+    // useEffect(() => {
+    //     console.log(difficulty);
+    //     if (difficulty === 'deleted') {
+    //         console.log('hi');
+    //         fetchUserWords(userId, token);
+    //     }
+    // }, [difficulty]);
+
     const handleClick = async (e: React.BaseSyntheticEvent) => {
-        if (!wordId) return;
-        try {
-            const userWord = await getUserWord({ userId, wordId, token });
-            if (!userWord) {
-                try {
-                    createUserWord({ userId, wordId, word: prepareWord(e), token });
-                    // alert success
-                } catch (e) {
-                    console.error(e);
-                    // alert failure
-                }
-            } else {
-                try {
-                    updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
-                    // alert success
-                } catch (e) {
-                    console.error(e);
-                    // alert failure
-                }
+        const userWord = userWords.find((elem) => elem.wordId === wordId);
+        if (!userWord) {
+            try {
+                createUserWord({ userId, wordId, word: prepareWord(e), token });
+                showAlert(ALERTS.wordAdded);
+            } catch (e) {
+                showAlert({ ...ALERTS.error, message: `Не удалось добавить слово в словарь: ${e.message}` });
             }
-        } catch (error) {
-            console.error(error);
-            // alert failure
+        } else {
+            try {
+                updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
+                showAlert(ALERTS.wordUpdated);
+            } catch (e) {
+                showAlert({ ...ALERTS.error, message: `Не удалось обновить слово: ${e.message}` });
+            }
         }
     };
 

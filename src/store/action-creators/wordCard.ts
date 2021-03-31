@@ -14,7 +14,7 @@ export const fetchWords = (page = 0, group = 0) => {
         } catch (e) {
             dispatch({
                 type: WordCardActionTypes.FETCH_WORDS_ERROR,
-                payload: 'Loading Error',
+                payload: e.message,
             });
         }
     };
@@ -32,4 +32,10 @@ export function decWordsPage(page: number): WordAction {
 }
 export function setWordsGroup(group: number): WordAction {
     return { type: WordCardActionTypes.SET_WORDS_GROUP, payload: group };
+}
+export function setWordsError(): WordAction {
+    return {
+        type: WordCardActionTypes.FETCH_WORDS_ERROR,
+        payload: null,
+    };
 }
