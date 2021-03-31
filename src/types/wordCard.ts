@@ -40,7 +40,7 @@ interface FetchWordSuccessAction {
 }
 interface FetchWordErrorAction {
     type: WordCardActionTypes.FETCH_WORDS_ERROR;
-    payload: string;
+    payload: string | null;
 }
 interface SetWordPage {
     type: WordCardActionTypes.SET_WORDS_PAGE;
