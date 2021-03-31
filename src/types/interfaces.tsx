@@ -1,3 +1,4 @@
+import { Word } from './wordCard';
 interface User {
     name?: string;
     email: string;
@@ -11,17 +12,53 @@ interface UserWord {
     id: string;
     difficulty: string;
     optional: {
-        testFieldString: string;
-        testFieldBoolen: boolean;
+        game1: {
+            right: number;
+            wrong: number;
+        };
+        game2: {
+            right: number;
+            wrong: number;
+        };
+        game3: {
+            right: number;
+            wrong: number;
+        };
+        game4: {
+            right: number;
+            wrong: number;
+        };
     };
     wordId: string;
+}
+
+interface WordToSend {
+    difficulty: string;
+    optional: {
+        game1: {
+            right: number;
+            wrong: number;
+        };
+        game2: {
+            right: number;
+            wrong: number;
+        };
+        game3: {
+            right: number;
+            wrong: number;
+        };
+        game4: {
+            right: number;
+            wrong: number;
+        };
+    };
 }
 
 interface UserWordToken {
     userId: string;
     wordId: string;
     token: string;
-    word?: string;
+    word?: WordToSend;
 }
 
 interface CreateUser {
@@ -40,4 +77,4 @@ interface LoginUser {
     avatar?: string;
 }
 
-export type { User, UserWord, UserWordToken, CreateUser, LoginUser };
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend };
