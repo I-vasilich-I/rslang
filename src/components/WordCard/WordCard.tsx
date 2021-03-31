@@ -16,15 +16,23 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
     const { buttons, display } = useTypedSelector((state) => state.settings);
     return (
         <div className='word-card-wrapper'>
-            <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
             <div className='wodr-wrapper'>
                 <div
                     className='word-image-wrapper'
                     style={{ backgroundImage: `url("${BACKEND_API_URL}${word.image}")` }}
                 ></div>
                 <div className='word-discription'>
-                    <div className='word'> {word.word}</div>
+                    <div className='word'>
+                        {' '}
+                        {word.word}
+                        <WordAudio
+                            audio={word.audio}
+                            audioMeaning={word.audioMeaning}
+                            audioExample={word.audioExample}
+                        />
+                    </div>
                     <div className='transcription'> {word.transcription}</div>
+
                     {display ? <div className='translation'> {word.wordTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textMeaning)} </div>
                     {display ? <div className='word-sentence-translation'> {word.textMeaningTranslate}</div> : null}

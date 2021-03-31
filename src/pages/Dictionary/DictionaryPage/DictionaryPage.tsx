@@ -17,27 +17,32 @@ export const DictionaryPage: React.FC = () => {
     }, [page, group]);
 
     if (loading) {
-        return <h1>Loading</h1>;
+        return <h2>Loading</h2>;
     }
     if (error) {
-        return <h1>{error}</h1>;
+        return <h2>{error}</h2>;
     }
 
     return (
         <div className='dictionary-page-wrapper'>
-            <h1>dictioanry {id}</h1>
-            <p className='dictioanry-words-amount'>words amount</p>
-            <p className='dictioanry-words-result'>words result</p>
+            <h2>dictioanry {id}</h2>
+            <div className='dictioanry-words-wrapper'>
+                <p className='dictioanry-words-amount'>20</p>
+                <p className='dictioanry-words-result'>15</p>
+            </div>
 
-            <button className='dictionary-page-btn' onClick={() => history.push('/dict/learning/1')}>
-                learning
-            </button>
-            <button className='dictionary-page-btn' onClick={() => history.push('/dict/complicated/1')}>
-                complicated
-            </button>
-            <button className='dictionary-page-btn' onClick={() => history.push('/dict/deleted/1')}>
-                deleted
-            </button>
+            <div className='dictionary-btn-wrapper'>
+                <button className='dictionary-page-btn button' onClick={() => history.push('/dict/learning/1')}>
+                    learning
+                </button>
+                <button className='dictionary-page-btn button' onClick={() => history.push('/dict/complicated/1')}>
+                    complicated
+                </button>
+                <button className='dictionary-page-btn button' onClick={() => history.push('/dict/deleted/1')}>
+                    deleted
+                </button>
+            </div>
+
             <SectionsButtons groupPath={`dict/${id}`} />
             <PagesButtons page={page} />
             {words.map((word) => (
