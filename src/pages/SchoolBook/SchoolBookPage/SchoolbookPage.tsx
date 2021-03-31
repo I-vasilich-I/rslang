@@ -70,7 +70,7 @@ export const SchoolbookPage: React.FC = () => {
 
     return (
         <div className='schoolbook-page-wrapper'>
-            <h1>Электронный учебник</h1>
+            <h2>Электронный учебник</h2>
             <div className={indicator}>Группа {group + 1}</div>
             <Settings />
             <SectionsButtons groupPath={'sb'} />

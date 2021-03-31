@@ -8,9 +8,7 @@ export const Settings = (): JSX.Element => {
     return (
         <>
             <SettingsPopup isPopUpActive={isPopUpActive} setIsPopUpActive={setIsPopUpActive} />
-            <button className='settings__title' onClick={handleClick}>
-                settings
-            </button>
+            <div className='settings__title' onClick={handleClick}></div>
         </>
     );
 };

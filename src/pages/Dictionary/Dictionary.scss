@@ -1,3 +1,45 @@
 .dictionary-wrapper {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 0 0 40px;
+    h2 {
+        text-transform: capitalize;
+        font-size: 28px;
+        line-height: 30px;
+    }
+    .dictioanry-words-wrapper {
+        display: flex;
+        align-items: center;
+        cursor: default;
+        .dictioanry-words-amount,
+        .dictioanry-words-result {
+            font-size: 18px;
+            line-height: 21px;
+            font-weight: 600;
+            color: rgb(45, 245, 72);
+        }
+        .dictioanry-words-amount {
+            color: rgb(255, 78, 47);
+        }
+        .dictioanry-words-amount::after {
+            content: '/';
+            color: black;
+            margin: 0 5px;
+        }
+    }
+
+    .dictionary-btn-wrapper {
+        display: flex;
+        align-items: center;
+        .button {
+            outline: none;
+            border: none;
+            padding: 3px 15px;
+            width: 100%;
+            margin: 0 10px;
+        }
+    }
 }
