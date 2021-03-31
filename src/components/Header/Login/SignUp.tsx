@@ -6,11 +6,14 @@ import { Link } from 'react-router-dom';
 import UploadAvatar from './UploadAvatar';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
+import { ALERTS } from '../../../constants/constants';
+import { AlertType } from '../../../types/interfaces';
 import './Login.scss';
 
 const SignUp = (): JSX.Element => {
     const { avatar } = useTypedSelector((state) => state.user);
-    const { setUser } = useActions();
+    const { setUser, SetAlert, SetAlertShown } = useActions();
+    const history = useHistory();
     const [values, setValues] = useState<User>({
         name: '',
         email: '',
@@ -18,7 +21,16 @@ const SignUp = (): JSX.Element => {
         passwordAgain: '',
     });
 
-    const history = useHistory();
+    const showAlert = (alertType: AlertType['name'], timeOut = false): void => {
+        SetAlert(alertType);
+        SetAlertShown(true);
+        if (timeOut) {
+            setTimeout(() => {
+                SetAlertShown(false);
+            }, 1500);
+        }
+    };
+
     const handleChange = (prop: keyof User) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
     };
@@ -38,14 +50,17 @@ const SignUp = (): JSX.Element => {
                     if (loginInfo.message === 'Authenticated') {
                         localStorage.setItem('login', JSON.stringify(loginInfo));
                         setUser({ ...loginInfo, avatar });
-                        console.log('user logged in');
+                        showAlert(ALERTS.userCreated, true);
                         history.push('/');
-                    } else history.push('/sign-in');
-                } else console.log(`hasn't been validated`);
+                    } else {
+                        showAlert({ ...ALERTS.userDenied, message: `Не авторизован ${loginInfo.message}` });
+                        history.push('/sign-in');
+                    }
+                } else showAlert({ ...ALERTS.userDenied, message: `Ошибка создания пользователя ${userInfo.error}` });
             } catch (error) {
-                console.log(error);
+                showAlert({ ...ALERTS.userDenied, message: `Ошибка создания пользователя  ${error.message}` });
             }
-        else console.log(`hasn't been validated`);
+        else showAlert({ ...ALERTS.userDenied, message: `Проверьте введенные данные` });
     };
 
     return (
@@ -61,6 +76,7 @@ const SignUp = (): JSX.Element => {
                     type='password'
                     value={values.password}
                     minLength={8}
+                    placeholder='Не менее 8 символов'
                     onChange={handleChange('password')}
                     required
                 />
@@ -69,6 +85,7 @@ const SignUp = (): JSX.Element => {
                     type='password'
                     value={values.passwordAgain}
                     minLength={8}
+                    placeholder='Не менее 8 символов'
                     onChange={handleChange('passwordAgain')}
                     required
                 />

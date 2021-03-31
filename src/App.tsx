@@ -13,6 +13,7 @@ import { SavanaGame } from './pages/Games/SavanaGame/SavanaGame';
 import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChallengeGame';
 import { SprintGame } from './pages/Games/SprintGame/SprintGame';
 import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
+import ActionAlerts from './components/common/Alert';
 import './app.scss';
 
 const App: React.FC = () => {
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                     <Route component={MyOwnGame} path='/my-own' />
                 </Switch>
             </main>
+            <ActionAlerts />
             <Footer />
         </BrowserRouter>
     );

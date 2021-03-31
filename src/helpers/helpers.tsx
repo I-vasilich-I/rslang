@@ -74,8 +74,21 @@ const getUserWord = async ({ userId, wordId, token }: UserWordToken): Promise<Us
     };
     const rawResponse = await fetch(`${USERS_API_URL}/${userId}/words/${wordId}`, params);
     const content = await rawResponse.json();
-
     return content;
 };
 
-export { createUser, loginUser, getUserWord, createUserWord, updateUserWord };
+const getUserWords = async ({ userId, token }: UserWordToken): Promise<UserWord[]> => {
+    const params = {
+        method: 'GET',
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+        },
+    };
+    const rawResponse = await fetch(`${USERS_API_URL}/${userId}/words`, params);
+    const content = await rawResponse.json();
+    return content;
+};
+
+export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord };

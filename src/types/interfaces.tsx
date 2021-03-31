@@ -1,4 +1,6 @@
 import { Word } from './wordCard';
+import { AlertProps } from '@material-ui/lab';
+
 interface User {
     name?: string;
     email: string;
@@ -11,7 +13,7 @@ interface User {
 interface UserWord {
     id: string;
     difficulty: string;
-    optional: {
+    optional?: {
         game1: {
             right: number;
             wrong: number;
@@ -34,7 +36,7 @@ interface UserWord {
 
 interface WordToSend {
     difficulty: string;
-    optional: {
+    optional?: {
         game1: {
             right: number;
             wrong: number;
@@ -56,7 +58,7 @@ interface WordToSend {
 
 interface UserWordToken {
     userId: string;
-    wordId: string;
+    wordId?: string;
     token: string;
     word?: WordToSend;
 }
@@ -77,4 +79,12 @@ interface LoginUser {
     avatar?: string;
 }
 
-export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend };
+interface AlertType {
+    [name: string]: {
+        type: AlertProps['severity'];
+        title: string;
+        message: string;
+    };
+}
+
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend, AlertType };

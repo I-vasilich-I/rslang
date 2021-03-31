@@ -1,7 +1,10 @@
 import React from 'react';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
-import { createUserWord, getUserWord, updateUserWord } from '../../../helpers/helpers';
+import { useActions } from '../../../hooks/useActions';
+import { createUserWord, getUserWords, updateUserWord } from '../../../helpers/helpers';
 import { WordToSend } from '../../../types/interfaces';
+import { ALERTS } from '../../../constants/constants';
+import { AlertType } from '../../../types/interfaces';
 import './WordButtons.scss';
 
 interface Props {
@@ -10,6 +13,7 @@ interface Props {
 
 export const WordButtons = ({ wordId }: Props): JSX.Element => {
     const { message, userId, token } = useTypedSelector((state) => state.user);
+    const { SetAlert, SetAlertShown } = useActions();
     const isDisabled = () => (message === 'Authenticated' ? false : true);
 
     const prepareWord = (e: React.BaseSyntheticEvent, oldWord?: WordToSend): WordToSend => {
@@ -32,34 +36,38 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
                 wrong: 0,
             },
         };
+        if (oldWord) return { difficulty, optional: oldWord.optional };
+        return { difficulty, optional };
+    };
 
-        return { difficulty, optional: oldWord ? oldWord.optional : optional };
+    const showAlert = (alertType: AlertType['name'], timeOut = true): void => {
+        SetAlert(alertType);
+        SetAlertShown(true);
+        if (timeOut) {
+            setTimeout(() => {
+                SetAlertShown(false);
+            }, 1500);
+        }
     };
 
     const handleClick = async (e: React.BaseSyntheticEvent) => {
-        if (!wordId) return;
-        try {
-            const userWord = await getUserWord({ userId, wordId, token });
-            if (!userWord) {
-                try {
-                    createUserWord({ userId, wordId, word: prepareWord(e), token });
-                    // alert success
-                } catch (e) {
-                    console.error(e);
-                    // alert failure
-                }
-            } else {
-                try {
-                    updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
-                    // alert success
-                } catch (e) {
-                    console.error(e);
-                    // alert failure
-                }
+        const difficulty = e.target.id || '';
+        const userWords = await getUserWords({ userId, token });
+        const userWord = userWords.find((elem) => elem.wordId === wordId);
+        if (!userWord) {
+            try {
+                createUserWord({ userId, wordId, word: { difficulty }, token });
+                showAlert(ALERTS.wordAdded);
+            } catch (e) {
+                showAlert({ ...ALERTS.error, message: `Не удалось добавить слово в словарь: ${e.message}` });
             }
-        } catch (error) {
-            console.error(error);
-            // alert failure
+        } else {
+            try {
+                updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
+                showAlert(ALERTS.wordUpdated);
+            } catch (e) {
+                showAlert({ ...ALERTS.error, message: `Не удалось обновить слово: ${e.message}` });
+            }
         }
     };
 
