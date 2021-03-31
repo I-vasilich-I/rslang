@@ -36,6 +36,7 @@ const SignIn = (): JSX.Element => {
                 if (loginInfo.message === 'Authenticated') {
                     setUser(loginInfo);
                     showAlert(ALERTS.userAuth, true);
+                    localStorage.setItem('stateDate', JSON.stringify(Date.now()));
                     history.push('/');
                 } else showAlert({ ...ALERTS.userDenied, message: `Не авторизован ${loginInfo.message}` });
             } catch (error) {

@@ -48,9 +48,9 @@ const SignUp = (): JSX.Element => {
                 if (!userInfo.error) {
                     const loginInfo = await loginUser(values);
                     if (loginInfo.message === 'Authenticated') {
-                        localStorage.setItem('login', JSON.stringify(loginInfo));
                         setUser({ ...loginInfo, avatar });
                         showAlert(ALERTS.userCreated, true);
+                        localStorage.setItem('stateDate', JSON.stringify(Date.now()));
                         history.push('/');
                     } else {
                         showAlert({ ...ALERTS.userDenied, message: `Не авторизован ${loginInfo.message}` });

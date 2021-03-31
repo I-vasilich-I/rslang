@@ -13,12 +13,13 @@ interface Props {
 
 export const WordButtons = ({ wordId }: Props): JSX.Element => {
     const { message, userId, token } = useTypedSelector((state) => state.user);
+    const { words } = useTypedSelector((state) => state.wordCard);
     const { words: userWords, loading: userWordsLoading, error: userWordsError } = useTypedSelector(
         (state) => state.userWords,
     );
     const { SetAlert, SetAlertShown, fetchUserWords } = useActions();
     const isDisabled = () => (message === 'Authenticated' ? false : true);
-    const [difficulty, setDifficulty] = useState();
+    const [difficulty, setDifficulty] = useState('');
 
     const prepareWord = (e: React.BaseSyntheticEvent, oldWord?: WordToSend): WordToSend => {
         const difficulty = e.target.id || '';
@@ -37,13 +38,12 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
         }
     };
 
-    // useEffect(() => {
-    //     console.log(difficulty);
-    //     if (difficulty === 'deleted') {
-    //         console.log('hi');
-    //         fetchUserWords(userId, token);
-    //     }
-    // }, [difficulty]);
+    useEffect(() => {
+        if (difficulty === 'deleted') {
+            setDifficulty('');
+            fetchUserWords(userId, token);
+        }
+    }, [difficulty]);
 
     const handleClick = async (e: React.BaseSyntheticEvent) => {
         const userWord = userWords.find((elem) => elem.wordId === wordId);

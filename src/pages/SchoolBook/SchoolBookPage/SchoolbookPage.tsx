@@ -19,7 +19,6 @@ export const SchoolbookPage: React.FC = () => {
         (state) => state.userWords,
     );
     const { fetchWords, fetchUserWords, SetAlert, SetAlertShown, setWordsError, setUserWordsError } = useActions();
-    const [filteredWords, setFilteredWords] = useState<Word[]>([]);
 
     const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
 
@@ -40,17 +39,11 @@ export const SchoolbookPage: React.FC = () => {
     }, [userId]);
 
     useEffect(() => {
-        setFilteredWords(
-            words.filter((elem) => !userWords.find((el) => el.wordId === elem.id && el.difficulty === 'deleted')),
-        );
-    }, [userWords]);
-
-    useEffect(() => {
         fetchWords(page, group);
         return () => {
             console.log('clean');
         };
-    }, [page, group]);
+    }, [page, group, userWords]);
 
     useEffect(() => {
         if (error || userWordsError) {
@@ -59,10 +52,6 @@ export const SchoolbookPage: React.FC = () => {
             setUserWordsError();
         }
     }, []);
-
-    const wordsComponent = userWords?.length
-        ? filteredWords.map((word) => <WordCard key={word.id} word={word} />)
-        : words.map((word) => <WordCard key={word.id} word={word} />);
 
     if (loading || userWordsLoading) {
         return <h1>Loading</h1>;
@@ -75,7 +64,11 @@ export const SchoolbookPage: React.FC = () => {
             <Settings />
             <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />
-            {wordsComponent}
+            {words
+                .filter((elem) => !userWords.find((el) => el.wordId === elem.id && el.difficulty === 'deleted'))
+                .map((word) => (
+                    <WordCard key={word.id} word={word} />
+                ))}
         </div>
     );
 };
