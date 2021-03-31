@@ -1,13 +1,13 @@
 .sprint-game {
-  display: grid;
-  height: calc(100vh - 140px);
-  background-color: #FBFBFB;
-  padding: 0 25px;
-  grid-gap: 10px 0;
-  grid-template-rows: 100px 100px 255px auto;
+    display: grid;
+    min-height: calc(100vh - 140px);
+    background-color: #fbfbfb;
+    padding: 0 25px;
+    grid-gap: 10px 0;
+    grid-template-rows: 100px 100px 255px auto;
 
-  &__fullscreen {
-    width: 100vw;
-    height: 100vh;
-  }
+    &__fullscreen {
+        width: 100vw;
+        height: 100vh;
+    }
 }

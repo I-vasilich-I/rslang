@@ -1,20 +1,39 @@
 .games-wrapper {
     display: flex;
-    margin: 0 auto;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+
+    .games-title {
+        font-style: italic;
+    }
     .games-el-wrapper {
         display: flex;
         justify-content: space-around;
-        width: 90%;
+        width: 100%;
         height: 90%;
         margin: 0 auto;
         flex-wrap: wrap;
+
         .games-el {
-            width: 400px;
-            height: 400px;
-            border: 1px solid black;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 150px;
+            height: 170px;
             margin: 20px;
+            border-radius: 5px;
+
+            text-transform: capitalize;
+            font-style: italic;
+
+            cursor: pointer;
+
+            background: url(../../assets/img/computer-game.png) 50% 10%/90% no-repeat;
+        }
+
+        .games-el:hover {
+            background-color: cadetblue;
+            transition: all 0.2s;
         }
     }
 }
