@@ -3,7 +3,7 @@ import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
 import { createUserWord, updateUserWord, deleteUserWord } from '../../../helpers/helpers';
 import { WordToSend } from '../../../types/interfaces';
-import { ALERTS } from '../../../constants/constants';
+import { ALERTS, DIFFICULTY } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
 import { useLocation } from 'react-router-dom';
 import './WordButtons.scss';
@@ -67,7 +67,7 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
     };
 
     useEffect(() => {
-        if (difficulty === 'deleted' || difficulty === 'reestablish') {
+        if (DIFFICULTY[difficulty]) {
             setDifficulty('');
             fetchUserWords(userId, token);
         }
