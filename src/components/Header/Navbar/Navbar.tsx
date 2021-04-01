@@ -9,16 +9,16 @@ export const Navbar: React.FC = () => {
             <div className='nav-wrapper'>
                 <ul className='nav-ul '>
                     <NavLink to='/'>
-                        <li className='nav-li button'>Home</li>
+                        <li className='nav-li button'>Главная</li>
                     </NavLink>
                     <NavLink to='/sb/1'>
-                        <li className='nav-li button'>Schoolbook</li>
+                        <li className='nav-li button'>Учебник</li>
                     </NavLink>
                     <NavLink to='/games'>
-                        <li className='nav-li button'>Games</li>
+                        <li className='nav-li button'>Игры</li>
                     </NavLink>
                     <NavLink to='/stat'>
-                        <li className='nav-li button'>Stat</li>
+                        <li className='nav-li button'>Статистика</li>
                     </NavLink>
                 </ul>
                 <Login />

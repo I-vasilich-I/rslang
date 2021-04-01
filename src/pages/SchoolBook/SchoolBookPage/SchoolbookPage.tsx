@@ -5,12 +5,9 @@ import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
-import { getUserWords } from '../../../helpers/helpers';
-import './SchoolbookPage.scss';
-import { UserWord } from '../../../types/interfaces';
-import { Word } from '../../../types/wordCard';
 import { ALERTS } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
+import './SchoolbookPage.scss';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);

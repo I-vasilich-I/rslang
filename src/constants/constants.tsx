@@ -1,4 +1,4 @@
-import { AlertType } from '../types/interfaces';
+import { AlertType, DictionaryTitle } from '../types/interfaces';
 const BACKEND_API_URL = 'https://team101-rslang-be.herokuapp.com/';
 const WORDS_API_URL = `${BACKEND_API_URL}words`;
 const USERS_API_URL = `${BACKEND_API_URL}users`;
@@ -8,6 +8,12 @@ const JWT_REFRESH_EXPIRE_TIME = 4 * 60 * 60 * 1000;
 const DIFFICULTY = {
     complicated: 'complicated',
     deleted: 'deleted',
+};
+
+const DICTIONARY_TITLE: DictionaryTitle = {
+    learning: 'Изучаемые слова',
+    deleted: 'Удалённые слова',
+    complicated: 'Сложные слова',
 };
 
 const ALERTS: AlertType = {
@@ -30,6 +36,11 @@ const ALERTS: AlertType = {
         type: 'success',
         title: 'ОК',
         message: 'Слово обнавлено',
+    },
+    wordReestablished: {
+        type: 'success',
+        title: 'ОК',
+        message: 'Слово восстановлено',
     },
     userCreated: {
         type: 'success',
@@ -57,4 +68,5 @@ export {
     DIFFICULTY,
     ALERTS,
     JWT_REFRESH_EXPIRE_TIME,
+    DICTIONARY_TITLE,
 };
