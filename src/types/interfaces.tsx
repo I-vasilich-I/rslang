@@ -87,4 +87,8 @@ interface AlertType {
     };
 }
 
-export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend, AlertType };
+interface DictionaryTitle {
+    [name: string]: string
+}
+
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend, AlertType, DictionaryTitle };
