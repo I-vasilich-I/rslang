@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { WordButtons } from './WordButtons/WordButtons';
 import { WordGamesStats } from './WordGamesStats/WordGamesStats';
@@ -14,6 +14,21 @@ interface Props {
 
 export const WordCard: React.FC<Props> = ({ word }: Props) => {
     const { buttons, display } = useTypedSelector((state) => state.settings);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const indicator = `difficulty-indicator difficulty-indicator--complicated`;
+    const [indicatorComponent, setIndicatorComponent] = useState(
+        userWords.find((elem) => elem.wordId === word.id && elem.difficulty === 'complicated') ? (
+            <div className={indicator}>Сложно</div>
+        ) : null,
+    );
+
+    useEffect(() => {
+        setIndicatorComponent(
+            userWords.find((elem) => elem.wordId === word.id && elem.difficulty === 'complicated') ? (
+                <div className={indicator}>Сложно</div>
+            ) : null,
+        );
+    }, [userWords]);
     return (
         <div className='word-card-wrapper'>
             <div className='wodr-wrapper'>
@@ -44,6 +59,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
                 {buttons ? <WordButtons wordId={word.id} /> : null}
                 <WordGamesStats />
             </div>
+            {indicatorComponent}
         </div>
     );
 };

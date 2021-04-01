@@ -60,6 +60,15 @@
     &--6 {
         color: white;
     }
+
+    &--complicated {
+        position: absolute;
+        top: 315px;
+        left: 15px;
+        background-color: rgb(204, 6, 138);
+        color: white;
+        opacity: unset;
+    }
 }
 
 @keyframes rotate {
