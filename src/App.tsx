@@ -14,6 +14,7 @@ import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChalle
 import { SprintGame } from './pages/Games/SprintGame/SprintGame';
 import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
 import './app.scss';
+import { GamesResult } from './pages/Games/GamesResult/GamesResult';
 
 const App: React.FC = () => {
     return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
                     <Route component={AudioChallengeGame} path='/audio-challenge' />
                     <Route component={SprintGame} path='/sprint' />
                     <Route component={MyOwnGame} path='/my-own' />
+                    <Route component={GamesResult} path='/result' />
                 </Switch>
             </main>
             <Footer />

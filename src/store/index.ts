@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { rootReducer } from './reducers/index';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const saveState = (state: unknown) => {
     try {
@@ -23,7 +24,7 @@ const loadState = () => {
 
 const oldState = loadState();
 
-export const store = createStore(rootReducer, oldState, applyMiddleware(thunk));
+export const store = createStore(rootReducer, oldState, composeWithDevTools(applyMiddleware(thunk)));
 
 store.subscribe(() => {
     saveState(store.getState());
