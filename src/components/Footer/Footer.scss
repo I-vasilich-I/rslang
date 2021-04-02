@@ -1,5 +1,6 @@
 .footer {
     background-color: rgb(35, 208, 199);
+    margin-top: auto !important;
 }
 .footer-wrapper {
     display: flex;
@@ -9,8 +10,6 @@
     min-height: 50px;
     max-width: 1200px;
     margin: 0 auto;
-    margin-top: auto !important;
-    
 
     color: white;
     font-size: 16px;

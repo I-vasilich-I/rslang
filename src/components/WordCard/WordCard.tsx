@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { WordButtons } from './WordButtons/WordButtons';
 import { WordGamesStats } from './WordGamesStats/WordGamesStats';
@@ -14,30 +14,52 @@ interface Props {
 
 export const WordCard: React.FC<Props> = ({ word }: Props) => {
     const { buttons, display } = useTypedSelector((state) => state.settings);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const indicator = `difficulty-indicator difficulty-indicator--complicated`;
+    const [indicatorComponent, setIndicatorComponent] = useState(
+        userWords.find((elem) => elem.wordId === word.id && elem.difficulty === 'complicated') ? (
+            <div className={indicator}>Сложно</div>
+        ) : null,
+    );
+
+    useEffect(() => {
+        setIndicatorComponent(
+            userWords.find((elem) => elem.wordId === word.id && elem.difficulty === 'complicated') ? (
+                <div className={indicator}>Сложно</div>
+            ) : null,
+        );
+    }, [userWords]);
     return (
         <div className='word-card-wrapper'>
-            <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} />
             <div className='wodr-wrapper'>
                 <div
                     className='word-image-wrapper'
                     style={{ backgroundImage: `url("${BACKEND_API_URL}${word.image}")` }}
                 ></div>
                 <div className='word-discription'>
-                    <div className='word'> {word.word}</div>
+                    <div className='word'>
+                        {' '}
+                        {word.word}
+                        <WordAudio
+                            audio={word.audio}
+                            audioMeaning={word.audioMeaning}
+                            audioExample={word.audioExample}
+                        />
+                    </div>
                     <div className='transcription'> {word.transcription}</div>
+
                     {display ? <div className='translation'> {word.wordTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textMeaning)} </div>
-                    {display ? <div className='word-sentence-translation'> {word.textMeaningTranslate}</div> : null}
+                    {display ? <div className='word-sentence-translation'>{word.textMeaningTranslate}</div> : null}
                     <div className='word-sentence'>{ReactHtmlParser(word.textExample)} </div>
-                    {display ? <div className='word-sentence-translation'> {word.textExampleTranslate}</div> : null}
-                    {/* <WordAudio audio={word.audio} audioMeaning={word.audioMeaning} audioExample={word.audioExample} /> */}
-                    {/* {buttons ? <WordButtons /> : null} */}
+                    {display ? <div className='word-sentence-translation'>{word.textExampleTranslate}</div> : null}
                 </div>
             </div>
             <div className='registration-wrapper '>
-                {buttons ? <WordButtons /> : null}
+                {buttons ? <WordButtons wordId={word.id} /> : null}
                 <WordGamesStats />
             </div>
+            {indicatorComponent}
         </div>
     );
 };

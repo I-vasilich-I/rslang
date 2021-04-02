@@ -13,6 +13,7 @@ import { SavanaGame } from './pages/Games/SavanaGame/SavanaGame';
 import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChallengeGame';
 import { SprintGame } from './pages/Games/SprintGame/SprintGame';
 import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
+import ActionAlerts from './components/common/Alert';
 import './app.scss';
 import { GamesResult } from './pages/Games/GamesResult/GamesResult';
 
@@ -36,6 +37,7 @@ const App: React.FC = () => {
                     <Route component={GamesResult} path='/result' />
                 </Switch>
             </main>
+            <ActionAlerts />
             <Footer />
         </BrowserRouter>
     );

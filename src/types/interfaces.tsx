@@ -1,3 +1,6 @@
+import { Word } from './wordCard';
+import { AlertProps } from '@material-ui/lab';
+
 interface User {
     name?: string;
     email: string;
@@ -10,18 +13,54 @@ interface User {
 interface UserWord {
     id: string;
     difficulty: string;
-    optional: {
-        testFieldString: string;
-        testFieldBoolen: boolean;
+    optional?: {
+        game1: {
+            right: number;
+            wrong: number;
+        };
+        game2: {
+            right: number;
+            wrong: number;
+        };
+        game3: {
+            right: number;
+            wrong: number;
+        };
+        game4: {
+            right: number;
+            wrong: number;
+        };
     };
     wordId: string;
 }
 
+interface WordToSend {
+    difficulty: string;
+    optional?: {
+        game1: {
+            right: number;
+            wrong: number;
+        };
+        game2: {
+            right: number;
+            wrong: number;
+        };
+        game3: {
+            right: number;
+            wrong: number;
+        };
+        game4: {
+            right: number;
+            wrong: number;
+        };
+    };
+}
+
 interface UserWordToken {
     userId: string;
-    wordId: string;
+    wordId?: string;
     token: string;
-    word?: string;
+    word?: WordToSend;
 }
 
 interface CreateUser {
@@ -40,4 +79,16 @@ interface LoginUser {
     avatar?: string;
 }
 
-export type { User, UserWord, UserWordToken, CreateUser, LoginUser };
+interface AlertType {
+    [name: string]: {
+        type: AlertProps['severity'];
+        title: string;
+        message: string;
+    };
+}
+
+interface DictionaryTitle {
+    [name: string]: string
+}
+
+export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend, AlertType, DictionaryTitle };

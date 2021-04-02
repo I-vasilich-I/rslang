@@ -39,12 +39,12 @@ const Login = (): JSX.Element => {
             </div>
             <Menu id='avatar' anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem button={false} className='login__name'>
-                    {name || 'Guest'}
+                    {name || 'Гость'}
                 </MenuItem>
                 {message === 'Authenticated' ? (
-                    <MenuItem onClick={handleLogout}>Log out</MenuItem>
+                    <MenuItem onClick={handleLogout}>Выйти</MenuItem>
                 ) : (
-                    <MenuItem onClick={handleLogin}>Log in</MenuItem>
+                    <MenuItem onClick={handleLogin}>Войти</MenuItem>
                 )}
             </Menu>
         </div>

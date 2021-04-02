@@ -1,0 +1,40 @@
+.score-control {
+  grid-area: 1/2/2/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__point {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+    background-color: #D98B21;
+    border-radius: 50%;
+    border: 5px solid #F8B400;
+    margin-right: 10px;
+    user-select: none;
+
+    &__icon {
+      pointer-events: none;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__value {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #F8B400;
+    user-select: none;
+  }
+}

@@ -1,0 +1,20 @@
+.timer-control {
+  grid-area: 1/1/2/2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
+
+  .MuiSvgIcon-root {
+    color: #2C786C;
+    font-size: 3.8rem;
+  }
+
+  &__value {
+    color: #2C786C;
+    font-size: 3rem;
+    font-weight: 700;
+    user-select: none;
+  }
+}
