@@ -9,8 +9,13 @@ import { MyOwnGameEl } from './MyOwnGameEl/MyOwnGameEl';
 import { MyOwnGameElSelect } from './MyOwnGameElSelect/MyOwnGameElSelect';
 import question from '../../../assets/img/question-mark.png';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { useActions } from '../../../hooks/useActions';
+import { GameResult } from '../../../types/gameResult';
+import { useHistory } from 'react-router-dom';
+import { BACKEND_API_URL } from '../../../constants/constants';
 
 export const MyOwnGame: React.FC = (): JSX.Element => {
+    const { setResults, clearResults } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
     const [wordIndex, setWordIndex] = useState<number>(0);
     const [index, setIndex] = useState<number>(0);
@@ -19,7 +24,8 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     const [help, setHelp] = useState<boolean>(false);
     const [clicked, setClicked] = useState<number[]>([]);
     const gameRef = useRef<HTMLInputElement>(null);
-    const BASE_URL = 'https://react-learnwords-example.herokuapp.com/';
+    const [isWrong, setIsWrong] = useState(false);
+    const history = useHistory();
 
     const fullscreenHandle = useFullScreenHandle();
     console.log(index);
@@ -64,9 +70,13 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         setWord(new Array(words[index].word.length).fill(''));
     }, [index]);
 
+    useEffect(() => {
+        clearResults();
+    }, []);
+
     useHotkeys(
         'space',
-        () => {
+        (event) => {
             if (wordIndex === words[index].word.length) {
                 console.log('next');
                 nextHandler();
@@ -76,27 +86,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
 
                 showHandler();
             }
+            event.preventDefault();
         },
         { filterPreventDefault: true },
         [wordIndex, index],
     );
 
-    // for (let i = 0; i < ALPHABET.length; i += 1) {
-    //     useHotkeys(
-    //         ALPHABET[i],
-    //         () => {
-    //             if (ALPHABET[i] === currentWord[wordIndex]) {
-    //                 let idx = randomWord.indexOf(ALPHABET[i]);
-    //                 if (clicked.indexOf(idx) >= 0) {
-    //                     idx = randomWord.lastIndexOf(ALPHABET[i]);
-    //                 }
-    //                 clickHandler(ALPHABET[i], idx);
-    //             }
-    //         },
-    //         {},
-    //         [wordIndex, randomWord],
-    //     );
-    // }
     ALPHABET.map((el) => {
         return useHotkeys(
             el,
@@ -131,11 +126,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     };
     const playHandler = () => {
         const sound = new Howl({
-            src: [`${BASE_URL}${words[index].audio}`],
+            src: [`${BACKEND_API_URL}${words[index].audio}`],
         });
         sound.playing() ? sound.stop() : sound.play();
     };
     const showHandler = () => {
+        setIsWrong(true);
         setWord(currentWord);
         setWordIndex(words[index].word.length);
     };
@@ -145,7 +141,17 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         setHelp((prev) => !prev);
         if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
-        } else setIndex(0);
+        } else history.push('result');
+        const rez: GameResult = {
+            resultWord: words[index],
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
+        if (isWrong) rez.game.wrong = 1;
+        else rez.game.right = 1;
+        setResults(rez);
     };
     const fullscreanHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);
     if (wordIndex < words[index].word.length) {
@@ -172,7 +178,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                     {help ? (
                         <div
                             className='game-my-picture'
-                            style={{ backgroundImage: `url("${BASE_URL}${words[index].image}")` }}
+                            style={{ backgroundImage: `url("${BACKEND_API_URL}${words[index].image}")` }}
                         ></div>
                     ) : (
                         <div
@@ -213,7 +219,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                 </div>
                 <div
                     className='game-my-picture'
-                    style={{ backgroundImage: `url("${BASE_URL}${words[index].image}")` }}
+                    style={{ backgroundImage: `url("${BACKEND_API_URL}${words[index].image}")` }}
                 ></div>
                 <div className='game-my-sentence'>{ReactHtmlParser(words[index].textMeaning)}</div>
                 <div className='game-my-buttons-wrapper'>

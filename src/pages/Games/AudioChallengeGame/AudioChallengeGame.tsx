@@ -5,26 +5,33 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import './AudioChallengeGame.scss';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { useActions } from '../../../hooks/useActions';
+import { GameResult } from '../../../types/gameResult';
+import { useHistory } from 'react-router-dom';
+import { BACKEND_API_URL } from '../../../constants/constants';
 
 export const AudioChallengeGame: React.FC = () => {
+    const { setResults, clearResults } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
     const [index, setIndex] = useState(0);
     const [guessed, setGuessed] = useState(false);
     const [clicked, setClicked] = useState<string | number>('');
     const [randomSet, setRandomSet] = useState<(string | number)[]>([]);
     const fullscreenHandle = useFullScreenHandle();
+    const history = useHistory();
+    const [isWrong, setIsWrong] = useState(false);
 
     const onlyValue: string[] = words.map((el) => el.wordTranslate);
-    const BASE_URL = 'https://react-learnwords-example.herokuapp.com/';
 
     useHotkeys(
         'space',
-        () => {
+        (event) => {
             if (guessed) {
                 nextHandler();
             } else {
                 showHandler();
             }
+            event.preventDefault();
         },
         { filterPreventDefault: true },
         [guessed],
@@ -49,6 +56,10 @@ export const AudioChallengeGame: React.FC = () => {
         };
     }, [index]);
 
+    useEffect(() => {
+        clearResults();
+    }, []);
+
     const randomSample = (arr: string[], n: number) => {
         if (n > arr.length) {
             throw new RangeError('to many items');
@@ -67,14 +78,14 @@ export const AudioChallengeGame: React.FC = () => {
 
     const playHandler = () => {
         const sound = new Howl({
-            src: [`${BASE_URL}${words[index].audio}`],
+            src: [`${BACKEND_API_URL}${words[index].audio}`],
         });
         sound.play();
     };
 
     const playHelpHandler = () => {
         const sound = new Howl({
-            src: [`${BASE_URL}${words[index].audioExample}`],
+            src: [`${BACKEND_API_URL}${words[index].audioExample}`],
         });
         sound.playing() ? sound.stop() : sound.play();
     };
@@ -97,8 +108,19 @@ export const AudioChallengeGame: React.FC = () => {
         if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
         } else {
-            setIndex(0);
+            history.push('result');
         }
+        const rez: GameResult = {
+            resultWord: words[index],
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
+        if (isWrong) rez.game.wrong = 1;
+        else rez.game.right = 1;
+
+        setResults(rez);
     };
     const clickHandler = (translation: string | number) => {
         setClicked(translation);
@@ -106,9 +128,11 @@ export const AudioChallengeGame: React.FC = () => {
             setGuessed((prev) => !prev);
         } else {
             setTimeout(() => setClicked(''), 1000);
+            setTimeout(() => showHandler(), 1500);
         }
     };
     const showHandler = () => {
+        setIsWrong(true);
         setGuessed(true);
     };
 
@@ -158,13 +182,13 @@ export const AudioChallengeGame: React.FC = () => {
                 <h1>Аудиовызов </h1>
                 <div
                     className='game-audio-picture'
-                    style={{ backgroundImage: `url("${BASE_URL}${words[index].image}")` }}
+                    style={{ backgroundImage: `url("${BACKEND_API_URL}${words[index].image}")` }}
                 ></div>
                 <div className='game-audio-word-wrapper'>
                     <button className='game-audio-button-play-liitle' onClick={() => playHandler()}>
                         Звук
                     </button>
-                    <div className='game-audio-word'>{words[index].word}</div>
+                    <div className='game-audio-word'>{`${words[index].word} - ${words[index].wordTranslate}`}</div>
                 </div>
                 <div className='game-audio-var-wrapper'>
                     {randomSet.map((el, idx) => (
