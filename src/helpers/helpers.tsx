@@ -63,6 +63,18 @@ const updateUserWord = async ({ userId, wordId, word, token }: UserWordToken): P
     return content;
 };
 
+const deleteUserWord = async ({ userId, wordId, token }: UserWordToken): Promise<void> => {
+    const params = {
+        method: 'DELETE',
+        withCredentials: true,
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+        },
+    };
+    await fetch(`${USERS_API_URL}/${userId}/words/${wordId}`, params);
+};
+
 const getUserWord = async ({ userId, wordId, token }: UserWordToken): Promise<UserWord> => {
     const params = {
         method: 'GET',
@@ -91,4 +103,4 @@ const getUserWords = async ({ userId, token }: UserWordToken): Promise<UserWord[
     return content;
 };
 
-export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord };
+export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord, deleteUserWord };

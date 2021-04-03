@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useActions } from '../../hooks/useActions';
-//import { Button } from '../common/Button';
 
 interface Props {
     groupPath: string;
@@ -24,7 +23,6 @@ export const SectionsButtons: React.FC<Props> = ({ groupPath }: Props) => {
                 <div className='sections-btn-wrapper-btn' key={idx} onClick={() => clickHandler(idx)}>
                     {idx + 1}
                 </div>
-                //<Button key={idx} text={(idx + 1).toString()} clickHandler={clickHandler} />
             ))}
         </div>
     );

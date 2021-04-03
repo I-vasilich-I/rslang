@@ -46,9 +46,24 @@
     transform: all 0.2s;
 }
 
+.word-btn-title {
+    visibility: hidden;
+    width: 150px;
+    color: #292e33;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: absolute;
+    bottom: 100px;
+    z-index: 5;
+}
+
 .button:disabled {
     background-color: #454d55;
     &:hover {
         cursor: auto;
+        .word-btn-title {
+            visibility: visible;
+        }
     }
 }

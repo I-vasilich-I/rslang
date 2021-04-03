@@ -21,6 +21,9 @@
         display: flex;
         justify-content: center;
         margin: 10px;
+        .game-audio-word {
+            margin: 0 10px;
+        }
     }
     .game-audio-var-wrapper {
         display: flex;

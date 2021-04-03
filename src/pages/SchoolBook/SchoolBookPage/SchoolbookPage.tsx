@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
-import { getUserWords } from '../../../helpers/helpers';
-import './SchoolbookPage.scss';
-import { UserWord } from '../../../types/interfaces';
-import { Word } from '../../../types/wordCard';
 import { ALERTS } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
+import './SchoolbookPage.scss';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
@@ -59,8 +56,8 @@ export const SchoolbookPage: React.FC = () => {
 
     return (
         <div className='schoolbook-page-wrapper'>
-            <h2>Электронный учебник</h2>
             <div className={indicator}>Группа {group + 1}</div>
+            <h2>Электронный учебник</h2>
             <Settings />
             <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />
