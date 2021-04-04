@@ -60,8 +60,8 @@ export const DictionaryPage: React.FC = () => {
 
     return (
         <div className='dictionary-page-wrapper'>
-            <h2>{id && DICTIONARY_TITLE[id]}</h2>
             <div className={indicator}>Группа {group + 1}</div>
+            <h2>{id && DICTIONARY_TITLE[id]}</h2>
             <div className='dictioanry-words-wrapper'>
                 <p className='dictioanry-words-amount'>{wordsArray?.length}</p>
                 <p className='dictioanry-words-result'>15</p>
