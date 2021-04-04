@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { useActions } from '../../../hooks/useActions';
@@ -7,9 +7,10 @@ import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
 import { ALERTS } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
-import './SchoolbookPage.scss';
 import { Word } from '../../../types/wordCard';
 import { conditions } from '../../../helpers/helpers';
+import Loader from '../../../components/Loader/Loader';
+import './SchoolbookPage.scss';
 
 export const SchoolbookPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
@@ -57,7 +58,7 @@ export const SchoolbookPage: React.FC = () => {
     }, []);
 
     if (loading || userWordsLoading) {
-        return <h1>Loading</h1>;
+        return <Loader />;
     }
 
     return (

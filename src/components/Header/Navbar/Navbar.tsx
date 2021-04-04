@@ -1,4 +1,3 @@
-// import { Divider } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Login } from '../Login/Login';
@@ -58,7 +57,7 @@ export const Navbar: React.FC = () => {
                                     }
                                 }}
                             >
-                                Home
+                                Главная
                             </NavLink>
                         </li>
 
@@ -73,7 +72,7 @@ export const Navbar: React.FC = () => {
                                     }
                                 }}
                             >
-                                Schoolbook
+                                Учебник
                             </NavLink>
                         </li>
 
@@ -88,7 +87,7 @@ export const Navbar: React.FC = () => {
                                     }
                                 }}
                             >
-                                Games{' '}
+                                Игры{' '}
                             </NavLink>
                         </li>
 
@@ -103,7 +102,7 @@ export const Navbar: React.FC = () => {
                                     }
                                 }}
                             >
-                                Stat
+                                Статистика
                             </NavLink>
                         </li>
                     </ul>

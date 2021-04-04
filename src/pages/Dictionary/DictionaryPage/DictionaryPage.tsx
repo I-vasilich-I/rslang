@@ -9,6 +9,7 @@ import { ALERTS, DICTIONARY_TITLE } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
 import { Word } from '../../../types/wordCard';
 import { conditions } from '../../../helpers/helpers';
+import Loader from '../../../components/Loader/Loader';
 
 export const DictionaryPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
@@ -55,7 +56,7 @@ export const DictionaryPage: React.FC = () => {
     }, []);
 
     if (loading || userWordsLoading) {
-        return <h1>Loading</h1>;
+        return <Loader />;
     }
 
     return (
