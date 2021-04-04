@@ -49,3 +49,25 @@
         font-weight: 600;
     }
 }
+
+@media all and (max-width: 1200px) {
+    .footer {
+        .footer-wrapper {
+            flex-direction: column;
+            a {
+                width: 150px;
+                margin: 0;
+            }
+            .footer-logo-box {
+                margin: 0 20px;
+                width: 100%;
+            }
+            .footer-year {
+                display: flex;
+                justify-content: flex-end;
+                margin: 0 20px;
+                width: 100%;
+            }
+        }
+    }
+}

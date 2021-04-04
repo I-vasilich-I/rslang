@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { useActions } from '../../../hooks/useActions';
@@ -56,8 +56,8 @@ export const SchoolbookPage: React.FC = () => {
 
     return (
         <div className='schoolbook-page-wrapper'>
-            <h2>Электронный учебник</h2>
             <div className={indicator}>Группа {group + 1}</div>
+            <h2>Электронный учебник</h2>
             <Settings />
             <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />

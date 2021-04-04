@@ -27,7 +27,7 @@
         line-height: 1.1;
         margin: 20px 0;
         color: #292e33;
-        
+
         span {
             text-transform: capitalize;
             letter-spacing: 2px;
@@ -50,5 +50,43 @@
     }
     80% {
         color: #4fa091;
+    }
+}
+
+// 768
+@media all and (max-width: 1200px) {
+    .header {
+        .header-wrapper {
+            .burger-btn {
+                display: flex;
+            }
+            .nav-wrapper {
+                .nav-ul {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: fixed;
+                    z-index: 10;
+                    min-height: 100vh;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    margin: 0;
+                    background-color: #4fa091b3;
+                    transition: opacity 0.2s;
+                    .nav-li {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 5px;
+                        .button {
+                            width: 100px;
+                            padding: 20px 40px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
