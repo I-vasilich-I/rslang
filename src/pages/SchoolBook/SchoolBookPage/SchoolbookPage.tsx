@@ -40,13 +40,10 @@ export const SchoolbookPage: React.FC = () => {
         if (userId && token) {
             fetchUserWords(userId, token);
         }
-    }, [userId]);
+    }, [userId, token]);
 
     useEffect(() => {
         fetchWords(page, group);
-        return () => {
-            console.log('clean');
-        };
     }, [page, group]);
 
     useEffect(() => {

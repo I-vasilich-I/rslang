@@ -4,7 +4,7 @@ const WORDS_API_URL = `${BACKEND_API_URL}words`;
 const USERS_API_URL = `${BACKEND_API_URL}users`;
 const SIGNIN_API_URL = `${BACKEND_API_URL}signin`;
 const AVATAR_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/vasilich/image/upload';
-const JWT_REFRESH_EXPIRE_TIME = 4 * 60 * 60 * 1000;
+const JWT_REFRESH_EXPIRE_TIME = 95 * 60 * 60 * 1000;
 const DIFFICULTY: DictionaryTitle = {
     complicated: 'complicated',
     deleted: 'deleted',

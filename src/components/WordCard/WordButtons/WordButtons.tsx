@@ -22,7 +22,6 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
 
     const prepareWord = (e: React.BaseSyntheticEvent, oldWord?: WordToSend): WordToSend => {
         const difficulty = e.target.id || '';
-        setDifficulty(e.target.id || '');
         if (oldWord) return { difficulty, optional: oldWord.optional };
         return { difficulty };
     };
@@ -53,6 +52,7 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
             try {
                 await createUserWord({ userId, wordId, word: prepareWord(e), token });
                 showAlert(ALERTS.wordAdded);
+                setDifficulty(e.target.id);
             } catch (e) {
                 showAlert({ ...ALERTS.error, message: `Не удалось добавить слово в словарь: ${e.message}` });
             }
@@ -60,6 +60,7 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
             try {
                 await updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
                 showAlert(ALERTS.wordUpdated);
+                setDifficulty(e.target.id);
             } catch (e) {
                 showAlert({ ...ALERTS.error, message: `Не удалось обновить слово: ${e.message}` });
             }

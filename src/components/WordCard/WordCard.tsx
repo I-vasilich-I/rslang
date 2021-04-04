@@ -30,6 +30,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
             ) : null,
         );
     }, [userWords]);
+
     return (
         <div className='word-card-wrapper'>
             <div className='wodr-wrapper'>
