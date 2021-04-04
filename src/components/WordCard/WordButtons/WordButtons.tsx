@@ -41,7 +41,7 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
         const userWord = userWords.find((elem) => elem.wordId === wordId);
         if (e.target.id === 'reestablish') {
             try {
-                deleteUserWord({ userId, wordId, token });
+                await deleteUserWord({ userId, wordId, token });
                 showAlert(ALERTS.wordReestablished);
                 setDifficulty(e.target.id);
             } catch (e) {
@@ -51,14 +51,14 @@ export const WordButtons = ({ wordId }: Props): JSX.Element => {
         }
         if (!userWord) {
             try {
-                createUserWord({ userId, wordId, word: prepareWord(e), token });
+                await createUserWord({ userId, wordId, word: prepareWord(e), token });
                 showAlert(ALERTS.wordAdded);
             } catch (e) {
                 showAlert({ ...ALERTS.error, message: `Не удалось добавить слово в словарь: ${e.message}` });
             }
         } else {
             try {
-                updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
+                await updateUserWord({ userId, wordId, word: prepareWord(e, userWord), token });
                 showAlert(ALERTS.wordUpdated);
             } catch (e) {
                 showAlert({ ...ALERTS.error, message: `Не удалось обновить слово: ${e.message}` });
