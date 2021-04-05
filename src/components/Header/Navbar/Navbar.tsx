@@ -18,7 +18,7 @@ export const Navbar: React.FC = () => {
     useEffect(() => {
         window.addEventListener('resize', () => {
             w = window.innerWidth;
-            w > 1199 ? checkWidth() : setToggleMenu('none');
+            w > 768 ? checkWidth() : setToggleMenu('none');
             setToggle('burger-btn-toggle-off');
         });
     });
@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
                         className='nav-ul'
                         style={style}
                         onClick={() => {
-                            if (w < 1199) {
+                            if (w < 768) {
                                 setToggle('burger-btn-toggle-off');
                                 setToggleMenu('none');
                             }
@@ -51,7 +51,7 @@ export const Navbar: React.FC = () => {
                                 className='button'
                                 to='/'
                                 onClick={() => {
-                                    if (w < 1199) {
+                                    if (w < 768) {
                                         setToggle('burger-btn-toggle-off');
                                         setToggleMenu('none');
                                     }
@@ -66,7 +66,7 @@ export const Navbar: React.FC = () => {
                                 className='button'
                                 to='/sb/1'
                                 onClick={() => {
-                                    if (w < 1199) {
+                                    if (w < 768) {
                                         setToggle('burger-btn-toggle-off');
                                         setToggleMenu('none');
                                     }
@@ -81,7 +81,7 @@ export const Navbar: React.FC = () => {
                                 className='button'
                                 to='/games'
                                 onClick={() => {
-                                    if (w < 1199) {
+                                    if (w < 768) {
                                         setToggle('burger-btn-toggle-off');
                                         setToggleMenu('none');
                                     }
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
                                 className='button'
                                 to='/stat'
                                 onClick={() => {
-                                    if (w < 1199) {
+                                    if (w < 768) {
                                         setToggle('burger-btn-toggle-off');
                                         setToggleMenu('none');
                                     }

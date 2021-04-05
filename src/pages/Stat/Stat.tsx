@@ -5,9 +5,9 @@ import './Stat.scss';
 export const Stat: React.FC = () => {
     return (
         <div className='stat-wrapper'>
-            <h1>Stat</h1>
+            <h2>Stat</h2>
             <div className='stat-current'>
-                <p>Current</p>
+                <h3>Current</h3>
                 <div className='stat-game-title'>savana</div>
                 <div className='stat-current-game stat-current-savana'>
                     <span className='stat-current-amount'>amount</span>

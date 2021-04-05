@@ -1,23 +1,43 @@
 .stat-wrapper {
     display: flex;
     flex-direction: column;
+    width: 80%;
     margin: 0 auto;
-}
-.stat-current-amount,
-.stat-current-persent,
-.stat-current-top-long,
-.stat-current-total-amount,
-.stat-current-total-persent {
-    border: 1px solid black;
-    margin: 0 20px;
-}
-.stat-total {
-    display: flex;
-    justify-content: space-around;
-}
-.stat-total-amount,
-.stat-total-growth {
-    border: 1px solid black;
-    width: 45%;
-    height: 400px;
+    cursor: default;
+    .stat-game-title {
+        text-transform: capitalize;
+        font-style: italic;
+    }
+    .stat-current-game,
+    .stat-current-total {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #000;
+    }
+    .stat-current-amount,
+    .stat-current-persent,
+    .stat-current-top-long,
+    .stat-current-total-amount,
+    .stat-current-total-persent {
+        margin: 0 10px;
+    }
+    .stat-current-amount,
+    .stat-current-total-amount {
+        color: rgb(255, 123, 0);
+    }
+    .stat-current-persent,
+    .stat-current-total-persent {
+        color: rgb(255, 0, 0);
+    }
+    .stat-total {
+        display: flex;
+        justify-content: space-around;
+        .stat-total-amount {
+            color: rgb(255, 123, 0);
+        }
+        .stat-total-growth {
+            color: rgb(255, 0, 0);
+        }
+    }
 }
