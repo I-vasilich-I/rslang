@@ -12,8 +12,8 @@ export const HomePage: React.FC = () => {
                         Изучайте <br /> <b>каждый день</b>
                     </h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dicta quibusdam cumque sit
-                        cupiditate. Aliquid ab incidunt ratione? Delectus, ratione.
+                        Изучение английского языка в современных реалиях становится все более и более актуальным
+                        занятием.
                     </p>
                     <a href='#' className='button'>
                         Узнать больше
@@ -25,11 +25,12 @@ export const HomePage: React.FC = () => {
                 <div className='join-to__text'>
                     <h3>Получите доступ к качественному обучению!</h3>
                     <h2>
-                        Присоединяйтесь к онлайн-курсам <br /> <b>сегодня</b>
+                        Присоединяйтесь <br /> <b>сегодня</b>
                     </h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dicta quibusdam cumque sit
-                        cupiditate. Aliquid ab incidunt ratione? Delectus, ratione.
+                        Присоединяйтесь к числу наших друзей! Мы помогаем всем желающим овладеть не только основами
+                        английского языка, но овладеть им настолько, что общение с иностранцами не будет вызывать
+                        никакого затруднения. Легкое и интересное обучение, минимум скучной рутины!
                     </p>
                     <a href='#' className='button'>
                         Узнать больше
@@ -41,8 +42,10 @@ export const HomePage: React.FC = () => {
                 <div className='work-out__text'>
                     <h3>Тренируйте свой мозг сегодня!</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero dicta quibusdam cumque sit
-                        cupiditate. Aliquid ab incidunt ratione? Delectus, ratione.
+                        Многие работники фирм усиленно занимаются своей карьерой, часто предприятия выходят на новый
+                        уровень, развивают филиалы за рубежом, некоторые люди самостоятельно уезжают работать за
+                        границу. Тут без знания иностранного не обойтись. И речь идет не о бытовом, а о продвинутом
+                        уровне, ведь постоянно придется обсуждать рабочие вопросы с коллегами.
                     </p>
                     <a href='#' className='button'>
                         Узнать больше
