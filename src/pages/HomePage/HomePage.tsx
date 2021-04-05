@@ -4,7 +4,7 @@ import './Homepage.scss';
 export const HomePage: React.FC = () => {
     return (
         <div className='home-wrapper'>
-            <h1>Home</h1>
+            <h1>Главная</h1>
             <div className='home-advantages'>
                 <div className='home__text'>
                     <h3>онлайн обучение</h3>

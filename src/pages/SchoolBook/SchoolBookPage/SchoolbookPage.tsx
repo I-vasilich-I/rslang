@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { WordCard } from '../../../components/WordCard/WordCard';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
 import { useActions } from '../../../hooks/useActions';
@@ -7,6 +7,9 @@ import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
 import { ALERTS } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
+import { Word } from '../../../types/wordCard';
+import { conditions } from '../../../helpers/helpers';
+import Loader from '../../../components/Loader/Loader';
 import './SchoolbookPage.scss';
 
 export const SchoolbookPage: React.FC = () => {
@@ -16,7 +19,7 @@ export const SchoolbookPage: React.FC = () => {
         (state) => state.userWords,
     );
     const { fetchWords, fetchUserWords, SetAlert, SetAlertShown, setWordsError, setUserWordsError } = useActions();
-
+    const [wordsArray, setWordsArray] = useState<Word[]>();
     const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
 
     const showAlert = (alertType: AlertType['name'], timeOut = false): void => {
@@ -30,17 +33,18 @@ export const SchoolbookPage: React.FC = () => {
     };
 
     useEffect(() => {
+        setWordsArray(words.filter((elem) => !userWords.find((el) => conditions(el, elem, 'deleted'))));
+    }, [userWords, words]);
+
+    useEffect(() => {
         if (userId && token) {
             fetchUserWords(userId, token);
         }
-    }, [userId]);
+    }, [userId, token]);
 
     useEffect(() => {
         fetchWords(page, group);
-        return () => {
-            console.log('clean');
-        };
-    }, [page, group, userWords]);
+    }, [page, group]);
 
     useEffect(() => {
         if (error || userWordsError) {
@@ -51,7 +55,7 @@ export const SchoolbookPage: React.FC = () => {
     }, []);
 
     if (loading || userWordsLoading) {
-        return <h1>Loading</h1>;
+        return <Loader />;
     }
 
     return (
@@ -61,11 +65,7 @@ export const SchoolbookPage: React.FC = () => {
             <Settings />
             <SectionsButtons groupPath={'sb'} />
             <PagesButtons page={page} />
-            {words
-                .filter((elem) => !userWords.find((el) => el.wordId === elem.id && el.difficulty === 'deleted'))
-                .map((word) => (
-                    <WordCard key={word.id} word={word} />
-                ))}
+            {wordsArray?.length ? wordsArray.map((word) => <WordCard key={word.id} word={word} />) : null}
         </div>
     );
 };

@@ -21,6 +21,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
             <div className={indicator}>Сложно</div>
         ) : null,
     );
+    const userWord = userWords.find((elem) => elem.wordId === word.id) || null;
 
     useEffect(() => {
         setIndicatorComponent(
@@ -29,6 +30,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
             ) : null,
         );
     }, [userWords]);
+
     return (
         <div className='word-card-wrapper'>
             <div className='wodr-wrapper'>
@@ -57,7 +59,7 @@ export const WordCard: React.FC<Props> = ({ word }: Props) => {
             </div>
             <div className='registration-wrapper '>
                 {buttons ? <WordButtons wordId={word.id} /> : null}
-                <WordGamesStats />
+                <WordGamesStats wordId={word.id} userWord={userWord} />
             </div>
             {indicatorComponent}
         </div>

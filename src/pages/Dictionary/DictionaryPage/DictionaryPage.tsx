@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { SectionsButtons } from '../../../components/SectionsButtons/SectionsButtons';
@@ -6,8 +6,10 @@ import { WordCard } from '../../../components/WordCard/WordCard';
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { ALERTS, DICTIONARY_TITLE } from '../../../constants/constants';
-import { AlertType, UserWord } from '../../../types/interfaces';
+import { AlertType } from '../../../types/interfaces';
 import { Word } from '../../../types/wordCard';
+import { conditions } from '../../../helpers/helpers';
+import Loader from '../../../components/Loader/Loader';
 
 export const DictionaryPage: React.FC = () => {
     const { error, group, loading, page, words } = useTypedSelector((state) => state.wordCard);
@@ -16,6 +18,7 @@ export const DictionaryPage: React.FC = () => {
     );
     const { userId, token } = useTypedSelector((state) => state.user);
     const { fetchWords, fetchUserWords, SetAlert, SetAlertShown, setWordsError, setUserWordsError } = useActions();
+    const [wordsArray, setWordsArray] = useState<Word[]>();
     const history = useHistory();
     const { id } = useParams<Record<string, string | undefined>>();
     const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
@@ -31,14 +34,18 @@ export const DictionaryPage: React.FC = () => {
     };
 
     useEffect(() => {
+        setWordsArray(words.filter((elem) => userWords.find((el) => conditions(el, elem, id))));
+    }, [userWords, id, words]);
+
+    useEffect(() => {
         fetchWords(page, group);
-    }, [page, group, userWords]);
+    }, [page, group]);
 
     useEffect(() => {
         if (userId && token) {
             fetchUserWords(userId, token);
         }
-    }, [userId]);
+    }, [userId, token]);
 
     useEffect(() => {
         if (error || userWordsError) {
@@ -48,18 +55,8 @@ export const DictionaryPage: React.FC = () => {
         }
     }, []);
 
-    const conditions = (elem1: UserWord, elem2: Word) => {
-        if (id === 'learning') return elem1.wordId === elem2.id;
-        if (id === 'deleted') return elem1.wordId === elem2.id && elem1.difficulty === 'deleted';
-        return elem1.wordId === elem2.id && elem1.difficulty === 'complicated';
-    };
-
-    const wordsComponent = words
-        .filter((elem) => userWords.find((el) => conditions(el, elem)))
-        .map((word) => <WordCard key={word.id} word={word} />);
-
     if (loading || userWordsLoading) {
-        return <h1>Loading</h1>;
+        return <Loader />;
     }
 
     return (
@@ -67,7 +64,7 @@ export const DictionaryPage: React.FC = () => {
             <div className={indicator}>Группа {group + 1}</div>
             <h2>{id && DICTIONARY_TITLE[id]}</h2>
             <div className='dictioanry-words-wrapper'>
-                <p className='dictioanry-words-amount'>20</p>
+                <p className='dictioanry-words-amount'>{wordsArray?.length}</p>
                 <p className='dictioanry-words-result'>15</p>
             </div>
 
@@ -85,7 +82,7 @@ export const DictionaryPage: React.FC = () => {
 
             <SectionsButtons groupPath={`dict/${id}`} />
             <PagesButtons page={page} />
-            {wordsComponent.length ? wordsComponent : null}
+            {wordsArray?.length ? wordsArray.map((word) => <WordCard key={word.id} word={word} />) : null}
         </div>
     );
 };
