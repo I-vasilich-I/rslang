@@ -13,6 +13,10 @@ import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
+import { gameToStat } from '../../../types/dayStat';
+
+const dayStat: gameToStat = { name: 'own', series: 0, right: 0, wrong: 0, date: Date.now() };
+let currentSeries = 0;
 
 export const MyOwnGame: React.FC = (): JSX.Element => {
     const { setResults, clearResults } = useActions();
@@ -26,10 +30,6 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     const gameRef = useRef<HTMLInputElement>(null);
     const [isWrong, setIsWrong] = useState(false);
     const history = useHistory();
-    const [series, setSeries] = useState(0);
-    const [topSeries, setTopSeries] = useState(0);
-    const [right, setRight] = useState(0);
-    const [wrong, setWrong] = useState(0);
     const { SetStat } = useActions();
 
     const fullscreenHandle = useFullScreenHandle();
@@ -151,26 +151,25 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         };
         if (isWrong) {
             rez.game.wrong = 1;
-            setWrong((prev) => prev + 1);
-            if (topSeries < series) setTopSeries(series);
-            setSeries(0);
+            //setWrong((prev) => prev + 1);
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
+            // if (topSeries < series) setTopSeries(series);
+            // setSeries(0);
             setIsWrong(false);
         } else {
             rez.game.right = 1;
-            setRight((prev) => prev + 1);
-            setSeries((prev) => prev + 1);
+            dayStat.right += 1;
+            currentSeries += 1;
+            // setRight((prev) => prev + 1);
+            // setSeries((prev) => prev + 1);
         }
-        if (index < 5) {
+        if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
         } else {
-            if (series) setTopSeries(series);
-            SetStat({
-                name: 'own',
-                series: topSeries,
-                right,
-                wrong,
-                date: Date.now(),
-            });
+            if (currentSeries) dayStat.series = currentSeries;
+            SetStat(dayStat);
             history.push('result');
         }
         setResults(rez);

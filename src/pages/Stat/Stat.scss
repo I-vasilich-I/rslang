@@ -3,15 +3,29 @@
     flex-direction: column;
     margin: 0 auto;
 }
-.stat-current-amount,
-.stat-current-persent,
-.stat-current-top-long,
-.stat-current-total-amount,
-.stat-current-total-persent {
-    border: 1px solid black;
-    margin: 0 20px;
+// .stat-current-amount,
+// .stat-current-persent,
+// .stat-current-top-long,
+// .stat-current-total-amount,
+// .stat-current-total-persent {
+//     border: 1px solid black;
+//     margin: 0 20px;
+// }
+.stat-current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+p {
+    margin-top: 10px;
 }
 .stat-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-total-wrapper {
     display: flex;
     justify-content: space-around;
 }
