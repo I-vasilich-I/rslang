@@ -26,9 +26,13 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     const gameRef = useRef<HTMLInputElement>(null);
     const [isWrong, setIsWrong] = useState(false);
     const history = useHistory();
+    const [series, setSeries] = useState(0);
+    const [topSeries, setTopSeries] = useState(0);
+    const [right, setRight] = useState(0);
+    const [wrong, setWrong] = useState(0);
+    const { SetStat } = useActions();
 
     const fullscreenHandle = useFullScreenHandle();
-    console.log(index);
     const currentWord = words[index].word.split('');
     const ALPHABET = [
         'a',
@@ -78,12 +82,9 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         'space',
         (event) => {
             if (wordIndex === words[index].word.length) {
-                console.log('next');
                 nextHandler();
                 setClicked([]);
             } else {
-                console.log('show');
-
                 showHandler();
             }
             event.preventDefault();
@@ -135,13 +136,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         setWord(currentWord);
         setWordIndex(words[index].word.length);
     };
+
     const nextHandler = () => {
         setWordIndex(0);
         setClicked([]);
         setHelp((prev) => !prev);
-        if (index < words.length - 1) {
-            setIndex((prev) => prev + 1);
-        } else history.push('result');
+
         const rez: GameResult = {
             resultWord: words[index],
             game: {
@@ -149,8 +149,30 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                 wrong: 0,
             },
         };
-        if (isWrong) rez.game.wrong = 1;
-        else rez.game.right = 1;
+        if (isWrong) {
+            rez.game.wrong = 1;
+            setWrong((prev) => prev + 1);
+            if (topSeries < series) setTopSeries(series);
+            setSeries(0);
+            setIsWrong(false);
+        } else {
+            rez.game.right = 1;
+            setRight((prev) => prev + 1);
+            setSeries((prev) => prev + 1);
+        }
+        if (index < 5) {
+            setIndex((prev) => prev + 1);
+        } else {
+            if (series) setTopSeries(series);
+            SetStat({
+                name: 'own',
+                series: topSeries,
+                right,
+                wrong,
+                date: Date.now(),
+            });
+            history.push('result');
+        }
         setResults(rez);
     };
     const fullscreanHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);

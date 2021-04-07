@@ -19,7 +19,7 @@ const loadState = () => {
         const stateDate = stateDateRaw ? JSON.parse(stateDateRaw) : new Date('2021');
         const serialisedState = window.localStorage.getItem('app_state');
         if (!serialisedState) return undefined;
-        if (Date.now() - stateDate > JWT_REFRESH_EXPIRE_TIME) return undefined;
+        if (Date.now() - stateDate > JWT_REFRESH_EXPIRE_TIME) return JSON.parse(serialisedState);
         return JSON.parse(serialisedState);
     } catch (err) {
         return undefined;

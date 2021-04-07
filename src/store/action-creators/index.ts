@@ -4,6 +4,7 @@ import * as Settings from './settings';
 import * as Result from './result';
 import * as Alerts from './alerts';
 import * as UserWords from './userWords';
+import * as DayStat from './dayStat';
 
 export default {
     ...TodoActionCreators,
@@ -12,4 +13,5 @@ export default {
     ...Result,
     ...Alerts,
     ...UserWords,
+    ...DayStat,
 };

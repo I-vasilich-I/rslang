@@ -10,8 +10,11 @@ import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 
+const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
+
 export const AudioChallengeGame: React.FC = () => {
     const { setResults, clearResults } = useActions();
+    const { SetStat } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
     const [index, setIndex] = useState(0);
     const [guessed, setGuessed] = useState(false);
@@ -20,6 +23,9 @@ export const AudioChallengeGame: React.FC = () => {
     const fullscreenHandle = useFullScreenHandle();
     const history = useHistory();
     const [isWrong, setIsWrong] = useState(false);
+    const [series, setSeries] = useState(0);
+    const [right, setRight] = useState(0);
+    const [wrong, setWrong] = useState(0);
 
     const onlyValue: string[] = words.map((el) => el.wordTranslate);
 
@@ -105,11 +111,7 @@ export const AudioChallengeGame: React.FC = () => {
     const nextHandler = () => {
         setClicked('');
         setGuessed(false);
-        if (index < words.length - 1) {
-            setIndex((prev) => prev + 1);
-        } else {
-            history.push('result');
-        }
+
         const rez: GameResult = {
             resultWord: words[index],
             game: {
@@ -117,8 +119,27 @@ export const AudioChallengeGame: React.FC = () => {
                 wrong: 0,
             },
         };
-        if (isWrong) rez.game.wrong = 1;
-        else rez.game.right = 1;
+        if (isWrong) {
+            rez.game.wrong = 1;
+            setWrong((prev) => prev + 1);
+            setSeries(0);
+        } else {
+            rez.game.right = 1;
+            setRight((prev) => prev + 1);
+            setSeries((prev) => prev + 1);
+        }
+        if (index < words.length - 1) {
+            setIndex((prev) => prev + 1);
+        } else {
+            SetStat({
+                name: 'audio',
+                series,
+                right,
+                wrong,
+                date: Date.now(),
+            });
+            history.push('result');
+        }
 
         setResults(rez);
     };
@@ -166,7 +187,7 @@ export const AudioChallengeGame: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                    <button className='game-audio-button' onClick={() => showHandler()}>
+                    <button className='game-audio-button' onClick={showHandler}>
                         Показать
                     </button>
                 </div>
@@ -198,7 +219,7 @@ export const AudioChallengeGame: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <button className='game-audio-button' onClick={() => nextHandler()}>
+                <button className='game-audio-button' onClick={nextHandler}>
                     Следующий
                 </button>
             </div>
