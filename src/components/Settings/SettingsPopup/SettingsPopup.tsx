@@ -31,7 +31,7 @@ export const SettingsPopup = ({ isPopUpActive, setIsPopUpActive }: Props): JSX.E
             <div className='popup__wrapper'>
                 <h4>Настройки</h4>
                 <div className='popup__buttons'>
-                    <label htmlFor='buttons'>{`Отоброжать кнопки переноса в словарь`}</label>
+                    <label htmlFor='buttons'>{`Отоброжать кнопки`}</label>
                     <input type='checkbox' name='buttons' id='buttons' checked={buttons} onChange={handleChange} />
                 </div>
                 <div className='popup__translations'>

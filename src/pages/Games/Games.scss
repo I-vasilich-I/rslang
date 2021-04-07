@@ -5,6 +5,11 @@
 
     .games-title {
         font-style: italic;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 135px;
     }
     .games-el-wrapper {
         display: flex;

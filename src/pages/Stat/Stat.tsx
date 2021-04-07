@@ -16,9 +16,9 @@ export const Stat: React.FC = () => {
 
     return (
         <div className='stat-wrapper'>
-            <h1>Статистика</h1>
+            <h2>Статистика</h2>
             <div className='stat-current'>
-                <p>За день</p>
+                <h3>За день</h3>
                 <GameStat game={'savana'} el={savanaStat} />
                 <GameStat game={'audio'} el={audioStat} />
                 <GameStat game={'sprint'} el={sprintStat} />
@@ -26,7 +26,7 @@ export const Stat: React.FC = () => {
                 <GameStat game={'total'} el={filterStat} />
             </div>
             <div className='stat-total'>
-                <p>Долгосрочная</p>
+                <h3>Долгосрочная</h3>
                 <div className='stat-total-wrapper'>
                     <div className='stat-total-amount'> amount graph</div>
                     <div className='stat-total-growth'>growth graph</div>

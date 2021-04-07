@@ -1,28 +1,114 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Login } from '../Login/Login';
 import './Navbar.scss';
 
 export const Navbar: React.FC = () => {
+    const [toggle, setToggle] = useState('burger-btn-toggle-off');
+    const [toggleMenu, setToggleMenu] = useState('');
+    const style = {
+        display: toggleMenu,
+    };
+    let w = window.innerWidth;
+    const checkWidth = function () {
+        setToggleMenu('flex');
+        setToggle('burger-btn-toggle-off');
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', () => {
+            w = window.innerWidth;
+            w > 768 ? checkWidth() : setToggleMenu('none');
+            setToggle('burger-btn-toggle-off');
+        });
+    });
+
     return (
-        <nav>
-            <div className='nav-wrapper'>
-                <ul className='nav-ul '>
-                    <NavLink to='/'>
-                        <li className='nav-li button'>Главная</li>
-                    </NavLink>
-                    <NavLink to='/sb/1'>
-                        <li className='nav-li button'>Учебник</li>
-                    </NavLink>
-                    <NavLink to='/games'>
-                        <li className='nav-li button'>Игры</li>
-                    </NavLink>
-                    <NavLink to='/stat'>
-                        <li className='nav-li button'>Статистика</li>
-                    </NavLink>
-                </ul>
-                <Login />
+        <>
+            <div
+                className={'burger-btn ' + `${toggle}`}
+                onClick={() => {
+                    setToggle(toggle === 'burger-btn-toggle-off' ? 'burger-btn-toggle-on' : 'burger-btn-toggle-off');
+                    setToggleMenu(toggleMenu === ('' || 'flex') ? 'none' : 'flex');
+                }}
+            >
+                <span></span>
             </div>
-        </nav>
+            <nav>
+                <div className='nav-wrapper'>
+                    <ul
+                        className='nav-ul'
+                        style={style}
+                        onClick={() => {
+                            if (w < 768) {
+                                setToggle('burger-btn-toggle-off');
+                                setToggleMenu('none');
+                            }
+                        }}
+                    >
+                        <li className='nav-li'>
+                            <NavLink
+                                className='button'
+                                to='/'
+                                onClick={() => {
+                                    if (w < 768) {
+                                        setToggle('burger-btn-toggle-off');
+                                        setToggleMenu('none');
+                                    }
+                                }}
+                            >
+                                Главная
+                            </NavLink>
+                        </li>
+
+                        <li className='nav-li'>
+                            <NavLink
+                                className='button'
+                                to='/sb/1'
+                                onClick={() => {
+                                    if (w < 768) {
+                                        setToggle('burger-btn-toggle-off');
+                                        setToggleMenu('none');
+                                    }
+                                }}
+                            >
+                                Учебник
+                            </NavLink>
+                        </li>
+
+                        <li className='nav-li'>
+                            <NavLink
+                                className='button'
+                                to='/games'
+                                onClick={() => {
+                                    if (w < 768) {
+                                        setToggle('burger-btn-toggle-off');
+                                        setToggleMenu('none');
+                                    }
+                                }}
+                            >
+                                Игры{' '}
+                            </NavLink>
+                        </li>
+
+                        <li className='nav-li'>
+                            <NavLink
+                                className='button'
+                                to='/stat'
+                                onClick={() => {
+                                    if (w < 768) {
+                                        setToggle('burger-btn-toggle-off');
+                                        setToggleMenu('none');
+                                    }
+                                }}
+                            >
+                                Статистика
+                            </NavLink>
+                        </li>
+                    </ul>
+                    <Login />
+                </div>
+            </nav>
+        </>
     );
 };

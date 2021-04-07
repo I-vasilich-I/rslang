@@ -19,7 +19,7 @@ export const SideLinks: React.FC = () => {
                 Спринт
             </button>
             <button className='side-links-btn button' onClick={() => history.push('/my-own')}>
-                Своя игра
+                Конструктор
             </button>
             {isDictionaryPage ? (
                 <button className='side-page-btn button' disabled></button>

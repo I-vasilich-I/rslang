@@ -1,5 +1,6 @@
 import { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend } from '../types/interfaces';
 import { USERS_API_URL, SIGNIN_API_URL } from '../constants/constants';
+import { Word } from '../types/wordCard';
 
 const createUser = async (user: User): Promise<CreateUser> => {
     const rawResponse = await fetch(USERS_API_URL, {
@@ -103,4 +104,10 @@ const getUserWords = async ({ userId, token }: UserWordToken): Promise<UserWord[
     return content;
 };
 
-export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord, deleteUserWord };
+function conditions(elem1: UserWord, elem2: Word, id = '') {
+    if (id === 'learning') return elem1.wordId === elem2.id;
+    if (id === 'deleted') return elem1.wordId === elem2.id && elem1.difficulty === 'deleted';
+    return elem1.wordId === elem2.id && elem1.difficulty === 'complicated';
+}
+
+export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord, deleteUserWord, conditions };

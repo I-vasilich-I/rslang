@@ -6,7 +6,8 @@
     height: 100vh;
     width: 100vw;
     background: rgba(41, 41, 41, 0.6);
-
+    background-color: #4fa091b3;
+    transition: opacity 0.2s;
     &:hover {
         cursor: pointer;
     }
@@ -23,7 +24,7 @@
     top: 0;
     display: flex;
     justify-content: flex-start;
-
+    
     &--hidden {
         display: none;
     }
@@ -32,17 +33,29 @@
 .popup__wrapper {
     box-sizing: border-box;
     margin: auto;
-    height: 400px;
-    width: 400px;
+    height: 250px;
+    max-width: 300px;
     padding: 15px 25px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     border-radius: 20px;
-    background: $color-primary;
-    
+    background-color: #292e33;
+    color: white;
     &:hover {
         cursor: auto;
     }
+
+    input {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.popup__buttons, .popup__translations {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
 }

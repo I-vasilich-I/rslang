@@ -100,7 +100,8 @@
     .registration-wrapper {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 95%;
+        margin-top: 10px;
         .word-btn-wrapper {
             display: flex;
             justify-content: flex-start;
@@ -127,6 +128,25 @@
             .word-game {
                 font-style: italic;
                 margin: 0 10px;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 760px) {
+    .word-card-wrapper {
+        .wodr-wrapper {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .word-discription {
+                text-align: center;
+                margin: 0;
+                height: 100%;
+                max-height: 250px;
+                .word {
+                    justify-content: center;
+                }
             }
         }
     }

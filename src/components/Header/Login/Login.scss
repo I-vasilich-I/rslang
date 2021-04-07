@@ -43,7 +43,8 @@
         border: none;
         outline: none;
         border-bottom: 1px solid #000;
-        
+        background-color: transparent;
+
         &:invalid:required {
             border-bottom: 1px solid rgb(255, 2, 2);
         }
@@ -70,6 +71,7 @@
     input {
         border: none;
         margin: 0 3px;
+        background-color: #292e33;
     }
 }
 
@@ -125,3 +127,14 @@
     outline: none;
     user-select: none;
 }
+
+@media all and (max-width: 950px) {
+    .registration {
+        background-size: cover;
+        background-position: -150px center;
+    }
+    .form-body {
+        width: 250px;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+} ;
