@@ -60,6 +60,11 @@ const ALERTS: AlertType = {
     },
 };
 
+const AMOUNT_OF_PAGES = {
+    MAX: 29,
+    MIN: 0,
+};
+
 export {
     WORDS_API_URL,
     USERS_API_URL,
@@ -70,4 +75,5 @@ export {
     ALERTS,
     JWT_REFRESH_EXPIRE_TIME,
     DICTIONARY_TITLE,
+    AMOUNT_OF_PAGES,
 };

@@ -5,7 +5,7 @@ import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { PagesButtons } from '../../../components/PagesButtons/PagesButtons';
 import { Settings } from '../../../components/Settings/Settings';
-import { ALERTS } from '../../../constants/constants';
+import { ALERTS, AMOUNT_OF_PAGES } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
 import { Word } from '../../../types/wordCard';
 import { conditions } from '../../../helpers/helpers';
@@ -18,10 +18,18 @@ export const SchoolbookPage: React.FC = () => {
     const { words: userWords, loading: userWordsLoading, error: userWordsError } = useTypedSelector(
         (state) => state.userWords,
     );
-    const { fetchWords, fetchUserWords, SetAlert, SetAlertShown, setWordsError, setUserWordsError } = useActions();
-    const [wordsArray, setWordsArray] = useState<Word[]>();
+    const {
+        fetchWords,
+        fetchUserWords,
+        SetAlert,
+        SetAlertShown,
+        setWordsError,
+        setUserWordsError,
+        incWordsPage,
+        decWordsPage,
+    } = useActions();
+    const [wordsArray, setWordsArray] = useState<Word[]>([]);
     const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
-
     const showAlert = (alertType: AlertType['name'], timeOut = false): void => {
         SetAlert(alertType);
         SetAlertShown(true);
@@ -31,10 +39,25 @@ export const SchoolbookPage: React.FC = () => {
             }, 1500);
         }
     };
+    const [direction, setDirection] = useState(1);
 
+    // exclude deleted words from the page
     useEffect(() => {
         setWordsArray(words.filter((elem) => !userWords.find((el) => conditions(el, elem, 'deleted'))));
     }, [userWords, words]);
+
+    // skip empty pages
+    useEffect(() => {
+        if (wordsArray?.length === 0) {
+            if (direction) {
+                incWordsPage(page, 1);
+                if (page === AMOUNT_OF_PAGES.MAX) decWordsPage(page, AMOUNT_OF_PAGES.MAX);
+            } else {
+                decWordsPage(page, 1);
+                if (page === AMOUNT_OF_PAGES.MIN) incWordsPage(page, AMOUNT_OF_PAGES.MAX);
+            }
+        }
+    }, [wordsArray]);
 
     useEffect(() => {
         if (userId && token) {
@@ -64,7 +87,7 @@ export const SchoolbookPage: React.FC = () => {
             <h2>Электронный учебник</h2>
             <Settings />
             <SectionsButtons groupPath={'sb'} />
-            <PagesButtons page={page} />
+            <PagesButtons page={page} setDirection={setDirection} />
             {wordsArray?.length ? wordsArray.map((word) => <WordCard key={word.id} word={word} />) : null}
         </div>
     );
