@@ -13,6 +13,10 @@ import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
+import { gameToStat } from '../../../types/dayStat';
+
+const dayStat: gameToStat = { name: 'own', series: 0, right: 0, wrong: 0, date: Date.now() };
+let currentSeries = 0;
 
 export const MyOwnGame: React.FC = (): JSX.Element => {
     const { setResults, clearResults } = useActions();
@@ -26,9 +30,9 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
     const gameRef = useRef<HTMLInputElement>(null);
     const [isWrong, setIsWrong] = useState(false);
     const history = useHistory();
+    const { SetStat } = useActions();
 
     const fullscreenHandle = useFullScreenHandle();
-    console.log(index);
     const currentWord = words[index].word.split('');
     const ALPHABET = [
         'a',
@@ -78,12 +82,9 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         'space',
         (event) => {
             if (wordIndex === words[index].word.length) {
-                console.log('next');
                 nextHandler();
                 setClicked([]);
             } else {
-                console.log('show');
-
                 showHandler();
             }
             event.preventDefault();
@@ -135,13 +136,12 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         setWord(currentWord);
         setWordIndex(words[index].word.length);
     };
+
     const nextHandler = () => {
         setWordIndex(0);
         setClicked([]);
         setHelp((prev) => !prev);
-        if (index < words.length - 1) {
-            setIndex((prev) => prev + 1);
-        } else history.push('result');
+
         const rez: GameResult = {
             resultWord: words[index],
             game: {
@@ -149,8 +149,29 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                 wrong: 0,
             },
         };
-        if (isWrong) rez.game.wrong = 1;
-        else rez.game.right = 1;
+        if (isWrong) {
+            rez.game.wrong = 1;
+            //setWrong((prev) => prev + 1);
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
+            // if (topSeries < series) setTopSeries(series);
+            // setSeries(0);
+            setIsWrong(false);
+        } else {
+            rez.game.right = 1;
+            dayStat.right += 1;
+            currentSeries += 1;
+            // setRight((prev) => prev + 1);
+            // setSeries((prev) => prev + 1);
+        }
+        if (index < words.length - 1) {
+            setIndex((prev) => prev + 1);
+        } else {
+            if (currentSeries) dayStat.series = currentSeries;
+            SetStat(dayStat);
+            history.push('result');
+        }
         setResults(rez);
     };
     const fullscreanHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);
