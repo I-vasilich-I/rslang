@@ -104,6 +104,7 @@ const getUserWords = async ({ userId, token }: UserWordToken): Promise<UserWord[
     return content;
 };
 
+// helper to set wordsArray for DictionaryPage
 function conditions(elem1: UserWord, elem2: Word, id = '') {
     if (id === 'learning') return elem1.wordId === elem2.id;
     if (id === 'deleted') return elem1.wordId === elem2.id && elem1.difficulty === 'deleted';

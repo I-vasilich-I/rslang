@@ -33,6 +33,7 @@ export const DictionaryPage: React.FC = () => {
         }
     };
 
+    // set words array depending on which section we are
     useEffect(() => {
         setWordsArray(words.filter((elem) => userWords.find((el) => conditions(el, elem, id))));
     }, [userWords, id, words]);
