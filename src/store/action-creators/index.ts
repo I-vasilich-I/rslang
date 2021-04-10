@@ -5,6 +5,7 @@ import * as Result from './result';
 import * as Alerts from './alerts';
 import * as UserWords from './userWords';
 import * as DayStat from './dayStat';
+import * as Sound from './sound';
 
 export default {
     ...TodoActionCreators,
@@ -14,4 +15,5 @@ export default {
     ...Alerts,
     ...UserWords,
     ...DayStat,
+    ...Sound,
 };

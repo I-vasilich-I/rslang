@@ -6,6 +6,7 @@ import { GameResultReducer } from './GameResultReduser';
 import { alertsReducer } from './alertsReducer';
 import { userWordsReducer } from './userWordsReducer';
 import { GameStatReducer } from './GameStatReduser';
+import { soundReducer } from './soundReduser';
 
 export const rootReducer = combineReducers({
     wordCard: wordCardReducer,
@@ -15,6 +16,7 @@ export const rootReducer = combineReducers({
     alerts: alertsReducer,
     userWords: userWordsReducer,
     dayStat: GameStatReducer,
+    sound: soundReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
