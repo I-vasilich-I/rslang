@@ -28,7 +28,7 @@ export const SchoolbookPage: React.FC = () => {
         incWordsPage,
         decWordsPage,
     } = useActions();
-    const [wordsArray, setWordsArray] = useState<Word[]>([]);
+    const [wordsArray, setWordsArray] = useState<Word[] | null>(null);
     const indicator = `difficulty-indicator difficulty-indicator--${group + 1}`;
     const showAlert = (alertType: AlertType['name'], timeOut = false): void => {
         SetAlert(alertType);

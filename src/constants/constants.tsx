@@ -65,6 +65,25 @@ const AMOUNT_OF_PAGES = {
     MIN: 0,
 };
 
+const DEVELOPERS = [
+    {
+        name: 'Сергей Нестеров',
+        git: 'https://github.com/nimlu-bot',
+    },
+    {
+        name: 'Олег Васкевич',
+        git: 'https://github.com/I-vasilich-I',
+    },
+    {
+        name: 'Денис Короткевич',
+        git: 'https://github.com/Lex-tp',
+    },
+    {
+        name: 'Фёдор Микулич',
+        git: 'https://github.com/Mikulich-Fedor',
+    },
+];
+
 export {
     WORDS_API_URL,
     USERS_API_URL,
@@ -76,4 +95,5 @@ export {
     JWT_REFRESH_EXPIRE_TIME,
     DICTIONARY_TITLE,
     AMOUNT_OF_PAGES,
+    DEVELOPERS,
 };

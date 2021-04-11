@@ -1,16 +1,17 @@
+@import '../../constants/constants.scss';
+
 .footer {
     background-color: rgb(35, 208, 199);
     margin-top: auto !important;
 }
 .footer-wrapper {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-
     min-height: 50px;
     max-width: 1200px;
     margin: 0 auto;
-
     color: white;
     font-size: 16px;
     line-height: 19px;
@@ -18,56 +19,59 @@
 
     .footer-rs-logo {
         height: 30px;
+
         &:hover {
             transform: scale(1.1);
             transition: all 0.3s;
         }
     }
-    .footer-git-logo {
-        width: 15px;
-        height: 15px;
-        max-height: 30px;
-        margin-right: 5px;
-        background-color: black;
-        border-radius: 50%;
+
+    .devs__container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
     }
+
+    .footer-git-logo {
+        width: 40px;
+        height: 40px;
+        max-height: 40px;
+        margin-right: 5px;
+    }
+
     .footer-autor-name {
         display: flex;
         align-items: center;
         margin: 10px;
         text-decoration: none;
         color: #000;
+
         &:hover {
             transform: scale(1.1);
             transition: all 0.3s;
-            color: red;
+
+            &::after {
+                content: attr(data-title);
+                position: absolute;
+                left: 0;
+                top: -130%;
+                z-index: 2;
+                font-size: 12px;
+                padding: 5px 10px;
+                background-color: $color-secondary;
+                border-radius: 10px;
+                color: $color-light;
+            }
         }
+        
     }
+    
     .footer-year {
         cursor: default;
         color: black;
+        font-size: 30px;
         font-weight: 600;
-    }
-}
-
-@media all and (max-width: 1200px) {
-    .footer {
-        .footer-wrapper {
-            flex-direction: column;
-            a {
-                width: 150px;
-                margin: 0;
-            }
-            .footer-logo-box {
-                margin: 0 20px;
-                width: 100%;
-            }
-            .footer-year {
-                display: flex;
-                justify-content: flex-end;
-                margin: 0 20px;
-                width: 100%;
-            }
-        }
     }
 }
