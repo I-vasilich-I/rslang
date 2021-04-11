@@ -6,7 +6,6 @@ import { WordToSend } from '../../../types/interfaces';
 import { ALERTS, DIFFICULTY } from '../../../constants/constants';
 import { AlertType } from '../../../types/interfaces';
 import { useLocation } from 'react-router-dom';
-import './WordButtons.scss';
 
 interface Props {
     wordId: string;

@@ -1,6 +1,5 @@
 import React from 'react';
 import './GamesResultString.scss';
-import { Word } from '../../../../../types/wordCard';
 import { Howl } from 'howler';
 import { BACKEND_API_URL } from '../../../../../constants/constants';
 import { GameResult } from '../../../../../types/gameResult';

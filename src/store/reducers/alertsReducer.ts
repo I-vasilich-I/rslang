@@ -6,6 +6,7 @@ const initialState: AlertState = {
     shown: false,
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const alertsReducer = (state = initialState, action: AlertsAction) => {
     switch (action.type) {
         case AlertsActionTypes.SET_ALERT:

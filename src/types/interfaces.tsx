@@ -1,4 +1,3 @@
-import { Word } from './wordCard';
 import { AlertProps } from '@material-ui/lab';
 
 interface User {
@@ -88,7 +87,7 @@ interface AlertType {
 }
 
 interface DictionaryTitle {
-    [name: string]: string
+    [name: string]: string;
 }
 
 export type { User, UserWord, UserWordToken, CreateUser, LoginUser, WordToSend, AlertType, DictionaryTitle };

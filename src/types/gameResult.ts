@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Word } from './wordCard';
 
 export interface GameResult {

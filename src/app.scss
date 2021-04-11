@@ -7,10 +7,12 @@
 ::-webkit-scrollbar {
     height: 15px;
 }
+
 ::-webkit-scrollbar-track {
     background-color: rgb(35, 202, 208);
     width: 5px;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: rgb(86, 248, 246);
     border-radius: 10px;
@@ -60,8 +62,10 @@
 
 .button:disabled {
     background-color: #454d55;
+
     &:hover {
         cursor: auto;
+        
         .word-btn-title {
             visibility: visible;
         }

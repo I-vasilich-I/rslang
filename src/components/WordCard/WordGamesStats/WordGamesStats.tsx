@@ -1,12 +1,13 @@
 import React from 'react';
 import { UserWord } from '../../../types/interfaces';
 import './WordGamesStats.scss';
+
 interface Props {
     wordId: string;
     userWord: UserWord | null;
 }
 
-export const WordGamesStats = ({ wordId, userWord }: Props): JSX.Element => {
+export const WordGamesStats = ({ userWord }: Props): JSX.Element => {
     const stat = {
         game1: userWord?.optional?.game1,
         game2: userWord?.optional?.game2,
@@ -36,7 +37,7 @@ export const WordGamesStats = ({ wordId, userWord }: Props): JSX.Element => {
                     <span className='wrong'>{stat.game3?.wrong || 0}</span>
                 </div>
                 <div className='word-game word-own'>
-                    <span> Своя игра: </span>
+                    <span> Конструктор: </span>
                     <span className='right'>{stat.game4?.right || 0}</span>
                     <span> / </span>
                     <span className='wrong'>{stat.game4?.wrong || 0}</span>

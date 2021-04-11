@@ -1,7 +1,6 @@
 import React from 'react';
 import { GameStat } from '../../components/GameStat/GameStat';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
-
 import './Stat.scss';
 
 const DAY_IN_MILISECONDS = 86400000;

@@ -21,6 +21,7 @@
 
 .pages-btn-wrapper {
     margin: 10px 0 0;
+
     .pages-btn-left,
     .pages-btn-right {
         display: flex;
@@ -31,19 +32,24 @@
         background-color: #23d0c7;
         cursor: pointer;
     }
+
     .pages-btn-left {
         background: url(../../assets/img/left-arrow.png) center/80% no-repeat;
     }
+
     .pages-btn-left:hover {
         animation: arrowLeft 0.3s linear infinite;
     }
+
     .pages-btn-current {
         font-style: italic;
         margin: 0 10px;
     }
+
     .pages-btn-right {
         background: url(../../assets/img/right-arrow.png) center/80% no-repeat;
     }
+
     .pages-btn-right:hover {
         animation: arrowRight 0.3s linear infinite;
     }
@@ -54,6 +60,7 @@
     display: flex;
     justify-content: center;
     margin: 10px 0;
+
     .sections-btn-wrapper-btn {
         display: flex;
         align-items: center;
@@ -96,6 +103,7 @@
         padding: 3px 15px;
     }
 }
+
 .side-links-wrapper::after {
     content: ('');
     display: flex;
@@ -104,6 +112,7 @@
     background: url(../../assets/img/arrow-down.png) bottom / 15% no-repeat;
     cursor: pointer;
 }
+
 .side-links-wrapper:hover {
     top: 0px;
 }

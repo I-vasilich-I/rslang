@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function UploadButton() {
+export default function UploadButton(): JSX.Element {
     const { setAvatar } = useActions();
     const classes = useStyles();
     const [image, setImage] = useState<File | null>(null);

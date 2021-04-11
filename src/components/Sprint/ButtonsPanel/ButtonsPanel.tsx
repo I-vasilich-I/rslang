@@ -1,7 +1,6 @@
 import React from 'react';
-
-import './ButtonsPanel.scss';
 import { Button } from './Button/Button';
+import './ButtonsPanel.scss';
 
 interface ButtonsPanelProps {
     correctClickHandler: () => void;

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
 }));
 
-export default function ActionAlerts() {
+export default function ActionAlerts(): JSX.Element | null {
     const classes = useStyles();
     const { alert, shown } = useTypedSelector((state) => state.alerts);
     const { SetAlertShown } = useActions();

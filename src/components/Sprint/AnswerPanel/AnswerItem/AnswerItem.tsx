@@ -1,8 +1,7 @@
 import React from 'react';
-
-import './AnswerItem.scss';
 import CorrectIcon from '@material-ui/icons/Check';
 import IncorrectIcon from '@material-ui/icons/Close';
+import './AnswerItem.scss';
 
 interface AnswerItemProps {
     statusAnswer?: boolean;
