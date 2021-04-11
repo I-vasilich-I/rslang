@@ -135,7 +135,7 @@ export const AudioChallengeGame: React.FC = () => {
         if (index < 4) {
             setIndex((prev) => prev + 1);
         } else {
-            if (currentSeries) dayStat.series = currentSeries;
+            if (currentSeries && currentSeries > dayStat.series) dayStat.series = currentSeries;
             SetStat(dayStat);
             history.push('result');
         }

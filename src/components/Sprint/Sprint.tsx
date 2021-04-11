@@ -12,6 +12,10 @@ import useSound from 'use-sound';
 import { useTimer } from '../../hooks/useTimer';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Startbox } from './Startbox/Startbox';
+import { useHistory } from 'react-router-dom';
+import { GameResult } from '../../types/gameResult';
+import { useActions } from '../../hooks/useActions';
+import { gameToStat } from '../../types/dayStat';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -35,6 +39,9 @@ const initialStateAnswer = {
     wordTranslate: '',
 };
 
+const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
+let currentSeries = 0;
+
 export const Sprint: React.FC = () => {
     const { words } = useTypedSelector((state) => state.wordCard);
     const fullscreenHandle = useFullScreenHandle();
@@ -51,6 +58,7 @@ export const Sprint: React.FC = () => {
     const [winSound] = useSound(soundWin, {
         soundEnabled: soundEnabled,
     });
+    const history = useHistory();
 
     const [score, setScore] = useState(0);
     const [point, setPoint] = useState(10);
@@ -63,20 +71,30 @@ export const Sprint: React.FC = () => {
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
     const [gameStart, setGameStart] = useState(false);
     const [gameDone, setGameDone] = useState(false);
+    const { setResults, clearResults } = useActions();
+    const { SetStat } = useActions();
 
     const timer = useTimer(60, gameStart, () => {
         setGameDone((gameDone) => !gameDone);
         winSound();
+        if (currentSeries) dayStat.series = currentSeries;
+        SetStat(dayStat);
+        history.push('result');
     });
 
     useEffect(() => {
         shuffleWords();
+        clearResults();
     }, []);
 
     useEffect(() => {
         if (selectIndex > wordsArray.length - 1) {
             shuffleWords();
             setSelectIndex(0);
+            if (currentSeries && currentSeries > dayStat.series) dayStat.series = currentSeries;
+            SetStat(dayStat);
+            winSound();
+            history.push('result');
         } else {
             setSelectWord(wordsArray[selectIndex]);
             setRandomWord(wordsArray[selectRandomIndex]);
@@ -93,19 +111,50 @@ export const Sprint: React.FC = () => {
     }, [answers]);
 
     const correctClick = () => {
+        const rez: GameResult = {
+            resultWord: selectWord,
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
         if (selectWord.id === randomWord.id) {
+            rez.game.right = 1;
             correctAnswer();
+            dayStat.right += 1;
+            currentSeries += 1;
         } else {
+            rez.game.wrong = 1;
             incorrectAnswer();
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
         }
+        setResults(rez);
     };
 
     const incorrectClick = () => {
+        const rez: GameResult = {
+            resultWord: selectWord,
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
         if (selectWord.id !== randomWord.id) {
+            rez.game.right = 1;
             correctAnswer();
+            dayStat.right += 1;
+            currentSeries += 1;
         } else {
+            rez.game.wrong = 1;
             incorrectAnswer();
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
         }
+
+        setResults(rez);
     };
 
     const correctAnswer = () => {
