@@ -3,6 +3,8 @@ import ReactHtmlParser from 'react-html-parser';
 import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import VolumeOn from '@material-ui/icons/VolumeUp';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 import './MyOwnGame.scss';
 import { MyOwnGameEl } from './MyOwnGameEl/MyOwnGameEl';
@@ -180,7 +182,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
             <FullScreen handle={fullscreenHandle}>
                 <div className='game-my-wrapper' ref={gameRef}>
                     <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
-                        fs
+                        <FullscreenIcon />
                     </button>
                     <h1>Конструктор слов</h1>
                     <p className='game-my-word-translate par'>{`${words[index].wordTranslate}`}</p>
@@ -209,7 +211,7 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                         ></div>
                     )}
                     <div className='game-my-buttons-wrapper'>
-                        <button className='game-my-button' onClick={showHandler}>
+                        <button className='game-my-button button-show' onClick={showHandler}>
                             показать
                         </button>
                     </div>
@@ -223,14 +225,15 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
             <div className='game-my-wrapper'>
                 <h1>Конструктор слов</h1>
                 <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
-                    fs
+                    <FullscreenIcon />
                 </button>
                 <p className='game-my-word-translate par'>{`${words[index].wordTranslate}`}</p>
                 <div className='game-my-answer'>
                     <button className='game-my-audio-button' onClick={playHandler}>
-                        звук
+                        <VolumeOn />
                     </button>
                     <p className='game-my-word par'>{`${words[index].word}`}</p>
+
                     <p className='game-my-transcr par'>{`${words[index].transcription}`}</p>
                 </div>
                 <div className='game-my-word-wrapper'>
@@ -242,9 +245,9 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
                     className='game-my-picture'
                     style={{ backgroundImage: `url("${BACKEND_API_URL}${words[index].image}")` }}
                 ></div>
-                <div className='game-my-sentence'>{ReactHtmlParser(words[index].textMeaning)}</div>
+                <div className='game-my-sentence par'>{ReactHtmlParser(words[index].textMeaning)}</div>
                 <div className='game-my-buttons-wrapper'>
-                    <button className='game-my-button' onClick={nextHandler}>
+                    <button className='game-my-button button-next' onClick={nextHandler}>
                         Следующий
                     </button>
                 </div>
