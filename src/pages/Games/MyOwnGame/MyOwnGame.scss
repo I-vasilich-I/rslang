@@ -1,18 +1,39 @@
 .game-my-wrapper {
-    border: 1px solid black;
-    width: 80%;
+    min-height: calc(100vh - 140px);
+    //border: 1px solid black;
+    min-width: 80%;
+    background-color: lightcyan;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
     text-align: center;
     align-items: center;
     position: relative;
-
+    
     .game-my-fullscrean {
         position: absolute;
         top: 10px;
         right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+        outline: none;
+        border: 0;
+        background-color: #2c786c;
+
+        .MuiSvgIcon-root {
+            font-size: 2.6rem;
+            color: #fbfbfb;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
     .game-my-answer {
         position: relative;
@@ -28,9 +49,18 @@
         display: flex;
     }
     .game-my-audio-button {
+        width: 60px;
+        height: 60px;
         position: absolute;
-        top: 20px;
+        top: 50%;
         left: 20px;
+        border: none;
+        background-color: inherit;
+        outline: none;
+        .MuiSvgIcon-root {
+            font-size: 3.8rem;
+            color: #2c786c;
+        }
     }
     .game-my-picture {
         width: 100px;
@@ -42,11 +72,40 @@
     }
 }
 .fullscreen-enabled {
-    background-color: gray;
+    // background-color: lightcyan;
     display: flex;
     justify-content: center;
     align-items: center;
+    // width: 100vw;
+    // height: 100vh;
 }
 .fullscreen-enabled .game-my-wrapper {
-    background-color: gray;
+    background-color: lightcyan;
+}
+.game-my-button {
+    width: 250px;
+    height: 60px;
+    margin: 25px;
+    border-radius: 5px;
+    outline: none;
+    border: 0;
+    font-size: 2rem;
+    color: #fbfbfb;
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.3);
+}
+.button-show {
+    background-color: #ea5455;
+}
+.button-next {
+    background-color: #2c786c;
+}
+.par {
+    color: #2c786c;
+    font-size: 2rem;
+    margin: 5px 0;
+}
+h1 {
+    color: #2c786c;
+    font-size: 2.5rem;
 }
