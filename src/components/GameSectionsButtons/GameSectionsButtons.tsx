@@ -1,6 +1,5 @@
 import React from 'react';
 import { useActions } from '../../hooks/useActions';
-//import { Button } from '../common/Button';
 
 export const GameSectionsButtons: React.FC = () => {
     const { setWordsGroup, setWordsPage } = useActions();
@@ -17,7 +16,6 @@ export const GameSectionsButtons: React.FC = () => {
                 <div className='sections-btn-wrapper-btn' key={idx} onClick={() => clickHandler(idx)}>
                     {idx + 1}
                 </div>
-                //<Button key={idx} text={(idx + 1).toString()} clickHandler={clickHandler} />
             ))}
         </div>
     );

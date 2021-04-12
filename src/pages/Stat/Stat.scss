@@ -4,10 +4,12 @@
     width: 80%;
     margin: 0 auto;
     cursor: default;
+
     .stat-game-title {
         text-transform: capitalize;
         font-style: italic;
     }
+
     .stat-current-game,
     .stat-current-total {
         display: flex;
@@ -15,6 +17,7 @@
         justify-content: center;
         border-bottom: 1px solid #000;
     }
+
     .stat-current-amount,
     .stat-current-persent,
     .stat-current-top-long,
@@ -22,20 +25,25 @@
     .stat-current-total-persent {
         margin: 0 10px;
     }
+
     .stat-current-amount,
     .stat-current-total-amount {
         color: rgb(255, 123, 0);
     }
+
     .stat-current-persent,
     .stat-current-total-persent {
         color: rgb(255, 0, 0);
     }
+
     .stat-total {
         display: flex;
         justify-content: space-around;
+
         .stat-total-amount {
             color: rgb(255, 123, 0);
         }
+        
         .stat-total-growth {
             color: rgb(255, 0, 0);
         }

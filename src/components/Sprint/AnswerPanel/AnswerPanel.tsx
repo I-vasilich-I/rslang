@@ -1,7 +1,6 @@
 import React from 'react';
-
-import './AnswerPanel.scss';
 import { AnswerItem } from './AnswerItem/AnswerItem';
+import './AnswerPanel.scss';
 
 interface AnswersProps {
     answers: Array<boolean | undefined>;

@@ -7,11 +7,13 @@
     position: relative;
     cursor: pointer;
     margin: 0 auto 0 10px;
+
     span {
         height: 2px;
         width: 100%;
         background-color: #fff;
     }
+
     span::before,
     span::after {
         content: '';
@@ -21,11 +23,13 @@
         position: absolute;
         transition: all 0.2s;
     }
+
     span::before {
         transition-delay: 0.1s;
         transition-property: top;
         top: 0px;
     }
+
     span::after {
         transition-delay: 0.1s;
         transition-property: bottom;
@@ -38,12 +42,14 @@
         transition: 0.2s;
         background-color: transparent;
     }
+
     span::before {
         transition-delay: 0.1s, 0.3s;
         transition-property: top, transform;
         top: 11px;
         transform: rotate(-45deg);
     }
+
     span::after {
         transition-delay: 0.1s, 0.3s;
         transition-property: bottom, transform;
@@ -56,12 +62,14 @@
         transition: background 0.9s;
         background-color: #fff;
     }
+
     span::before {
         transform: rotate(0deg);
         transition-delay: 0.3s, 0.1s;
         transition-property: top, transform;
         top: 0px;
     }
+    
     span::after {
         transform: rotate(0deg);
         transition-delay: 0.3s, 0.1s;

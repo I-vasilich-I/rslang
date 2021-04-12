@@ -14,8 +14,8 @@ import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChalle
 import { SprintGame } from './pages/Games/SprintGame/SprintGame';
 import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
 import ActionAlerts from './components/common/Alert';
-import './app.scss';
 import { GamesResult } from './pages/Games/GamesResult/GamesResult';
+import './app.scss';
 
 const App: React.FC = () => {
     return (

@@ -60,6 +60,7 @@
             .burger-btn {
                 display: flex;
             }
+
             .nav-wrapper {
                 .nav-ul {
                     display: none;
@@ -75,11 +76,13 @@
                     margin: 0;
                     background-color: #4fa091b3;
                     transition: opacity 0.2s;
+
                     .nav-li {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         margin: 5px;
+                        
                         .button {
                             width: 100px;
                             padding: 20px 40px;

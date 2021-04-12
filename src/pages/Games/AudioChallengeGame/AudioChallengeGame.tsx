@@ -4,14 +4,13 @@ import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import VolumeOn from '@material-ui/icons/VolumeUp';
-
-import './AudioChallengeGame.scss';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
+import './AudioChallengeGame.scss';
 
 const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
 let currentSeries = 0;

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-
-import './Sound.scss';
 import VolumeOn from '@material-ui/icons/VolumeUp';
 import VolumeOff from '@material-ui/icons/VolumeOff';
+import './Sound.scss';
 
 interface SoundProps {
     changeVolume: () => void;

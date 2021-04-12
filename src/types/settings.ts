@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum SettingsActionTypes {
     SET_BUTTONS = 'SET_BUTTONS',
     SET_DISPLAY = 'SET_DISPLAY',

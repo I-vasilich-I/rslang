@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-
-import './ComboPanel.scss';
 import combo_10 from './images/combo_10.png';
 import combo_20 from './images/combo_20.png';
 import combo_40 from './images/combo_40.png';
 import combo_80 from './images/combo_80.png';
+import './ComboPanel.scss';
 
 interface ComboPanelProps {
     gainPoint?: number;

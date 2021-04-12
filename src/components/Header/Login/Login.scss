@@ -23,6 +23,7 @@
     box-shadow: 0 0 10px rgb(77, 77, 77);
     margin: 0 50px;
     background-color: #fff;
+
     h3 {
         text-transform: capitalize;
         letter-spacing: 2px;
@@ -32,6 +33,7 @@
         margin: 20px 0;
         margin-bottom: auto;
     }
+
     input {
         font-size: 16px;
         font-style: italic;
@@ -68,6 +70,7 @@
     margin: 10px;
     margin-top: auto;
     width: 50%;
+
     input {
         border: none;
         margin: 0 3px;
@@ -88,9 +91,11 @@
     margin-left: 10px;
     display: flex;
     justify-content: flex-start;
+
     p {
         margin: 0;
     }
+
     a {
         margin: 0 5px;
     }
@@ -133,8 +138,8 @@
         background-size: cover;
         background-position: -150px center;
     }
+    
     .form-body {
-        width: 250px;
         background-color: rgba(255, 255, 255, 0.7);
     }
 } ;
