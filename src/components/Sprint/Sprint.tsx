@@ -11,6 +11,7 @@ import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Startbox } from './Startbox/Startbox';
 import useSound from 'use-sound';
 import './Sprint.scss';
+import { addLearningWord } from '../../helpers/helpers';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -36,6 +37,8 @@ const initialStateAnswer = {
 
 export const Sprint: React.FC = () => {
     const { words } = useTypedSelector((state) => state.wordCard);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const { userId, token } = useTypedSelector((state) => state.user);
     const fullscreenHandle = useFullScreenHandle();
     const [soundEnabled, setSoundEnabled] = React.useState(true);
     const [correctSound] = useSound(soundCorrect, {
@@ -119,7 +122,8 @@ export const Sprint: React.FC = () => {
         incorrectSound();
     };
 
-    const setAnswer = (state: boolean) => {
+    const setAnswer = async (state: boolean) => {
+        await addLearningWord(wordsArray[selectIndex].id, userWords, userId, token);
         setAnswers((answers) => {
             const answersCopy = Array.from(answers);
             answersCopy.push(state);

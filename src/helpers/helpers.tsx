@@ -111,4 +111,38 @@ function conditions(elem1: UserWord, elem2: Word, id = ''): boolean {
     return elem1.wordId === elem2.id && elem1.difficulty === 'complicated';
 }
 
-export { createUser, loginUser, getUserWord, getUserWords, createUserWord, updateUserWord, deleteUserWord, conditions };
+const prepareWord = (oldWord?: WordToSend): WordToSend => {
+    const difficulty = 'learning';
+    if (oldWord) return { difficulty, optional: oldWord.optional };
+    return { difficulty };
+};
+
+const addLearningWord = async (wordId: string, userWords: UserWord[], userId: string, token: string): Promise<void> => {
+    const userWord = userWords.find((elem) => elem.wordId === wordId);
+    if (!userWord) {
+        try {
+            await createUserWord({ userId, wordId, word: prepareWord(), token });
+        } catch (e) {
+            console.error(e);
+        }
+    } else {
+        try {
+            await updateUserWord({ userId, wordId, word: prepareWord(userWord), token });
+        } catch (e) {
+            console.error(e);
+        }
+    }
+};
+
+export {
+    createUser,
+    loginUser,
+    getUserWord,
+    getUserWords,
+    createUserWord,
+    updateUserWord,
+    deleteUserWord,
+    conditions,
+    prepareWord,
+    addLearningWord,
+};

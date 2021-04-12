@@ -10,6 +10,7 @@ import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
+import { addLearningWord } from '../../../helpers/helpers';
 import './AudioChallengeGame.scss';
 
 const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
@@ -18,6 +19,8 @@ export const AudioChallengeGame: React.FC = () => {
     const { setResults, clearResults } = useActions();
     const { SetStat } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const { userId, token } = useTypedSelector((state) => state.user);
     const [index, setIndex] = useState(0);
     const [guessed, setGuessed] = useState(false);
     const [clicked, setClicked] = useState<string | number>('');
@@ -25,7 +28,6 @@ export const AudioChallengeGame: React.FC = () => {
     const fullscreenHandle = useFullScreenHandle();
     const history = useHistory();
     const [isWrong, setIsWrong] = useState(false);
-
     const onlyValue: string[] = words.map((el) => el.wordTranslate);
 
     useHotkeys(
@@ -56,9 +58,6 @@ export const AudioChallengeGame: React.FC = () => {
     useEffect(() => {
         setRandomSet(getRandomSet(onlyValue, index));
         playHandler();
-        return () => {
-            console.log('clear');
-        };
     }, [index]);
 
     useEffect(() => {
@@ -107,7 +106,8 @@ export const AudioChallengeGame: React.FC = () => {
         const random = shuffleArray([...randomSample(filteredWords, 4), wordsArr[index]]);
         return random;
     };
-    const nextHandler = () => {
+    const nextHandler = async () => {
+        await addLearningWord(words[index].id, userWords, userId, token);
         setClicked('');
         setGuessed(false);
 
