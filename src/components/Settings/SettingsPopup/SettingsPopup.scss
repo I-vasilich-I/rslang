@@ -8,6 +8,7 @@
     background: rgba(41, 41, 41, 0.6);
     background-color: #4fa091b3;
     transition: opacity 0.2s;
+
     &:hover {
         cursor: pointer;
     }
@@ -43,6 +44,7 @@
     border-radius: 20px;
     background-color: #292e33;
     color: white;
+    
     &:hover {
         cursor: auto;
     }

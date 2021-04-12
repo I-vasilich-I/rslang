@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { UserWord } from './interfaces';
 
 export interface UserWordsState {

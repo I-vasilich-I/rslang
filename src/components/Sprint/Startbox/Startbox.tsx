@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './Startbox.scss';
 
 interface StartboxProps {

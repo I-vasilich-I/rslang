@@ -1,10 +1,9 @@
 import React from 'react';
-
-import './ControlPanel.scss';
 import { Timer } from './Сontrollers/Timer/Timer';
 import { Score } from './Сontrollers/Score/Score';
 import { Sound } from './Сontrollers/Sound/Sound';
 import { Fullscreen } from './Сontrollers/Fullscreen/Fullscreen';
+import './ControlPanel.scss';
 
 interface ControlPanelProps {
     score: number;

@@ -11,6 +11,7 @@ interface Props {
 export const SettingsPopup = ({ isPopUpActive, setIsPopUpActive }: Props): JSX.Element => {
     const { buttons, display } = useTypedSelector((state) => state.settings);
     const { setButtons, setDisplay } = useActions();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClick = (e: any) => {
         if (e.target.className === 'popup blackout') setIsPopUpActive(false);
     };

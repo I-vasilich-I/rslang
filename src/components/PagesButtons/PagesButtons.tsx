@@ -1,7 +1,6 @@
 import React from 'react';
 import { AMOUNT_OF_PAGES } from '../../constants/constants';
 import { useActions } from '../../hooks/useActions';
-import { Word } from '../../types/wordCard';
 
 interface Props {
     page: number;

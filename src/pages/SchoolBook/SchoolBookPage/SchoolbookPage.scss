@@ -4,9 +4,7 @@
     height: 20px;
     background-color: red;
     border-radius: 50%;
-
     background: url(../../../assets/img/gear.png) center/cover no-repeat;
-
     animation: rotate 10s linear infinite;
     cursor: pointer;
 }
@@ -15,18 +13,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    //  width: 10px;
-    //  height: 40px;
     padding: 2px 5px;
-
     position: absolute;
-
     overflow: hidden;
     opacity: 0.8;
-
     border-radius: 5px;
-
     cursor: default;
 
     &--1 {

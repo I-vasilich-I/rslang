@@ -1,7 +1,6 @@
 import React from 'react';
-
-import './Score.scss';
 import PointIcon from './icons/point.png';
+import './Score.scss';
 
 interface ScoreProps {
     value: number;

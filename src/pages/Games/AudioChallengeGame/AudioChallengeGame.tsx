@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
-
-import './AudioChallengeGame.scss';
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
+import VolumeOn from '@material-ui/icons/VolumeUp';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
+import './AudioChallengeGame.scss';
 
 const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
 let currentSeries = 0;
@@ -132,7 +133,7 @@ export const AudioChallengeGame: React.FC = () => {
             // setRight((prev) => prev + 1);
             // setSeries((prev) => prev + 1);
         }
-        if (index < 4) {
+        if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
         } else {
             if (currentSeries) dayStat.series = currentSeries;
@@ -163,14 +164,14 @@ export const AudioChallengeGame: React.FC = () => {
             <FullScreen handle={fullscreenHandle}>
                 <div className='game-audio-wrapper'>
                     <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
-                        fs
+                        <FullscreenIcon />
                     </button>
                     <h1>Аудиовызов </h1>
                     <button className='game-audio-button-play' onClick={() => playHandler()}>
-                        Звук
+                        <VolumeOn />
                     </button>
                     <div className='game-audio-word-wrapper'>
-                        <button className='game-audio-button-play-liitle' onClick={() => playHelpHandler()}>
+                        <button className='game-audio-button-play-help' onClick={() => playHelpHandler()}>
                             помощь
                         </button>
                     </div>
@@ -186,7 +187,7 @@ export const AudioChallengeGame: React.FC = () => {
                             </div>
                         ))}
                     </div>
-                    <button className='game-audio-button' onClick={showHandler}>
+                    <button className='game-my-button button-show' onClick={showHandler}>
                         Показать
                     </button>
                 </div>
@@ -197,7 +198,7 @@ export const AudioChallengeGame: React.FC = () => {
         <FullScreen handle={fullscreenHandle}>
             <div className='game-audio-wrapper'>
                 <button className='game-my-fullscrean' onClick={fullscreanHandler()}>
-                    fs
+                    <FullscreenIcon />
                 </button>
                 <h1>Аудиовызов </h1>
                 <div
@@ -206,9 +207,9 @@ export const AudioChallengeGame: React.FC = () => {
                 ></div>
                 <div className='game-audio-word-wrapper'>
                     <button className='game-audio-button-play-liitle' onClick={() => playHandler()}>
-                        Звук
+                        <VolumeOn />
                     </button>
-                    <div className='game-audio-word'>{`${words[index].word} - ${words[index].wordTranslate}`}</div>
+                    <div className='game-audio-word par'>{`${words[index].word} - ${words[index].wordTranslate}`}</div>
                 </div>
                 <div className='game-audio-var-wrapper'>
                     {randomSet.map((el, idx) => (
@@ -218,7 +219,7 @@ export const AudioChallengeGame: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <button className='game-audio-button' onClick={nextHandler}>
+                <button className='game-my-button button-next' onClick={nextHandler}>
                     Следующий
                 </button>
             </div>

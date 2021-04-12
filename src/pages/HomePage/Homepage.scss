@@ -10,16 +10,19 @@
         min-height: 575px;
         background: url(../../assets/img/home-advantages_bg.jpeg) right / 700px no-repeat;
         background-color: rgb(35, 208, 199);
+
         .home__text {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
             margin: 60px 40px;
+
             h3 {
                 text-transform: uppercase;
                 letter-spacing: 2px;
                 margin: 35px 0;
             }
+
             h2 {
                 text-transform: capitalize;
                 letter-spacing: 2px;
@@ -27,11 +30,13 @@
                 font-size: 3.75rem;
                 line-height: 1.1;
                 margin: 20px 0;
+
                 b {
                     letter-spacing: 0.5px;
                     font-weight: 700;
                 }
             }
+
             p {
                 font-style: italic;
                 font-size: 16px;
@@ -48,6 +53,7 @@
         flex-direction: row-reverse;
         min-height: 575px;
         background: url(../../assets/img/join-to__bg.jpg) left 50%/50% no-repeat;
+
         .join-to__text {
             display: flex;
             flex-direction: column;
@@ -60,6 +66,7 @@
                 letter-spacing: 2px;
                 margin: 35px 0;
             }
+
             h2 {
                 text-transform: capitalize;
                 letter-spacing: 2px;
@@ -72,6 +79,7 @@
                     font-weight: 700;
                 }
             }
+
             p {
                 font-style: italic;
                 font-size: 16px;
@@ -82,12 +90,14 @@
             }
         }
     }
+
     .work-out {
         display: flex;
         min-height: 575px;
         background: url(../../assets/img/work-out__bg.jpg) 300% center/90% no-repeat;
         background-color: rgb(35, 208, 199);
         margin-bottom: 80px;
+
         .work-out__text {
             display: flex;
             flex-direction: column;
@@ -105,6 +115,7 @@
                 margin: 15px 0;
                 padding: 10px;
             }
+
             p {
                 font-style: italic;
                 font-size: 16px;
@@ -162,6 +173,7 @@
                 padding: 40px;
             }
         }
+
         .work-out {
             flex-direction: column;
             align-items: center;
@@ -169,6 +181,7 @@
             min-height: 100%;
             background-position: center right;
             background-size: 150%;
+            
             .work-out__text {
                 background-color: rgba(255, 255, 255, 0.8);
                 align-items: center;

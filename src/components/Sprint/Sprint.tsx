@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
-import './Sprint.scss';
 import { ControlPanel } from './ControlPanel/ControlPanel';
 import { AnswerPanel } from './AnswerPanel/AnswerPanel';
 import { ComboPanel } from './ComboPanel/ComboPanel';
@@ -8,10 +6,11 @@ import { QuestionPanel } from './QuestionPanel/QuestionPanel';
 import { ButtonsPanel } from './ButtonsPanel/ButtonsPanel';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { Word } from '../../types/wordCard';
-import useSound from 'use-sound';
 import { useTimer } from '../../hooks/useTimer';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Startbox } from './Startbox/Startbox';
+import useSound from 'use-sound';
+import './Sprint.scss';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;

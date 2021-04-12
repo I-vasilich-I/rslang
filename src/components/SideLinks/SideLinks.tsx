@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
 import './SideLinks.scss';
 
 export const SideLinks: React.FC = () => {

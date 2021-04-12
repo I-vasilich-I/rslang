@@ -2,6 +2,7 @@
     "name": "rslang",
     "version": "0.1.0",
     "private": true,
+    "authors": ["Oleg Vaskevich", "Sergey Nesterov", "Fedar Mikulich", "Denis Korotkevich"],
     "dependencies": {
         "@material-ui/core": "^4.11.3",
         "@material-ui/icons": "^4.11.2",

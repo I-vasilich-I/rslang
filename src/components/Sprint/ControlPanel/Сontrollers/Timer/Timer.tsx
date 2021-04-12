@@ -1,6 +1,5 @@
 import React from 'react';
 import TimerIcon from '@material-ui/icons/Timer';
-
 import './Timer.scss';
 
 interface TimerProps {

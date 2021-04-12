@@ -7,6 +7,7 @@ interface iProps {
     audioMeaning: string;
     audioExample: string;
 }
+
 export const WordAudio: React.FC<iProps> = ({ audio, audioMeaning, audioExample }: iProps) => {
     const sound = new Howl({
         src: [`${BACKEND_API_URL}${audio}`],
@@ -21,9 +22,11 @@ export const WordAudio: React.FC<iProps> = ({ audio, audioMeaning, audioExample 
     sound.on('end', () => {
         soundMeaning.play();
     });
+
     soundMeaning.on('end', () => {
         soundExample.play();
     });
+
     soundExample.on('end', () => {
         soundExample.stop();
     });

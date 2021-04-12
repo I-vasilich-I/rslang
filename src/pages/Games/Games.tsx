@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
-
 import { useHistory } from 'react-router-dom';
-
-import './Games.scss';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { useActions } from '../../hooks/useActions';
 import { GameSectionsButtons } from '../../components/GameSectionsButtons/GameSectionsButtons';
 import Loader from '../../components/Loader/Loader';
 import { ALERTS } from '../../constants/constants';
 import { AlertType } from '../../types/interfaces';
+import './Games.scss';
 
 export const Games: React.FC = () => {
     const { loading, group, page, error } = useTypedSelector((state) => state.wordCard);
@@ -28,7 +26,6 @@ export const Games: React.FC = () => {
 
     useEffect(() => {
         fetchWords(page, group);
-        // setOriginalWord(words[0].word.split(''));
     }, [page, group]);
 
     useEffect(() => {

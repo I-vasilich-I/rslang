@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AlertType } from './interfaces';
 
 export enum AlertsActionTypes {
