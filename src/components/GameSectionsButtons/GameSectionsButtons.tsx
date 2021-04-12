@@ -3,7 +3,7 @@ import { useActions } from '../../hooks/useActions';
 
 export const GameSectionsButtons: React.FC = () => {
     const { setWordsGroup, setWordsPage } = useActions();
-    const buttonsArray = new Array(6).fill('');
+    const buttonsArray: string[] = new Array(6).fill('');
 
     const clickHandler = (idx: number) => {
         setWordsGroup(idx);
