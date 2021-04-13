@@ -39,10 +39,10 @@ export default function UploadButton(): JSX.Element {
                     .then((data) => {
                         setAvatar(data.secure_url);
                     })
-                    .catch((e) => console.log(e));
+                    .catch((e) => console.error(e));
             }
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     };
 

@@ -13,7 +13,7 @@ export const Video: React.FC<iProps> = ({ source }: iProps) => {
     const targetRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<iDimensions>({ width: 0, height: 0 });
 
-    let movement_timer: number;
+    let movement_timer: NodeJS.Timeout;
     const RESET_TIMEOUT = 100;
     const test_dimensions = () => {
         if (targetRef.current) {
@@ -28,9 +28,10 @@ export const Video: React.FC<iProps> = ({ source }: iProps) => {
     }, []);
 
     window.addEventListener('resize', () => {
-        clearInterval(movement_timer);
-        movement_timer = window.setTimeout(test_dimensions, RESET_TIMEOUT);
+        movement_timer && clearTimeout(movement_timer);
+        movement_timer = setTimeout(test_dimensions, RESET_TIMEOUT);
     });
+
     return (
         <div className='video-wrapper' ref={targetRef}>
             <iframe
