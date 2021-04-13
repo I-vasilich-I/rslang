@@ -12,6 +12,7 @@ import './SavanaGame.scss';
 import { SavanaEl } from './SavanaEl/SavanaEl';
 import { SavanaLife } from './SavanaLife/SavanaLife';
 import { SavanaAccum } from './SavanaEl/SavanaAccum/SavanaAccum';
+import { addLearningWord } from '../../../helpers/helpers';
 
 const soundCorrect = require('../../../components/Sprint/sounds/correct.mp3').default;
 const soundIncorrect = require('../../../components/Sprint/sounds/incorrect.mp3').default;
@@ -23,14 +24,13 @@ export const SavanaGame: React.FC = () => {
     const { SetStat } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
     const [index, setIndex] = useState(0);
-    const [guessed, setGuessed] = useState(false);
-    const [clicked, setClicked] = useState<string | number>('');
     const [randomSet, setRandomSet] = useState<(string | number)[]>([]);
     const fullscreenHandle = useFullScreenHandle();
     const history = useHistory();
-    const [isWrong, setIsWrong] = useState(false);
     const [lifes, setLifes] = useState(5);
     const timerId = useRef<number>();
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const { userId, token } = useTypedSelector((state) => state.user);
 
     const correct = new Howl({
         src: [soundCorrect],
@@ -104,8 +104,8 @@ export const SavanaGame: React.FC = () => {
         return random;
     };
 
-    const clickHandler = (translation: string | number) => {
-        setClicked(translation);
+    const clickHandler = async (translation: string | number) => {
+        await addLearningWord(words[index].id, userWords, userId, token);
         const rez: GameResult = {
             resultWord: words[index],
             game: {
@@ -119,7 +119,7 @@ export const SavanaGame: React.FC = () => {
             currentSeries += 1;
             correct.play();
         } else {
-            //setLifes((prev) => prev - 1);
+            setLifes((prev) => prev - 1);
             rez.game.wrong = 1;
             dayStat.wrong += 1;
             if (currentSeries > dayStat.series) dayStat.series = currentSeries;
@@ -137,7 +137,6 @@ export const SavanaGame: React.FC = () => {
     };
 
     const fullscreanHandler = () => (fullscreenHandle.active ? fullscreenHandle.exit : fullscreenHandle.enter);
-    console.log(index);
     return (
         <FullScreen handle={fullscreenHandle}>
             <div className='game-savana-wrapper'>
@@ -156,7 +155,6 @@ export const SavanaGame: React.FC = () => {
                         </div>
                     ))}
                 </div>
-
                 <SavanaAccum />
             </div>
         </FullScreen>
