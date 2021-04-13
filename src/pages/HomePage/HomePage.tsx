@@ -1,7 +1,8 @@
 import React from 'react';
-import './Homepage.scss';
-import nimlu from '../../assets/img/nimlu.jpg';
 import { Video } from '../../components/Video/Video';
+import { DEVELOPERS } from '../../constants/constants';
+import './Homepage.scss';
+
 export const HomePage: React.FC = () => {
     return (
         <div className='home-wrapper'>
@@ -55,38 +56,15 @@ export const HomePage: React.FC = () => {
             </div>
             <Video source={'https://www.youtube.com/embed/NeQM1c-XCDc'} />
             <div className='home-about'>
-                <div className='home-about-developer'>
-                    <div className='home-about-developer-picture'></div>
-                    <div className='home-about-developer-text'></div>
-                </div>
-                <div className='home-about-developer'>
-                    <div className='home-about-developer-picture' style={{ backgroundImage: `url(${nimlu})` }}></div>
-                    <div className='home-about-developer-text'>
-                        Сергей Нестеров. Системный администратор в гос. конторе. Как известно, системный администратор —
-                        это личинка программиста. В работе приходилось использовать маленькие самописные скрипты.
-                        Однажды пришло понимание, что личинка должна стать чем-то большим. Просторы интернета подсказали
-                        путь в RS School. Так как кое-какой бекграунд уже был, сначала обучение показалось очень легким,
-                        но тут начался React — и время резко закончилось. К концу React я понял, что даже самые сложные
-                        по началу задания на самом деле вполне выполнимы и с небольшими подсказками ментора на конечном
-                        этапе выглядят даже легкими. Основное, чему я научился в RS School — это то, что все, даже самые
-                        сложные, задачи можно решить, главное не сдаваться на полпути.
+                {DEVELOPERS.map((elem) => (
+                    <div key={elem.name} className='home-about-developer'>
+                        <div
+                            className='home-about-developer-picture'
+                            style={{ backgroundImage: `url(${elem.picture})` }}
+                        ></div>
+                        <div className='home-about-developer-text'>{elem.bio}</div>
                     </div>
-                </div>
-                <div className='home-about-developer'>
-                    <div className='home-about-developer-picture'></div>
-                    <div className='home-about-developer-text'></div>
-                </div>
-                <div className='home-about-developer'>
-                    <div className='home-about-developer-picture'></div>
-                    <div className='home-about-developer-text'>
-                        Фёдор Микулич. Музыкант, артист оркестра. С шести лет я учился беспрерывно: школа, музыкальная
-                        школа, колледж, консерватория. Окончив консерваторию, осознал, что нужно учиться дальше, но в
-                        другой сфере. Так, я попал в IT, и продолжил свой путь “вечного студента”. Компьютерная академия
-                        “ШАГ”, курсы “ОR media” и вот я в RS School. За время обучения в RS School я заполнил пробелы в
-                        знаниях и навыках, улучшил свой код. Однако впереди еще много чего нужно узнать и изучить. И
-                        вообще, IT — “непаханное поле” для “вечного студента”! То, что я так люблю.
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );
