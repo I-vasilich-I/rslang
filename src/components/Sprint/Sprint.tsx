@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
-import './Sprint.scss';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import useSound from 'use-sound';
 import { ControlPanel } from './ControlPanel/ControlPanel';
 import { AnswerPanel } from './AnswerPanel/AnswerPanel';
 import { ComboPanel } from './ComboPanel/ComboPanel';
@@ -8,15 +8,15 @@ import { QuestionPanel } from './QuestionPanel/QuestionPanel';
 import { ButtonsPanel } from './ButtonsPanel/ButtonsPanel';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { Word } from '../../types/wordCard';
-import useSound from 'use-sound';
 import { useTimer } from '../../hooks/useTimer';
-import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Startbox } from './Startbox/Startbox';
 import { useHistory } from 'react-router-dom';
 import { GameResult } from '../../types/gameResult';
 import { useActions } from '../../hooks/useActions';
 import { gameToStat } from '../../types/dayStat';
 import { addLearningWord } from '../../helpers/helpers';
+import './Sprint.scss';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -94,10 +94,6 @@ export const Sprint: React.FC = () => {
         if (selectIndex > wordsArray.length - 1) {
             shuffleWords();
             setSelectIndex(0);
-            // if (currentSeries && currentSeries > dayStat.series) dayStat.series = currentSeries;
-            // SetStat(dayStat);
-            // winSound();
-            // history.push('result');
         } else {
             setSelectWord(wordsArray[selectIndex]);
             setRandomWord(wordsArray[selectRandomIndex]);
@@ -112,6 +108,21 @@ export const Sprint: React.FC = () => {
             updateCombo();
         }
     }, [answers]);
+
+    useHotkeys(
+        'right',
+        () => {
+            correctClick();
+        },
+        [],
+    );
+    useHotkeys(
+        'left',
+        () => {
+            incorrectClick();
+        },
+        [],
+    );
 
     const correctClick = () => {
         const rez: GameResult = {
