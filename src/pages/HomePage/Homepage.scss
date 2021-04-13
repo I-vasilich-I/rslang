@@ -128,11 +128,37 @@
     }
 
     .home-about {
-        border: 1px solid red;
         min-height: 400px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 60px 20px;
+        .home-about-developer {
+            border: 1px solid black;
+            min-height: 200px;
+            display: flex;
+            justify-content: space-between;
+            .home-about-developer-picture {
+                height: 200px;
+                min-width: 100px;
+                //border: 1px solid black;
+                border-radius: 5px;
+                margin: 10px;
+                margin-right: 20px;
+                flex-basis: 100px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .home-about-developer-text {
+                font-style: italic;
+                font-size: 16px;
+                line-height: 18px;
+                letter-spacing: 1px;
+                padding: 10px;
+            }
+        }
     }
 }
 
@@ -181,7 +207,7 @@
             min-height: 100%;
             background-position: center right;
             background-size: 150%;
-            
+
             .work-out__text {
                 background-color: rgba(255, 255, 255, 0.8);
                 align-items: center;
