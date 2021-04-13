@@ -7,7 +7,7 @@ import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
 import './Login.scss';
 
-const Login = (): JSX.Element => {
+export const Login = (): JSX.Element => {
     const { avatar, message, name } = useTypedSelector((state) => state.user);
     const { setUser } = useActions();
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -50,5 +50,3 @@ const Login = (): JSX.Element => {
         </div>
     );
 };
-
-export { Login };

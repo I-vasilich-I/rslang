@@ -16,6 +16,7 @@ import { GameResult } from '../../../types/gameResult';
 import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
+import { addLearningWord } from '../../../helpers/helpers';
 
 const dayStat: gameToStat = { name: 'own', series: 0, right: 0, wrong: 0, date: Date.now() };
 let currentSeries = 0;
@@ -23,6 +24,8 @@ let currentSeries = 0;
 export const MyOwnGame: React.FC = (): JSX.Element => {
     const { setResults, clearResults } = useActions();
     const { words } = useTypedSelector((state) => state.wordCard);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const { userId, token } = useTypedSelector((state) => state.user);
     const [wordIndex, setWordIndex] = useState<number>(0);
     const [index, setIndex] = useState<number>(0);
     const [word, setWord] = useState<string[]>([]);
@@ -139,7 +142,8 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         setWordIndex(words[index].word.length);
     };
 
-    const nextHandler = () => {
+    const nextHandler = async () => {
+        await addLearningWord(words[index].id, userWords, userId, token);
         setWordIndex(0);
         setClicked([]);
         setHelp((prev) => !prev);
