@@ -1,8 +1,7 @@
 import React from 'react';
-import './GamesResultEl.scss';
 import { GamesResultString } from './GamesResultString/GamesResultString';
 import { GameResult } from '../../../../types/gameResult';
-
+import './GamesResultEl.scss';
 interface iProps {
     title: string;
     count: number;

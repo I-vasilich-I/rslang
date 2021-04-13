@@ -13,8 +13,8 @@ export const Video: React.FC<iProps> = ({ source }: iProps) => {
     const targetRef = useRef<HTMLDivElement>(null);
     const [dimensions, setDimensions] = useState<iDimensions>({ width: 0, height: 0 });
 
-    let movement_timer: NodeJS.Timeout | null = null;
-    const RESET_TIMEOUT = 0;
+    let movement_timer: NodeJS.Timeout;
+    const RESET_TIMEOUT = 100;
     const test_dimensions = () => {
         if (targetRef.current) {
             setDimensions({
