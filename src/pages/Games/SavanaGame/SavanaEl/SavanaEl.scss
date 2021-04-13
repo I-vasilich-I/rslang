@@ -1,0 +1,16 @@
+.bounce {
+    animation: text 3s linear 1;
+}
+.game-savana-word {
+    font-size: 2rem;
+    color: #2c786c;
+}
+
+@keyframes text {
+    0% {
+        transform: translateY(-21vh);
+    }
+    100% {
+        transform: translateY(14vh);
+    }
+}
