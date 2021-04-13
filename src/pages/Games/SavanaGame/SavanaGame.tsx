@@ -13,6 +13,7 @@ import { SavanaLife } from './SavanaLife/SavanaLife';
 import { SavanaAccum } from './SavanaEl/SavanaAccum/SavanaAccum';
 import { addLearningWord } from '../../../helpers/helpers';
 import './SavanaGame.scss';
+import { Startbox } from '../../../components/Sprint/Startbox/Startbox';
 
 const soundCorrect = require('../../../components/Sprint/sounds/correct.mp3').default;
 const soundIncorrect = require('../../../components/Sprint/sounds/incorrect.mp3').default;
@@ -31,6 +32,7 @@ export const SavanaGame: React.FC = () => {
     const timerId = useRef<number>();
     const { words: userWords } = useTypedSelector((state) => state.userWords);
     const { userId, token } = useTypedSelector((state) => state.user);
+    const [gameStart, setGameStart] = useState(false);
 
     const correct = new Howl({
         src: [soundCorrect],
@@ -53,10 +55,12 @@ export const SavanaGame: React.FC = () => {
 
     useEffect(() => {
         setRandomSet(getRandomSet(onlyValue, index));
-        const id = window.setInterval(() => {
-            clickHandler('');
-        }, 3000);
-        timerId.current = id;
+        if (gameStart) {
+            const id = window.setInterval(() => {
+                clickHandler('');
+            }, 3000);
+            timerId.current = id;
+        }
         return () => {
             clearInterval(timerId.current);
         };
@@ -145,16 +149,25 @@ export const SavanaGame: React.FC = () => {
                     <FullscreenIcon />
                 </button>
                 <SavanaLife lifes={lifes} />
-
-                <SavanaEl word={words[index].word} />
-                <div className='game-savana-var-wrapper'>
-                    {randomSet.map((el, idx) => (
-                        <div className='game-savana-el' key={idx} onClick={() => clickHandler(el)}>
-                            <span className='game-savana-number'>{idx + 1}</span>{' '}
-                            <span className='game-savana-word'> {el}</span>
+                {gameStart ? (
+                    <>
+                        <SavanaEl word={words[index].word} />
+                        <div className='game-savana-var-wrapper'>
+                            {randomSet.map((el, idx) => (
+                                <div className='game-savana-el' key={idx} onClick={() => clickHandler(el)}>
+                                    <span className='game-savana-number'>{idx + 1}</span>{' '}
+                                    <span className='game-savana-word'> {el}</span>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
+                    </>
+                ) : (
+                    <Startbox
+                        onStart={() => {
+                            setGameStart(true);
+                        }}
+                    />
+                )}
                 <SavanaAccum />
             </div>
         </FullScreen>
