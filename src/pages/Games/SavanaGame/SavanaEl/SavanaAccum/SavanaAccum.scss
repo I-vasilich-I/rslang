@@ -1,8 +1,3 @@
-BODY {
-    perspective: 1000px;
-    perspective-origin: center -2em;
-}
-
 .side,
 .container {
     width: 4em;
@@ -10,9 +5,8 @@ BODY {
 }
 
 .container {
-    //border: 2px dotted white;
     transform-style: preserve-3d;
-    animation: rotate 10s infinite linear;
+    animation: rotate-acum 10s infinite linear;
     margin-bottom: 40px;
 }
 .container:before,
@@ -22,7 +16,6 @@ BODY {
     position: absolute;
     width: 4em;
     height: 4em;
-    //border: 2px dotted white;
 }
 .container:before {
     transform: rotateX(90deg);
@@ -68,7 +61,7 @@ BODY {
     background: gold;
 }
 
-@keyframes rotate {
+@keyframes rotate-acum {
     100% {
         transform: rotatex(360deg) rotateY(360deg) rotateZ(360deg);
     }
