@@ -1,18 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { useHistory } from 'react-router-dom';
 import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
-import { useHistory } from 'react-router-dom';
 import { gameToStat } from '../../../types/dayStat';
-import './SavanaGame.scss';
 import { SavanaEl } from './SavanaEl/SavanaEl';
 import { SavanaLife } from './SavanaLife/SavanaLife';
 import { SavanaAccum } from './SavanaEl/SavanaAccum/SavanaAccum';
 import { addLearningWord } from '../../../helpers/helpers';
+import './SavanaGame.scss';
 
 const soundCorrect = require('../../../components/Sprint/sounds/correct.mp3').default;
 const soundIncorrect = require('../../../components/Sprint/sounds/incorrect.mp3').default;
