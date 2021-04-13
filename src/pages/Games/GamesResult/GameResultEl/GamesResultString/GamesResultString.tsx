@@ -1,9 +1,9 @@
 import React from 'react';
-import './GamesResultString.scss';
+import VolumeOn from '@material-ui/icons/VolumeUp';
 import { Howl } from 'howler';
 import { BACKEND_API_URL } from '../../../../../constants/constants';
 import { GameResult } from '../../../../../types/gameResult';
-import VolumeOn from '@material-ui/icons/VolumeUp';
+import './GamesResultString.scss';
 
 interface iProps {
     word: GameResult;

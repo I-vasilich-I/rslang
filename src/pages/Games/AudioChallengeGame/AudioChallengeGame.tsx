@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useTypedSelector } from '../../../hooks/useTypeSelector';
+import { useHistory } from 'react-router-dom';
 import { Howl } from 'howler';
 import { useHotkeys } from 'react-hotkeys-hook';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
 import VolumeOn from '@material-ui/icons/VolumeUp';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
-import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
 import { addLearningWord } from '../../../helpers/helpers';
@@ -15,6 +15,7 @@ import './AudioChallengeGame.scss';
 
 const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
 let currentSeries = 0;
+
 export const AudioChallengeGame: React.FC = () => {
     const { setResults, clearResults } = useActions();
     const { SetStat } = useActions();
@@ -123,20 +124,16 @@ export const AudioChallengeGame: React.FC = () => {
             dayStat.wrong += 1;
             if (currentSeries > dayStat.series) dayStat.series = currentSeries;
             currentSeries = 0;
-            // setWrong((prev) => prev + 1);
-            // setSeries(0);
             setIsWrong(false);
         } else {
             rez.game.right = 1;
             dayStat.right += 1;
             currentSeries += 1;
-            // setRight((prev) => prev + 1);
-            // setSeries((prev) => prev + 1);
         }
         if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
         } else {
-            if (currentSeries) dayStat.series = currentSeries;
+            if (currentSeries && currentSeries > dayStat.series) dayStat.series = currentSeries;
             SetStat(dayStat);
             history.push('result');
         }

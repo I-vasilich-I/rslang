@@ -8,7 +8,7 @@
     text-align: center;
     align-items: center;
     position: relative;
-    background-color: rgb(231, 255, 238);
+    background-color: rgb(238, 246, 200);
 
     .game-my-fullscrean {
         position: absolute;
@@ -130,9 +130,10 @@
     align-items: center;
 }
 
-.fullscreen-enabled .game-my-wrapper {
-    background-color: mistyrose;
+.fullscreen-enabled .game-savana-wrapper {
+    background-color: rgb(238, 246, 200);
 }
+
 .game-savana-accum {
     width: 20px;
     height: 40px;

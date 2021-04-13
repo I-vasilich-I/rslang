@@ -5,18 +5,17 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import VolumeOn from '@material-ui/icons/VolumeUp';
 import FullscreenIcon from '@material-ui/icons/Fullscreen';
-
-import './MyOwnGame.scss';
+import { useHistory } from 'react-router-dom';
 import { MyOwnGameEl } from './MyOwnGameEl/MyOwnGameEl';
 import { MyOwnGameElSelect } from './MyOwnGameElSelect/MyOwnGameElSelect';
 import question from '../../../assets/img/question-mark.png';
 import { useTypedSelector } from '../../../hooks/useTypeSelector';
 import { useActions } from '../../../hooks/useActions';
 import { GameResult } from '../../../types/gameResult';
-import { useHistory } from 'react-router-dom';
 import { BACKEND_API_URL } from '../../../constants/constants';
 import { gameToStat } from '../../../types/dayStat';
 import { addLearningWord } from '../../../helpers/helpers';
+import './MyOwnGame.scss';
 
 const dayStat: gameToStat = { name: 'own', series: 0, right: 0, wrong: 0, date: Date.now() };
 let currentSeries = 0;
@@ -157,24 +156,19 @@ export const MyOwnGame: React.FC = (): JSX.Element => {
         };
         if (isWrong) {
             rez.game.wrong = 1;
-            //setWrong((prev) => prev + 1);
             dayStat.wrong += 1;
             if (currentSeries > dayStat.series) dayStat.series = currentSeries;
             currentSeries = 0;
-            // if (topSeries < series) setTopSeries(series);
-            // setSeries(0);
             setIsWrong(false);
         } else {
             rez.game.right = 1;
             dayStat.right += 1;
             currentSeries += 1;
-            // setRight((prev) => prev + 1);
-            // setSeries((prev) => prev + 1);
         }
         if (index < words.length - 1) {
             setIndex((prev) => prev + 1);
         } else {
-            if (currentSeries) dayStat.series = currentSeries;
+            if (currentSeries && currentSeries > dayStat.series) dayStat.series = currentSeries;
             SetStat(dayStat);
             history.push('result');
         }

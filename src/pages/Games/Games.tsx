@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { useActions } from '../../hooks/useActions';
@@ -6,14 +6,13 @@ import { GameSectionsButtons } from '../../components/GameSectionsButtons/GameSe
 import Loader from '../../components/Loader/Loader';
 import { ALERTS } from '../../constants/constants';
 import { AlertType } from '../../types/interfaces';
-import './Games.scss';
 import { PagesButtons } from '../../components/PagesButtons/PagesButtons';
+import './Games.scss';
 
 export const Games: React.FC = () => {
     const { loading, group, page, error } = useTypedSelector((state) => state.wordCard);
     const { fetchWords, SetAlert, SetAlertShown } = useActions();
     const history = useHistory();
-    const [direction, setDirection] = useState(1);
     const indicator = `games-title difficulty-indicator--${group + 1}`;
 
     const showAlert = (alertType: AlertType['name'], timeOut = false): void => {
@@ -43,7 +42,7 @@ export const Games: React.FC = () => {
     return (
         <div className='games-wrapper'>
             <GameSectionsButtons />
-            <PagesButtons page={page} setDirection={setDirection} />
+            <PagesButtons page={page} />
             <div className={indicator}>Игры группы {group + 1}</div>
             <div className='games-el-wrapper'>
                 <div className='games-el' onClick={() => history.push('savana')}>

@@ -21,6 +21,15 @@ it('developer github is URL', () => {
         /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi,
     );
 });
+
 it('GB youtube url have been present', () => {
     expect(AMOUNT_OF_PAGES.MAX).not.toBe(30);
+});
+
+it('max amount of pages should be less than 30', () => {
+    expect(AMOUNT_OF_PAGES.MAX).toBeLessThan(30);
+});
+
+it('min amount of pages should be greater than or Equal 0', () => {
+    expect(AMOUNT_OF_PAGES.MIN).toBeGreaterThanOrEqual(0);
 });
