@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { wordCardReducer } from './wordCardReducer';
 import { userReducer } from './userReducer';
+import { wordCardReducer } from './wordCardReducer';
 import { settingsReducer } from './settingsReducer';
 import { GameResultReducer } from './GameResultReduser';
 import { alertsReducer } from './alertsReducer';
