@@ -107,6 +107,7 @@ export const Navbar: React.FC = () => {
                         </li>
                     </ul>
                     <Login />
+                    <a href='#headerTop' className='btn-to-top'></a>
                 </div>
             </nav>
         </>
