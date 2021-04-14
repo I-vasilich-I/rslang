@@ -31,33 +31,41 @@ export enum WordCardActionTypes {
     SET_WORDS_PAGE = 'SET_WORDS_PAGE',
     SET_WORDS_GROUP = 'SET_WORDS_GROUP',
 }
+
 interface FetchWordAction {
     type: WordCardActionTypes.FETCH_WORDS;
 }
+
 interface FetchWordSuccessAction {
     type: WordCardActionTypes.FETCH_WORDS_SUCCESS;
     payload: Word[];
 }
+
 interface FetchWordErrorAction {
     type: WordCardActionTypes.FETCH_WORDS_ERROR;
     payload: string | null;
 }
+
 interface SetWordPage {
     type: WordCardActionTypes.SET_WORDS_PAGE;
     payload: number;
 }
+
 interface incWordPage {
     type: WordCardActionTypes.SET_WORDS_PAGE;
     payload: number;
 }
+
 interface decWordPage {
     type: WordCardActionTypes.SET_WORDS_PAGE;
     payload: number;
 }
+
 interface SetWordGroup {
     type: WordCardActionTypes.SET_WORDS_GROUP;
     payload: number;
 }
+
 export type WordAction =
     | FetchWordAction
     | FetchWordErrorAction

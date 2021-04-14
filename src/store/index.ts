@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { rootReducer } from './reducers/index';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { rootReducer } from './reducers/index';
 import { JWT_REFRESH_EXPIRE_TIME } from '../constants/constants';
 
 const saveState = (state: unknown) => {

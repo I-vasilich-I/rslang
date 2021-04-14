@@ -19,20 +19,25 @@ export const fetchWords = (page = 0, group = 0) => {
         }
     };
 };
+
 export function setWordsPage(page: number): WordAction {
     return { type: WordCardActionTypes.SET_WORDS_PAGE, payload: page };
 }
+
 export function incWordsPage(page: number, amount: number): WordAction {
     if (page < AMOUNT_OF_PAGES.MAX) return { type: WordCardActionTypes.SET_WORDS_PAGE, payload: page + amount };
     return { type: WordCardActionTypes.SET_WORDS_PAGE, payload: page };
 }
+
 export function decWordsPage(page: number, amount: number): WordAction {
     if (page > AMOUNT_OF_PAGES.MIN) return { type: WordCardActionTypes.SET_WORDS_PAGE, payload: page - amount };
     return { type: WordCardActionTypes.SET_WORDS_PAGE, payload: page };
 }
+
 export function setWordsGroup(group: number): WordAction {
     return { type: WordCardActionTypes.SET_WORDS_GROUP, payload: group };
 }
+
 export function setWordsError(): WordAction {
     return {
         type: WordCardActionTypes.FETCH_WORDS_ERROR,

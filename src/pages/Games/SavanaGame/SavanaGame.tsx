@@ -58,7 +58,7 @@ export const SavanaGame: React.FC = () => {
         if (gameStart) {
             const id = window.setInterval(() => {
                 clickHandler('');
-            }, 3000);
+            }, 4000);
             timerId.current = id;
         }
         return () => {
@@ -168,7 +168,7 @@ export const SavanaGame: React.FC = () => {
                         }}
                     />
                 )}
-                <SavanaAccum />
+                <SavanaAccum id={dayStat.right} />
             </div>
         </FullScreen>
     );
