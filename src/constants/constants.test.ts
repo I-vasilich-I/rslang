@@ -1,4 +1,5 @@
 import { DEVELOPERS, DIFFICULTY, AMOUNT_OF_PAGES } from './constants';
+import avatar from '../assets/img/avatar.svg';
 
 it('DEVELOPERS length to be 4', () => {
     expect(DEVELOPERS).toHaveLength(4);
@@ -6,8 +7,10 @@ it('DEVELOPERS length to be 4', () => {
 
 it('DEVELOPERS contain developer', () => {
     const developer = {
-        name: 'Сергей Нестеров',
-        git: 'https://github.com/nimlu-bot',
+        name: 'Денис Короткевич',
+        git: 'https://github.com/Lex-tp',
+        bio: `Денис Короткевич`,
+        picture: avatar,
     };
     expect(DEVELOPERS).toContainEqual(developer);
 });
