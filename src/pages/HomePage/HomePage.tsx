@@ -62,7 +62,12 @@ export const HomePage: React.FC = () => {
                             className='home-about-developer-picture'
                             style={{ backgroundImage: `url(${elem.picture})` }}
                         ></div>
-                        <div className='home-about-developer-text'>{elem.bio}</div>
+                        <div className='home-about-developer-text'>
+                            <a href={elem.git} target='_blank' rel='noreferrer'>
+                                {elem.name}
+                            </a>
+                            <p>{elem.bio}</p>
+                        </div>
                     </div>
                 ))}
             </div>

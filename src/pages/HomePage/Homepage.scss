@@ -151,8 +151,9 @@
         .home-about-developer {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             max-width: 85%;
+            width: 100%;
             min-height: 200px;
             background-color: #56f8f6;
             margin: 20px 0;

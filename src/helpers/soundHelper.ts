@@ -1,7 +1,7 @@
 import { Howl, Howler } from 'howler';
 import { BACKEND_API_URL } from '../constants/constants';
 
-export const soundHandler = (audio: string, audioMeaning: string, audioExample: string) => {
+export const soundHandler = (audio: string, audioMeaning: string, audioExample: string): VoidFunction => {
     const sound = new Howl({
         src: [`${BACKEND_API_URL}${audio}`],
     });
