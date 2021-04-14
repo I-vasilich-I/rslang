@@ -28,37 +28,78 @@
     position: absolute;
     width: 4em;
     height: 4em;
-    border: 2px solid white;
-    opacity: 0.7;
+    border: 2px solid grey;
+    opacity: 0.9;
 }
 
 .back {
     transform: translateZ(-2em);
     background: orange;
+    transition-duration: 0.5s;
 }
 
 .left {
     transform: translateX(-2em) rotateY(90deg);
     background: lightgreen;
+    transition-duration: 0.5s;
 }
 
 .right {
     transform: translateX(2em) rotateY(90deg);
     background: yellowgreen;
+    transition-duration: 0.5s;
 }
 .top {
     transform: translateY(-2em) rotateX(90deg);
     background: skyblue;
+    transition-duration: 0.5s;
 }
 
 .bottom {
     transform: translateY(2em) rotateX(90deg);
     background: steelblue;
+    transition-duration: 0.5s;
 }
 
 .front {
     transform: translateZ(2em);
     background: gold;
+    transition-duration: 0.5s;
+}
+
+.back5 {
+    transform: translateZ(-4em);
+    background: orange;
+    transition-duration: 0.5s;
+}
+
+.left5 {
+    transform: translateX(-4em) rotateY(90deg);
+    background: lightgreen;
+    transition-duration: 0.5s;
+}
+
+.right5 {
+    transform: translateX(4em) rotateY(90deg);
+    background: yellowgreen;
+    transition-duration: 0.5s;
+}
+.top5 {
+    transform: translateY(-4em) rotateX(90deg);
+    background: skyblue;
+    transition-duration: 0.5s;
+}
+
+.bottom5 {
+    transform: translateY(4em) rotateX(90deg);
+    background: steelblue;
+    transition-duration: 0.5s;
+}
+
+.front5 {
+    transform: translateZ(4em);
+    background: gold;
+    transition-duration: 0.5s;
 }
 
 @keyframes rotate-acum {
