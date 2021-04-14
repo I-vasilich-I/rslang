@@ -11,10 +11,10 @@ import { SignUp } from './components/Header/Login/SignUp';
 import { SignIn } from './components/Header/Login/SignIn';
 import { SavanaGame } from './pages/Games/SavanaGame/SavanaGame';
 import { AudioChallengeGame } from './pages/Games/AudioChallengeGame/AudioChallengeGame';
-import { SprintGame } from './pages/Games/SprintGame/SprintGame';
 import { MyOwnGame } from './pages/Games/MyOwnGame/MyOwnGame';
 import ActionAlerts from './components/common/Alert';
 import { GamesResult } from './pages/Games/GamesResult/GamesResult';
+import { Sprint } from './components/Sprint/Sprint';
 import './app.scss';
 
 const App: React.FC = () => {
@@ -32,7 +32,7 @@ const App: React.FC = () => {
                     <Route component={SignIn} path='/sign-in' />
                     <Route component={SavanaGame} path='/savana' />
                     <Route component={AudioChallengeGame} path='/audio-challenge' />
-                    <Route component={SprintGame} path='/sprint' />
+                    <Route component={Sprint} path='/sprint' />
                     <Route component={MyOwnGame} path='/my-own' />
                     <Route component={GamesResult} path='/result' />
                 </Switch>

@@ -6,6 +6,7 @@ import { GameSectionsButtons } from '../../components/GameSectionsButtons/GameSe
 import Loader from '../../components/Loader/Loader';
 import { ALERTS } from '../../constants/constants';
 import { AlertType } from '../../types/interfaces';
+import { PagesButtons } from '../../components/PagesButtons/PagesButtons';
 import './Games.scss';
 
 export const Games: React.FC = () => {
@@ -41,6 +42,7 @@ export const Games: React.FC = () => {
     return (
         <div className='games-wrapper'>
             <GameSectionsButtons />
+            <PagesButtons page={page} />
             <div className={indicator}>Игры группы {group + 1}</div>
             <div className='games-el-wrapper'>
                 <div className='games-el' onClick={() => history.push('savana')}>

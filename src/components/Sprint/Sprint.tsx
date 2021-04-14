@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
+import useSound from 'use-sound';
 import { ControlPanel } from './ControlPanel/ControlPanel';
 import { AnswerPanel } from './AnswerPanel/AnswerPanel';
 import { ComboPanel } from './ComboPanel/ComboPanel';
@@ -7,10 +9,14 @@ import { ButtonsPanel } from './ButtonsPanel/ButtonsPanel';
 import { useTypedSelector } from '../../hooks/useTypeSelector';
 import { Word } from '../../types/wordCard';
 import { useTimer } from '../../hooks/useTimer';
-import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { Startbox } from './Startbox/Startbox';
-import useSound from 'use-sound';
+import { useHistory } from 'react-router-dom';
+import { GameResult } from '../../types/gameResult';
+import { useActions } from '../../hooks/useActions';
+import { gameToStat } from '../../types/dayStat';
+import { addLearningWord } from '../../helpers/helpers';
 import './Sprint.scss';
+import { useHotkeys } from 'react-hotkeys-hook';
 
 const soundCorrect = require('./sounds/correct.mp3').default;
 const soundIncorrect = require('./sounds/incorrect.mp3').default;
@@ -34,8 +40,13 @@ const initialStateAnswer = {
     wordTranslate: '',
 };
 
+const dayStat: gameToStat = { name: 'audio', series: 0, right: 0, wrong: 0, date: Date.now() };
+let currentSeries = 0;
+
 export const Sprint: React.FC = () => {
     const { words } = useTypedSelector((state) => state.wordCard);
+    const { words: userWords } = useTypedSelector((state) => state.userWords);
+    const { userId, token } = useTypedSelector((state) => state.user);
     const fullscreenHandle = useFullScreenHandle();
     const [soundEnabled, setSoundEnabled] = React.useState(true);
     const [correctSound] = useSound(soundCorrect, {
@@ -50,6 +61,7 @@ export const Sprint: React.FC = () => {
     const [winSound] = useSound(soundWin, {
         soundEnabled: soundEnabled,
     });
+    const history = useHistory();
 
     const [score, setScore] = useState(0);
     const [point, setPoint] = useState(10);
@@ -62,14 +74,20 @@ export const Sprint: React.FC = () => {
     const [wordsArray, setWordsArray] = useState<Array<Word>>(words);
     const [gameStart, setGameStart] = useState(false);
     const [gameDone, setGameDone] = useState(false);
+    const { setResults, clearResults } = useActions();
+    const { SetStat } = useActions();
 
     const timer = useTimer(60, gameStart, () => {
         setGameDone((gameDone) => !gameDone);
         winSound();
+        if (currentSeries) dayStat.series = currentSeries;
+        SetStat(dayStat);
+        history.push('result');
     });
 
     useEffect(() => {
         shuffleWords();
+        clearResults();
     }, []);
 
     useEffect(() => {
@@ -91,20 +109,66 @@ export const Sprint: React.FC = () => {
         }
     }, [answers]);
 
+    useHotkeys(
+        'right',
+        () => {
+            correctClick();
+        },
+        [],
+    );
+    useHotkeys(
+        'left',
+        () => {
+            incorrectClick();
+        },
+        [],
+    );
+
     const correctClick = () => {
+        const rez: GameResult = {
+            resultWord: selectWord,
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
         if (selectWord.id === randomWord.id) {
+            rez.game.right = 1;
             correctAnswer();
+            dayStat.right += 1;
+            currentSeries += 1;
         } else {
+            rez.game.wrong = 1;
             incorrectAnswer();
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
         }
+        setResults(rez);
     };
 
     const incorrectClick = () => {
+        const rez: GameResult = {
+            resultWord: selectWord,
+            game: {
+                right: 0,
+                wrong: 0,
+            },
+        };
         if (selectWord.id !== randomWord.id) {
+            rez.game.right = 1;
             correctAnswer();
+            dayStat.right += 1;
+            currentSeries += 1;
         } else {
+            rez.game.wrong = 1;
             incorrectAnswer();
+            dayStat.wrong += 1;
+            if (currentSeries > dayStat.series) dayStat.series = currentSeries;
+            currentSeries = 0;
         }
+
+        setResults(rez);
     };
 
     const correctAnswer = () => {
@@ -119,7 +183,8 @@ export const Sprint: React.FC = () => {
         incorrectSound();
     };
 
-    const setAnswer = (state: boolean) => {
+    const setAnswer = async (state: boolean) => {
+        await addLearningWord(wordsArray[selectIndex].id, userWords, userId, token);
         setAnswers((answers) => {
             const answersCopy = Array.from(answers);
             answersCopy.push(state);

@@ -1,7 +1,6 @@
 .home-wrapper {
     display: flex;
     flex-direction: column;
-
     .home-advantages {
         display: flex;
         flex-direction: column;
@@ -127,12 +126,59 @@
         }
     }
 
-    .home-about {
-        border: 1px solid red;
-        min-height: 400px;
+    .video-wrapper {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #56f8f6;
+        iframe {
+            margin: 50px 0;
+            width: 80%;
+            max-height: 400px;
+            border-radius: 5px;
+        }
+    }
+
+    .home-about {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 50px 0;
+        padding: 20px 0;
+        background-color: rgb(35, 208, 199);
+
+        .home-about-developer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 85%;
+            min-height: 200px;
+            background-color: #56f8f6;
+            margin: 20px 0;
+            padding: 0px 0;
+            cursor: default;
+
+            .home-about-developer-picture {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 200px;
+                min-width: 150px;
+                margin: 10px 20px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-position: top;
+                overflow: hidden;
+            }
+            .home-about-developer-text {
+                font-style: italic;
+                font-size: 16px;
+                line-height: 18px;
+                letter-spacing: 1px;
+                padding: 10px;
+            }
+        }
     }
 }
 
@@ -181,7 +227,7 @@
             min-height: 100%;
             background-position: center right;
             background-size: 150%;
-            
+
             .work-out__text {
                 background-color: rgba(255, 255, 255, 0.8);
                 align-items: center;

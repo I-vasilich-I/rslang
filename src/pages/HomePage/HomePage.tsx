@@ -1,4 +1,6 @@
 import React from 'react';
+import { Video } from '../../components/Video/Video';
+import { DEVELOPERS } from '../../constants/constants';
 import './Homepage.scss';
 
 export const HomePage: React.FC = () => {
@@ -52,19 +54,18 @@ export const HomePage: React.FC = () => {
                     </a>
                 </div>
             </div>
-
-            {/* <div className='home-video'>
-                <iframe
-                    width='1000px'
-                    height='530px'
-                    src='https://www.youtube.com/embed/NeQM1c-XCDc'
-                    frameBorder='0'
-                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                    title='Video'
-                    allowFullScreen={true}
-                ></iframe>
-            </div> */}
-            {/* <div className='home-about'>about</div> */}
+            <Video source={'https://www.youtube.com/embed/NeQM1c-XCDc'} />
+            <div className='home-about'>
+                {DEVELOPERS.map((elem) => (
+                    <div key={elem.name} className='home-about-developer'>
+                        <div
+                            className='home-about-developer-picture'
+                            style={{ backgroundImage: `url(${elem.picture})` }}
+                        ></div>
+                        <div className='home-about-developer-text'>{elem.bio}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
