@@ -1,7 +1,6 @@
 .home-wrapper {
     display: flex;
     flex-direction: column;
-
     .home-advantages {
         display: flex;
         flex-direction: column;
@@ -127,29 +126,51 @@
         }
     }
 
+    .video-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #56f8f6;
+        iframe {
+            margin: 50px 0;
+            width: 80%;
+            max-height: 400px;
+            border-radius: 5px;
+        }
+    }
+
     .home-about {
-        min-height: 400px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 60px 20px;
+        margin: 50px 0;
+        padding: 20px 0;
+        background-color: rgb(35, 208, 199);
+
         .home-about-developer {
-            border: 1px solid black;
-            min-height: 200px;
             display: flex;
-            justify-content: space-between;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 85%;
+            width: 100%;
+            min-height: 200px;
+            background-color: #56f8f6;
+            margin: 20px 0;
+            padding: 0px 0;
+            cursor: default;
+
             .home-about-developer-picture {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 height: 200px;
-                min-width: 100px;
-                //border: 1px solid black;
-                border-radius: 5px;
-                margin: 10px;
-                margin-right: 20px;
-                flex-basis: 100px;
+                min-width: 150px;
+                margin: 10px 20px;
                 background-size: 100%;
                 background-repeat: no-repeat;
-                background-position: center;
+                background-position: top;
+                overflow: hidden;
             }
             .home-about-developer-text {
                 font-style: italic;

@@ -5,7 +5,7 @@ import './Header.scss';
 
 export const Header: React.FC = () => {
     return (
-        <header className='header'>
+        <header className='header' id='headerTop'>
             <div className='header-wrapper'>
                 <NavLink to='/' className='nav-logo'>
                     <h2>

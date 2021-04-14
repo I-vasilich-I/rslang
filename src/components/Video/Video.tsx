@@ -14,7 +14,7 @@ export const Video: React.FC<iProps> = ({ source }: iProps) => {
     const [dimensions, setDimensions] = useState<iDimensions>({ width: 0, height: 0 });
 
     let movement_timer: NodeJS.Timeout;
-    const RESET_TIMEOUT = 100;
+    const RESET_TIMEOUT = 0;
     const test_dimensions = () => {
         if (targetRef.current) {
             setDimensions({

@@ -4,6 +4,7 @@ import nimlu from '../assets/img/nimlu.jpg';
 // Нужно добвать по импорту на каждого девелопера и внести в поле picture
 import avatar from '../assets/img/avatar.svg';
 import oleg from '../assets/img/Oleg.png';
+import fedya from '../assets/img/fedya.jpg';
 
 const BACKEND_API_URL = 'https://team101-rslang-be.herokuapp.com/';
 const WORDS_API_URL = `${BACKEND_API_URL}words`;
@@ -81,7 +82,7 @@ const DEVELOPERS = [
     {
         name: 'Олег Васкевич',
         git: 'https://github.com/I-vasilich-I',
-        bio: `Реализовал: бэкенд и взоимодействие с ним, форма авторизации/регистрации, электронный учебник, словарь, карточка слова, футер, юнит-тесты.`,
+        bio: `Реализовал: бэкенд и взоимодействие с ним, форма авторизации/регистрации, электронный учебник, словарь, карточка слова, футер, лоудер, уведомления, юнит-тесты.`,
         picture: oleg,
     },
     {
@@ -94,7 +95,7 @@ const DEVELOPERS = [
         name: 'Фёдор Микулич',
         git: 'https://github.com/Mikulich-Fedor',
         bio: `Реализовал: вёрстка, дизайн, UI`,
-        picture: avatar,
+        picture: fedya,
     },
 ];
 
