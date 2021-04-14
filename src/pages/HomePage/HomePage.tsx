@@ -54,7 +54,7 @@ export const HomePage: React.FC = () => {
                     </a>
                 </div>
             </div>
-            <Video source={'https://www.youtube.com/embed/NeQM1c-XCDc'} />
+            <Video source={'https://www.youtube.com/embed/Bt7D5WvXR1A'} />
             <div className='home-about'>
                 {DEVELOPERS.map((elem) => (
                     <div key={elem.name} className='home-about-developer'>
