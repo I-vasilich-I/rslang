@@ -3,6 +3,7 @@ import nimlu from '../assets/img/nimlu.jpg';
 // добавил пока дефолтную аву.
 // Нужно добвать по импорту на каждого девелопера и внести в поле picture
 import avatar from '../assets/img/avatar.svg';
+import fedya from '../assets/img/fedya.jpg';
 
 const BACKEND_API_URL = 'https://team101-rslang-be.herokuapp.com/';
 const WORDS_API_URL = `${BACKEND_API_URL}words`;
@@ -110,7 +111,7 @@ const DEVELOPERS = [
         “ШАГ”, курсы “ОR media” и вот я в RS School. За время обучения в RS School я заполнил пробелы в
         знаниях и навыках, улучшил свой код. Однако впереди еще много чего нужно узнать и изучить. И
         вообще, IT — “непаханное поле” для “вечного студента”! То, что я так люблю.`,
-        picture: avatar,
+        picture: fedya,
     },
 ];
 
