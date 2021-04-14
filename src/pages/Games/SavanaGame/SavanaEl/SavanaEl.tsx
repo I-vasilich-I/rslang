@@ -10,7 +10,7 @@ export const SavanaEl: React.FC<iProps> = ({ word }: iProps) => {
         setAnimation(false);
         setTimeout(() => {
             setAnimation((prev) => !prev);
-        }, 1);
+        }, 20);
     }, [word]);
     return <div className={animation ? 'game-savana-word bounce' : 'game-savana-word'}>{word}</div>;
 };
