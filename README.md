@@ -2,6 +2,8 @@
 
 English learning app
 
+### [Deploy](https://rslang-team101-i-vasilich-i.netlify.app/)
+
 Запуск
 
     	npm i
