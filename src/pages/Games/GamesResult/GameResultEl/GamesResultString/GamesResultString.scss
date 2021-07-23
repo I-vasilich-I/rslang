@@ -1,0 +1,24 @@
+.game-result-body {
+    display: flex;
+}
+.game-result-sound {
+    margin-right: 30px;
+    width: 10px;
+    height: 10px;
+    border: none;
+    background-color: inherit;
+    outline: none;
+    .MuiSvgIcon-root {
+        font-size: 1.8rem;
+        color: #2c786c;
+    }
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+.game-result-word,
+.game-result-translate {
+    margin-right: 20px;
+    color: #2c786c;
+    font-size: 1.3rem;
+}

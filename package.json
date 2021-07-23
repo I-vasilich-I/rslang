@@ -1,0 +1,95 @@
+{
+    "name": "rslang",
+    "version": "0.1.0",
+    "private": true,
+    "authors": ["Oleg Vaskevich", "Sergey Nesterov", "Fedar Mikulich", "Denis Korotkevich"],
+    "description": "RS Lang is an app for learning foreign words that includes an electronic textbook with a base of words to learn, mini-games to repeat them, and a statistics page to track individual progress.",
+    "dependencies": {
+        "@material-ui/core": "^4.11.3",
+        "@material-ui/icons": "^4.11.2",
+        "@material-ui/lab": "^4.0.0-alpha.57",
+        "@testing-library/jest-dom": "^5.11.9",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/howler": "^2.2.1",
+        "@types/jest": "^26.0.21",
+        "@types/node": "^12.20.6",
+        "@types/react": "^17.0.3",
+        "@types/react-dom": "^17.0.2",
+        "@types/react-redux": "^7.1.16",
+        "@types/react-router-dom": "^5.1.7",
+        "axios": "^0.21.1",
+        "howler": "^2.2.1",
+        "node-sass": "^5.0.0",
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1",
+        "react-full-screen": "^1.0.2",
+        "react-hotkeys-hook": "^3.2.1",
+        "react-html-parser": "^2.0.2",
+        "react-redux": "^7.2.2",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "redux": "^4.0.5",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-thunk": "^2.3.0",
+        "use-sound": "^2.0.1",
+        "web-vitals": "^1.1.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "format": "prettier -w ."
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "!(_*).scss": [
+            "prettier --write",
+            "stylelint --fix --color --config ./.stylelintrc.json"
+        ],
+        "*.{js,jsx,ts,tsx}": [
+            "eslint --fix --color --config .eslintrc.prod.json"
+        ]
+    },
+    "devDependencies": {
+        "@types/react-html-parser": "^2.0.1",
+        "@typescript-eslint/eslint-plugin": "^4.18.0",
+        "@typescript-eslint/parser": "^4.18.0",
+        "eslint": "^7.22.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-react": "^7.22.0",
+        "husky": "^5.1.3",
+        "lint-staged": "^10.5.4",
+        "prettier": "^2.2.1",
+        "stylelint": "^13.12.0",
+        "stylelint-config-prettier": "^8.0.2",
+        "stylelint-config-recommended": "^4.0.0",
+        "stylelint-order": "^4.1.0",
+        "stylelint-scss": "^3.19.0",
+        "typescript": "^4.2.3"
+    }
+}

@@ -1,0 +1,73 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+    height: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(35, 202, 208);
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(86, 248, 246);
+    border-radius: 10px;
+    border: 2px solid rgb(35, 202, 208);
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 60px;
+    max-width: 150px;
+    color: #fff;
+    background-color: #292e33;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #454d55;
+    transform: all 0.2s;
+}
+
+.word-btn-title {
+    visibility: hidden;
+    width: 150px;
+    color: #292e33;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    position: absolute;
+    bottom: 100px;
+    z-index: 5;
+}
+
+.button:disabled {
+    background-color: #454d55;
+
+    &:hover {
+        cursor: auto;
+        
+        .word-btn-title {
+            visibility: visible;
+        }
+    }
+}

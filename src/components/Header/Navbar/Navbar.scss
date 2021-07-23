@@ -1,0 +1,133 @@
+.burger-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto 0 10px;
+
+    span {
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    span::before,
+    span::after {
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        transition: all 0.2s;
+    }
+
+    span::before {
+        transition-delay: 0.1s;
+        transition-property: top;
+        top: 0px;
+    }
+
+    span::after {
+        transition-delay: 0.1s;
+        transition-property: bottom;
+        bottom: 0px;
+    }
+}
+
+.burger-btn-toggle-on {
+    span {
+        transition: 0.2s;
+        background-color: transparent;
+    }
+
+    span::before {
+        transition-delay: 0.1s, 0.3s;
+        transition-property: top, transform;
+        top: 11px;
+        transform: rotate(-45deg);
+    }
+
+    span::after {
+        transition-delay: 0.1s, 0.3s;
+        transition-property: bottom, transform;
+        bottom: 11px;
+        transform: rotate(45deg);
+    }
+}
+.burger-btn-toggle-off {
+    span {
+        transition: background 0.9s;
+        background-color: #fff;
+    }
+
+    span::before {
+        transform: rotate(0deg);
+        transition-delay: 0.3s, 0.1s;
+        transition-property: top, transform;
+        top: 0px;
+    }
+
+    span::after {
+        transform: rotate(0deg);
+        transition-delay: 0.3s, 0.1s;
+        transition-property: bottom, transform;
+        bottom: 0px;
+    }
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+
+    .nav-ul {
+        display: flex;
+        padding: 0;
+        list-style: none;
+
+        .nav-li {
+            .button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+                color: #fff;
+                padding: 5px 25px;
+            }
+        }
+    }
+    .btn-to-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background: url(../../../assets/img/arrow-down.png) center 5px/70% no-repeat;
+        background-color: rgb(35, 208, 199);
+        transform: rotate(180deg);
+
+        cursor: pointer;
+        position: fixed;
+        bottom: 85px;
+        right: 10px;
+        z-index: 3;
+
+        box-shadow: 0 0 10px #fff;
+
+        animation: arrowTop 1s ease-in infinite;
+    }
+}
+@keyframes arrowTop {
+    10% {
+        background-position: center 10px;
+    }
+    30% {
+        background-position: center 5px;
+    }
+    60% {
+        background-position: center 8px;
+    }
+}

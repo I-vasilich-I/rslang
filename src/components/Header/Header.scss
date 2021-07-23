@@ -1,0 +1,95 @@
+.header {
+    background-color: rgb(35, 208, 199);
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    min-height: 50px;
+    margin: 0 auto;
+    color: white;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 0 10px;
+
+    a {
+        text-decoration: none;
+    }
+
+    h2 {
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        font-weight: 300;
+        font-size: 1.75rem;
+        font-style: italic;
+        line-height: 1.1;
+        margin: 20px 0;
+        color: #292e33;
+
+        span {
+            text-transform: capitalize;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 1.75rem;
+            font-style: normal;
+            line-height: 1.1;
+            margin: 20px 0;
+            animation: rs 2s ease-in infinite;
+        }
+    }
+}
+
+@keyframes rs {
+    0% {
+        color: #292e33;
+    }
+    50% {
+        color: #b87e27;
+    }
+    80% {
+        color: #4fa091;
+    }
+}
+
+// 768
+@media all and (max-width: 768px) {
+    .header {
+        .header-wrapper {
+            .burger-btn {
+                display: flex;
+            }
+
+            .nav-wrapper {
+                .nav-ul {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: fixed;
+                    z-index: 10;
+                    min-height: 100vh;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    margin: 0;
+                    background-color: #4fa091b3;
+                    transition: opacity 0.2s;
+
+                    .nav-li {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 5px;
+                        
+                        .button {
+                            width: 100px;
+                            padding: 20px 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
