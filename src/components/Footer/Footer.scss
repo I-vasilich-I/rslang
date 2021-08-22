@@ -1,0 +1,78 @@
+@import '../../constants/constants.scss';
+
+.footer {
+    background-color: rgb(35, 208, 199);
+    margin-top: auto !important;
+}
+
+.footer-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+    font-size: 16px;
+    line-height: 19px;
+    padding: 10px;
+
+    .footer-rs-logo {
+        height: 30px;
+
+        &:hover {
+            transform: scale(1.1);
+            transition: all 0.3s;
+        }
+    }
+
+    .devs__container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 auto;
+    }
+
+    .footer-git-logo {
+        width: 40px;
+        height: 40px;
+        max-height: 40px;
+        margin-right: 5px;
+    }
+
+    .footer-autor-name {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        text-decoration: none;
+        color: #000;
+
+        &:hover {
+            transform: scale(1.1);
+            transition: all 0.3s;
+
+            &::after {
+                content: attr(data-title);
+                position: absolute;
+                left: 0;
+                top: -130%;
+                z-index: 2;
+                font-size: 12px;
+                padding: 5px 10px;
+                background-color: $color-secondary;
+                border-radius: 10px;
+                color: $color-light;
+            }
+        }
+        
+    }
+    
+    .footer-year {
+        cursor: default;
+        color: black;
+        font-size: 30px;
+        font-weight: 600;
+    }
+}

@@ -1,0 +1,24 @@
+.game-my-word-el-select {
+    width: 65px;
+    height: 65px;
+    background-color: #d9d9d9;
+    border: 3px solid #f8b400;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    color: #2c786c;
+    font-size: 3rem;
+    line-height: 60%;
+    cursor: pointer;
+}
+.word-el-selected {
+    background-color: rgb(57, 214, 109);
+}
+
+.word-ell-disabled {
+    opacity: 50%;
+    pointer-events: none;
+}
